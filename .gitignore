@@ -10,4 +10,8 @@ uos
 ja
 locale/tmp*
 radio-player
+radio-player-client
+project1
 project1.lps
+*.dbg
+*.exe
