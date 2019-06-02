@@ -1,0 +1,443 @@
+object FFileConf: TFFileConf
+  Left = 390
+  Height = 343
+  Top = 490
+  Width = 511
+  BorderStyle = bsDialog
+  Caption = 'RpFP - Atrybuty'
+  ClientHeight = 343
+  ClientWidth = 511
+  Position = poOwnerFormCenter
+  LCLVersion = '2.0.0.4'
+  object CheckBox1: TCheckBox
+    AnchorSideLeft.Control = Label7
+    AnchorSideTop.Control = Label7
+    AnchorSideTop.Side = asrBottom
+    Left = 33
+    Height = 23
+    Top = 278
+    Width = 288
+    BorderSpacing.Left = 25
+    BorderSpacing.Top = 8
+    Caption = 'Nie ładuj napisów pod żadnym pozorem!'
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    AnchorSideTop.Control = Edit1
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = Edit1
+    Left = 55
+    Height = 19
+    Top = 36
+    Width = 154
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 8
+    Caption = 'Wybrana ścieżka audio:'
+    ParentColor = False
+  end
+  object Edit1: TEdit
+    AnchorSideTop.Control = Label6
+    AnchorSideTop.Side = asrBottom
+    Left = 217
+    Height = 28
+    Top = 31
+    Width = 104
+    AutoSize = False
+    BorderSpacing.Top = 12
+    TabOrder = 1
+  end
+  object Label2: TLabel
+    AnchorSideLeft.Control = Edit1
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Edit1
+    AnchorSideTop.Side = asrCenter
+    Left = 325
+    Height = 15
+    Top = 38
+    Width = 147
+    BorderSpacing.Left = 4
+    Caption = '(trzyliterowy kod języka)'
+    Font.Color = clGray
+    Font.Height = -12
+    Font.Name = 'Sans'
+    Font.Style = [fsItalic]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label3: TLabel
+    AnchorSideTop.Control = Edit2
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = Edit2
+    Left = 97
+    Height = 19
+    Top = 72
+    Width = 112
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 8
+    Caption = 'Ścieżka napisów:'
+    ParentColor = False
+  end
+  object Edit2: TEdit
+    AnchorSideLeft.Control = Edit1
+    AnchorSideTop.Control = Edit1
+    AnchorSideTop.Side = asrBottom
+    Left = 217
+    Height = 28
+    Top = 67
+    Width = 104
+    AutoSize = False
+    BorderSpacing.Top = 8
+    TabOrder = 2
+  end
+  object Label4: TLabel
+    AnchorSideLeft.Control = Edit2
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Edit2
+    AnchorSideTop.Side = asrCenter
+    Left = 325
+    Height = 15
+    Top = 74
+    Width = 147
+    BorderSpacing.Left = 4
+    Caption = '(trzyliterowy kod języka)'
+    Font.Color = clGray
+    Font.Height = -12
+    Font.Name = 'Sans'
+    Font.Style = [fsItalic]
+    ParentColor = False
+    ParentFont = False
+  end
+  object ComboBox1: TComboBox
+    AnchorSideLeft.Control = Edit2
+    AnchorSideTop.Control = Edit2
+    AnchorSideTop.Side = asrBottom
+    Left = 217
+    Height = 28
+    Top = 103
+    Width = 240
+    AutoSize = False
+    BorderSpacing.Top = 8
+    ItemHeight = 0
+    Items.Strings = (
+      'DEFAULT'
+      'UTF-8'
+      'UNICODE'
+      'ISO-8859-2'
+      'CP 852'
+      'CP 1250'
+    )
+    Style = csDropDownList
+    TabOrder = 3
+  end
+  object Label5: TLabel
+    AnchorSideTop.Control = ComboBox1
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = ComboBox1
+    Left = 53
+    Height = 19
+    Top = 108
+    Width = 156
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 8
+    Caption = 'Napisy są w kodowaniu:'
+    ParentColor = False
+  end
+  object Label6: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    Left = 8
+    Height = 15
+    Top = 4
+    Width = 299
+    BorderSpacing.Left = 8
+    BorderSpacing.Top = 4
+    Caption = 'Opcje, których ustawienia możesz wymusić:'
+    Font.Height = -12
+    Font.Name = 'Sans'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label7: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = ComboBox4
+    AnchorSideTop.Side = asrBottom
+    Left = 8
+    Height = 15
+    Top = 255
+    Width = 122
+    BorderSpacing.Left = 8
+    BorderSpacing.Top = 16
+    Caption = 'Flagi wyłączające:'
+    Font.Height = -12
+    Font.Name = 'Sans'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object BitBtn1: TBitBtn
+    AnchorSideTop.Control = BitBtn2
+    AnchorSideRight.Control = BitBtn2
+    Left = 345
+    Height = 30
+    Top = 305
+    Width = 75
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 8
+    Caption = 'Anuluj'
+    OnClick = BitBtn1Click
+    TabOrder = 4
+  end
+  object BitBtn2: TBitBtn
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 428
+    Height = 30
+    Top = 305
+    Width = 75
+    Anchors = [akRight, akBottom]
+    BorderSpacing.Right = 8
+    BorderSpacing.Bottom = 8
+    Caption = 'OK'
+    OnClick = BitBtn2Click
+    TabOrder = 5
+  end
+  object Label8: TLabel
+    AnchorSideTop.Control = ComboBox2
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = ComboBox2
+    Left = 24
+    Height = 19
+    Top = 144
+    Width = 185
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 8
+    Caption = 'Czarny zarys wokół czcionki:'
+    ParentColor = False
+  end
+  object ComboBox2: TComboBox
+    AnchorSideLeft.Control = ComboBox1
+    AnchorSideTop.Control = ComboBox1
+    AnchorSideTop.Side = asrBottom
+    Left = 217
+    Height = 28
+    Top = 139
+    Width = 240
+    AutoSize = False
+    BorderSpacing.Top = 8
+    ItemHeight = 0
+    Items.Strings = (
+      'DEFAULT'
+      'Bez zarysu'
+      'Bardzo wąski czarny zarys'
+      'Wąski czarny zarys'
+      'Pogrubiony czarny zarys'
+    )
+    Style = csDropDownList
+    TabOrder = 6
+  end
+  object Label9: TLabel
+    AnchorSideTop.Control = ComboBox3
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = ComboBox3
+    Left = 26
+    Height = 19
+    Top = 180
+    Width = 183
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 8
+    Caption = 'Pozycja napisów na ekranie:'
+    ParentColor = False
+  end
+  object ComboBox3: TComboBox
+    AnchorSideLeft.Control = ComboBox2
+    AnchorSideTop.Control = ComboBox2
+    AnchorSideTop.Side = asrBottom
+    Left = 217
+    Height = 28
+    Top = 175
+    Width = 144
+    AutoSize = False
+    BorderSpacing.Top = 8
+    ItemHeight = 0
+    Items.Strings = (
+      'DEFAULT'
+      '0'
+      '1'
+      '2'
+      '3'
+      '4'
+      '5'
+      '6'
+      '7'
+      '8'
+      '9'
+      '10'
+      '11'
+      '12'
+      '13'
+      '14'
+      '15'
+      '16'
+      '17'
+      '18'
+      '19'
+      '20'
+      '21'
+      '22'
+      '23'
+      '24'
+      '25'
+      '26'
+      '27'
+      '28'
+      '29'
+      '30'
+      '31'
+      '32'
+      '33'
+      '34'
+      '35'
+      '36'
+      '37'
+      '38'
+      '39'
+      '40'
+      '41'
+      '42'
+      '43'
+      '44'
+      '45'
+      '46'
+      '47'
+      '48'
+      '49'
+      '50'
+      '51'
+      '52'
+      '53'
+      '54'
+      '55'
+      '56'
+      '57'
+      '58'
+      '59'
+      '60'
+      '61'
+      '62'
+      '63'
+      '64'
+      '65'
+      '66'
+      '67'
+      '68'
+      '69'
+      '70'
+      '71'
+      '72'
+      '73'
+      '74'
+      '75'
+      '76'
+      '77'
+      '78'
+      '79'
+      '80'
+      '81'
+      '82'
+      '83'
+      '84'
+      '85'
+      '86'
+      '87'
+      '88'
+      '89'
+      '90'
+      '91'
+      '92'
+      '93'
+      '94'
+      '95'
+      '96'
+      '97'
+      '98'
+      '99'
+      '100'
+    )
+    Style = csDropDownList
+    TabOrder = 7
+  end
+  object Label10: TLabel
+    AnchorSideTop.Control = ComboBox4
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = ComboBox4
+    Left = 71
+    Height = 19
+    Top = 216
+    Width = 138
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 8
+    Caption = 'Skalowanie napisów:'
+    ParentColor = False
+  end
+  object ComboBox4: TComboBox
+    AnchorSideLeft.Control = ComboBox3
+    AnchorSideTop.Control = ComboBox3
+    AnchorSideTop.Side = asrBottom
+    Left = 217
+    Height = 28
+    Top = 211
+    Width = 144
+    AutoSize = False
+    BorderSpacing.Top = 8
+    ItemHeight = 0
+    Items.Strings = (
+      'DEFAULT'
+      '10'
+      '11'
+      '12'
+      '13'
+      '14'
+      '15'
+      '16'
+      '17'
+      '18'
+      '19'
+      '20'
+      '21'
+      '22'
+      '23'
+      '24'
+      '25'
+      '26'
+      '27'
+      '28'
+      '29'
+      '30'
+      '31'
+      '32'
+      '33'
+      '34'
+      '35'
+      '36'
+      '37'
+      '38'
+      '39'
+      '40'
+      '41'
+      '42'
+      '43'
+      '44'
+      '45'
+      '46'
+      '47'
+      '48'
+      '49'
+      '50'
+    )
+    Style = csDropDownList
+    TabOrder = 8
+  end
+end

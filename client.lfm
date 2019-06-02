@@ -1,0 +1,412 @@
+object FClient: TFClient
+  Left = 316
+  Height = 591
+  Top = 194
+  Width = 779
+  Caption = 'RpFP - Client'
+  ClientHeight = 591
+  ClientWidth = 779
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  SessionProperties = 'Height;Left;Top;Width;WindowState;IpAddr.Text'
+  LCLVersion = '2.0.2.0'
+  object list1: TListBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Panel1
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = stat_volume
+    AnchorSideBottom.Control = stat_position
+    Left = 4
+    Height = 494
+    Top = 38
+    Width = 740
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BorderSpacing.Left = 4
+    BorderSpacing.Top = 4
+    BorderSpacing.Right = 4
+    BorderSpacing.Bottom = 4
+    Color = clCream
+    Font.Height = -12
+    Font.Name = 'Sans'
+    ItemHeight = 0
+    OnClick = list1Click
+    OnDblClick = list1DblClick
+    OnDrawItem = list1DrawItem
+    ParentFont = False
+    PopupMenu = MenuPlayLista
+    ScrollWidth = 738
+    Style = lbOwnerDrawFixed
+    TabOrder = 0
+    TopIndex = -1
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 34
+    Top = 0
+    Width = 779
+    Align = alTop
+    AutoSize = True
+    BevelOuter = bvSpace
+    ClientHeight = 34
+    ClientWidth = 779
+    ParentFont = False
+    TabOrder = 1
+    object Label1: TLabel
+      AnchorSideLeft.Control = Panel1
+      AnchorSideTop.Control = Panel1
+      AnchorSideTop.Side = asrCenter
+      Left = 5
+      Height = 19
+      Top = 8
+      Width = 53
+      BorderSpacing.Left = 4
+      Caption = 'Serwer:'
+      ParentColor = False
+      ParentFont = False
+    end
+    object IpAddr: TEdit
+      AnchorSideLeft.Control = Label1
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Label1
+      AnchorSideTop.Side = asrCenter
+      Left = 62
+      Height = 31
+      Top = 2
+      Width = 202
+      BorderSpacing.Left = 4
+      ParentFont = False
+      TabOrder = 0
+    end
+    object SpeedButton1: TSpeedButton
+      AnchorSideLeft.Control = IpAddr
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = IpAddr
+      AnchorSideBottom.Control = IpAddr
+      AnchorSideBottom.Side = asrBottom
+      Left = 264
+      Height = 31
+      Top = 2
+      Width = 76
+      Anchors = [akTop, akLeft, akBottom]
+      AutoSize = True
+      Caption = 'Reconnect!'
+      OnClick = SpeedButton1Click
+      ParentFont = False
+    end
+    object led_conn: TuELED
+      AnchorSideTop.Control = led_crypt
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = led_crypt
+      Left = 724
+      Height = 24
+      Top = 5
+      Width = 24
+      Debug = False
+      Active = False
+      LedType = ledSquare
+      Bright = True
+      Reflection = True
+      Anchors = [akTop, akRight]
+      Color = 11927551
+      ParentColor = False
+    end
+    object led_crypt: TuELED
+      AnchorSideTop.Control = Panel1
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = Panel1
+      AnchorSideRight.Side = asrBottom
+      Left = 748
+      Height = 24
+      Top = 5
+      Width = 24
+      Debug = False
+      Active = False
+      LedType = ledSquare
+      Bright = True
+      Reflection = True
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 6
+      Color = clAqua
+      ParentColor = False
+    end
+  end
+  object Label2: TLabel
+    AnchorSideLeft.Control = list1
+    AnchorSideBottom.Control = Panel2
+    Left = 4
+    Height = 19
+    Top = 536
+    Width = 40
+    Anchors = [akLeft, akBottom]
+    BorderSpacing.Right = 4
+    BorderSpacing.Bottom = 4
+    Caption = '-:--'
+    Font.Height = -16
+    Font.Name = 'Liberation Mono'
+    Layout = tlCenter
+    ParentColor = False
+    ParentFont = False
+  end
+  object stat_position: TplProgressBar
+    AnchorSideLeft.Control = Label2
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label2
+    AnchorSideRight.Control = Label3
+    AnchorSideBottom.Control = Label2
+    AnchorSideBottom.Side = asrBottom
+    Left = 48
+    Height = 19
+    Top = 536
+    Width = 683
+    Color = clMoneyGreen
+    ParentColor = False
+    Min = 0
+    Max = 100
+    Smooth = True
+    OnMouseDown = stat_positionMouseDown
+    Anchors = [akTop, akLeft, akRight, akBottom]
+  end
+  object Label3: TLabel
+    AnchorSideTop.Control = Label2
+    AnchorSideRight.Control = stat_volume
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Label2
+    AnchorSideBottom.Side = asrBottom
+    Left = 735
+    Height = 19
+    Top = 536
+    Width = 40
+    Anchors = [akTop, akRight, akBottom]
+    BorderSpacing.Left = 4
+    Caption = '-:--'
+    Font.Height = -16
+    Font.Name = 'Liberation Mono'
+    Layout = tlCenter
+    ParentColor = False
+    ParentFont = False
+  end
+  object stat_volume: TplProgressBar
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = list1
+    AnchorSideRight.Control = Label4
+    AnchorSideBottom.Control = list1
+    AnchorSideBottom.Side = asrBottom
+    Left = 748
+    Height = 494
+    Top = 38
+    Width = 27
+    Color = clMoneyGreen
+    ColorElement = clGray
+    Orientation = pbVertical
+    ParentColor = False
+    Min = 0
+    Max = 270
+    Smooth = True
+    OnMouseDown = stat_volumeMouseDown
+    Anchors = [akTop, akRight, akBottom]
+  end
+  object Label4: TLabel
+    AnchorSideTop.Control = Panel1
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 775
+    Height = 4
+    Top = 34
+    Width = 4
+    Anchors = [akTop, akRight]
+    Constraints.MinHeight = 4
+    Constraints.MinWidth = 4
+    ParentColor = False
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 32
+    Top = 559
+    Width = 779
+    Align = alBottom
+    AutoSize = True
+    BevelOuter = bvSpace
+    ClientHeight = 32
+    ClientWidth = 779
+    TabOrder = 2
+    object BitBtn3: TBitBtn
+      AnchorSideLeft.Control = Panel2
+      AnchorSideTop.Control = Panel2
+      Left = 1
+      Height = 30
+      Top = 1
+      Width = 107
+      Caption = '<< Poprzedni'
+      OnClick = BitBtn3Click
+      TabOrder = 0
+    end
+    object BitBtn6: TBitBtn
+      AnchorSideLeft.Control = BitBtn3
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = BitBtn3
+      Left = 108
+      Height = 30
+      Top = 1
+      Width = 75
+      Caption = 'Pause ||'
+      OnClick = BitBtn6Click
+      TabOrder = 1
+    end
+    object BitBtn1: TBitBtn
+      AnchorSideLeft.Control = BitBtn6
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = BitBtn6
+      Left = 183
+      Height = 30
+      Top = 1
+      Width = 51
+      Caption = 'Play >'
+      OnClick = BitBtn1Click
+      TabOrder = 2
+    end
+    object BitBtn4: TBitBtn
+      AnchorSideLeft.Control = BitBtn1
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = BitBtn1
+      Left = 234
+      Height = 30
+      Top = 1
+      Width = 107
+      Caption = 'Następny >>'
+      OnClick = BitBtn4Click
+      TabOrder = 3
+    end
+    object BitBtn2: TBitBtn
+      AnchorSideLeft.Control = BitBtn4
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = BitBtn4
+      Left = 341
+      Height = 30
+      Top = 1
+      Width = 56
+      Caption = 'Stop'
+      OnClick = BitBtn2Click
+      TabOrder = 4
+    end
+    object BitBtn5: TBitBtn
+      AnchorSideTop.Control = BitBtn8
+      AnchorSideRight.Control = BitBtn8
+      Left = 632
+      Height = 30
+      Top = 1
+      Width = 86
+      Anchors = [akTop, akRight]
+      Caption = 'Shutdown'
+      OnClick = BitBtn5Click
+      TabOrder = 5
+    end
+    object BitBtn8: TBitBtn
+      AnchorSideTop.Control = BitBtn7
+      AnchorSideRight.Control = BitBtn7
+      Left = 718
+      Height = 30
+      Top = 1
+      Width = 30
+      Anchors = [akTop, akRight]
+      Caption = '-'
+      OnClick = BitBtn8Click
+      TabOrder = 6
+    end
+    object BitBtn7: TBitBtn
+      AnchorSideTop.Control = Panel2
+      AnchorSideRight.Control = Panel2
+      AnchorSideRight.Side = asrBottom
+      Left = 748
+      Height = 30
+      Top = 1
+      Width = 30
+      Anchors = [akTop, akRight]
+      Caption = '+'
+      OnClick = BitBtn7Click
+      TabOrder = 7
+    end
+    object BitBtn9: TBitBtn
+      AnchorSideLeft.Control = BitBtn2
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = BitBtn2
+      AnchorSideBottom.Control = BitBtn2
+      AnchorSideBottom.Side = asrBottom
+      Left = 397
+      Height = 30
+      Top = 1
+      Width = 99
+      Anchors = [akTop, akLeft, akBottom]
+      Caption = 'Fullscreen'
+      OnClick = BitBtn9Click
+      TabOrder = 8
+    end
+  end
+  object PropStorage: TXMLPropStorage
+    StoredValues = <>
+    RootNodePath = 'client'
+    Active = False
+    OnRestoreProperties = PropStorageRestoreProperties
+    left = 128
+    top = 56
+  end
+  object mess: TExtMessage
+    Caption = '<Auto>'
+    HelpContext = 0
+    PosTop = 0
+    PosLeft = 0
+    StringToCR = '^'
+    left = 264
+    top = 56
+  end
+  object MenuPlayLista: TPopupMenu
+    left = 408
+    top = 56
+    object MenuItem1: TMenuItem
+      Caption = 'Dodaj pliki'
+      OnClick = MenuItem1Click
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'Usuń'
+      OnClick = MenuItem2Click
+    end
+    object MenuItem3: TMenuItem
+      Caption = 'Wyczyść wszystko'
+      OnClick = MenuItem3Click
+    end
+    object N1: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem4: TMenuItem
+      Caption = 'Dodaj komendę "stop"'
+      OnClick = MenuItem4Click
+    end
+    object MenuItem5: TMenuItem
+      Caption = 'Dodaj komendę "shutdown"'
+      OnClick = MenuItem5Click
+    end
+  end
+  object shutdown: TExtShutdown
+    Mode = smShutdownP1
+    left = 88
+    top = 136
+  end
+  object tcp: TNetSocket
+    Mode = smClient
+    Security = ssCrypt
+    BinaryMode = False
+    Port = 5882
+    ReuseAddress = False
+    Timeout = 0
+    SSLMethod = msSSLv2or3
+    OnConnect = tcpConnect
+    OnError = tcpError
+    OnReceiveString = tcpReceiveString
+    OnStatus = tcpStatus
+    OnCryptString = tcpCryptString
+    OnDecryptString = tcpDecryptString
+    left = 32
+    top = 56
+  end
+end

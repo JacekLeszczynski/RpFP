@@ -1,0 +1,176 @@
+object FChatPomoc: TFChatPomoc
+  Left = 410
+  Height = 504
+  Top = 169
+  Width = 728
+  AutoSize = True
+  BorderStyle = bsDialog
+  Caption = 'RpFP - Pomoc'
+  ClientHeight = 504
+  ClientWidth = 728
+  OnClose = FormClose
+  Position = poOwnerFormCenter
+  LCLVersion = '2.0.0.4'
+  object Label1: TLabel
+    AnchorSideLeft.Control = Label2
+    AnchorSideTop.Control = Label2
+    AnchorSideTop.Side = asrBottom
+    Left = 20
+    Height = 15
+    Top = 39
+    Width = 418
+    BorderSpacing.Left = 12
+    BorderSpacing.Top = 12
+    BorderSpacing.Right = 24
+    Caption = '1. Aby się połączyć kliknij w przycisk Open, Close rozłącza połączenie.'
+    Font.Height = -12
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label2: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    Left = 8
+    Height = 19
+    Top = 8
+    Width = 517
+    BorderSpacing.Left = 8
+    BorderSpacing.Top = 8
+    Caption = 'Pomoc obsługi czatu - w bardzo surowej postaci... Potem zajmę się tym lepiej...'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label3: TLabel
+    AnchorSideLeft.Control = Label1
+    AnchorSideTop.Control = Label1
+    AnchorSideTop.Side = asrBottom
+    Left = 20
+    Height = 30
+    Top = 66
+    Width = 605
+    BorderSpacing.Top = 12
+    BorderSpacing.Right = 24
+    Caption = '2. Kolejna kontrolka na prawo to kontrolka statusu, działa w formie automatu, ustaw jeśli odchodzisz'#10'na dłużej od komputera, program poinformuje o tym innych uczestników, jeśli kto coś tobie napisze.'
+    Font.Height = -12
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label4: TLabel
+    AnchorSideLeft.Control = Label3
+    AnchorSideTop.Control = Label3
+    AnchorSideTop.Side = asrBottom
+    Left = 20
+    Height = 30
+    Top = 108
+    Width = 607
+    BorderSpacing.Top = 12
+    BorderSpacing.Right = 24
+    Caption = '3. Przycisk Emotki to wejście do galerii obrazków, jeśli go nie widzisz, oznacza to, że jeszcze przy tym'#10'pracuję - opcja pojawi się w jednej z kolejnych wersji programu.'
+    Font.Height = -12
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label5: TLabel
+    AnchorSideLeft.Control = Label4
+    AnchorSideTop.Control = Label4
+    AnchorSideTop.Side = asrBottom
+    Left = 20
+    Height = 30
+    Top = 150
+    Width = 613
+    BorderSpacing.Top = 12
+    BorderSpacing.Right = 24
+    Caption = '4. Po prawej stronie są dwie diody: CN świeci się gdy jesteś połączony z czatem, DL świeci się podczas'#10'ściągania emotek.'
+    Font.Height = -12
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label6: TLabel
+    AnchorSideLeft.Control = Label5
+    AnchorSideTop.Control = Label5
+    AnchorSideTop.Side = asrBottom
+    Left = 20
+    Height = 45
+    Top = 192
+    Width = 612
+    BorderSpacing.Top = 12
+    BorderSpacing.Right = 24
+    Caption = '5. Na dole masz panel rozmowy, przyciski możesz wciskać i wyciskać, są to pogrubienie, pochylenie i '#10'podkreślenie tekstu. Możesz też ustawić kolor. Po prawej stronie przycisk wysyła teskt, możesz też'#10'użyć entera by wysłać tekst.'
+    Font.Height = -12
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label7: TLabel
+    AnchorSideLeft.Control = Label6
+    AnchorSideTop.Control = Label6
+    AnchorSideTop.Side = asrBottom
+    Left = 20
+    Height = 45
+    Top = 249
+    Width = 668
+    BorderSpacing.Top = 12
+    BorderSpacing.Right = 24
+    Caption = '6. Wiadomości prywatne, by otworzyć pokój prywatny, kliknij prawym klikiem myszy na żądanym użytkowniku'#10'z panelu po prawej i wybierz "Rozmowa prywatna". Pokój zostanie stworzony i zostaniesz autoatycznie'#10'przeniesiony do niego. Jeśli zechcesz go zamknąć zrób to samo na pokoju w tle i wybierz "zamknij pokój".'
+    Font.Height = -12
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label8: TLabel
+    AnchorSideLeft.Control = Label7
+    AnchorSideTop.Control = Label7
+    AnchorSideTop.Side = asrBottom
+    Left = 20
+    Height = 60
+    Top = 306
+    Width = 659
+    BorderSpacing.Top = 12
+    BorderSpacing.Right = 24
+    Caption = '7. Klikając w obrazki pojawiające się w pokojach, zostanie automatycznie wpisany ich kod do pola tekstowego'#10'na dole. Podobnie dwuklik na osobie z prawej stronie wpisze nick tej osoby do pola tekstowego.'#10'Jeśli jakaś osoba jest zaznaczona cały czas, klawisz F2 podczas wpisywania tekstu automatycznie wpisze'#10'nick tej osoby do pola tekstowego.'
+    Font.Height = -12
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label9: TLabel
+    AnchorSideLeft.Control = Label8
+    AnchorSideTop.Control = Label8
+    AnchorSideTop.Side = asrBottom
+    Left = 20
+    Height = 60
+    Top = 378
+    Width = 646
+    BorderSpacing.Top = 12
+    BorderSpacing.Right = 24
+    BorderSpacing.Bottom = 40
+    Caption = '8. Gdy na pokoju głównym dostaniesz wiadomość z twoim nickiem w niej, zostaniesz poinformowany o tym'#10'powiadomieniem dźwiękowym, zaś nadawca danej wiadomości zostanie zapamiętany.'#10'Klawiszem F1 nick tego nadawcy zostanie wklejony do pola tekstowego na dole.'#10'Może się to przyda do szybkiej odpowiedzi na taką wiadomość.'
+    Font.Height = -12
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+  object FXMaterialButton1: TFXMaterialButton
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 593
+    Height = 33
+    Top = 459
+    Width = 123
+    ColorKind = mcDefault
+    FontColorAutomatic = True
+    TextFont = 'default'
+    Anchors = [akRight, akBottom]
+    BorderSpacing.Right = 12
+    BorderSpacing.Bottom = 12
+    Caption = 'Wyjście'
+    OnClick = FXMaterialButton1Click
+  end
+end

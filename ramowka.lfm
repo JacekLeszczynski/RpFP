@@ -1,0 +1,68 @@
+object FRamowka: TFRamowka
+  Left = 386
+  Height = 563
+  Top = 299
+  Width = 810
+  Caption = 'RpFP - Ramówka'
+  ClientHeight = 563
+  ClientWidth = 810
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poOwnerFormCenter
+  LCLVersion = '2.0.0.4'
+  object kalendarz: TStringGrid
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = BitBtn1
+    Left = 0
+    Height = 509
+    Top = 0
+    Width = 810
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    MouseWheelOption = mwGrid
+    ScrollBars = ssAutoVertical
+    TabOrder = 0
+    OnDrawCell = kalendarzDrawCell
+  end
+  object BitBtn1: TBitBtn
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 723
+    Height = 30
+    Top = 521
+    Width = 75
+    Anchors = [akRight, akBottom]
+    BorderSpacing.Around = 12
+    Caption = 'Wyjście'
+    OnClick = BitBtn1Click
+    TabOrder = 1
+  end
+  object Label1: TLabel
+    Left = 8
+    Height = 15
+    Top = 519
+    Width = 68
+    Caption = 'Informacja:'
+    Font.Color = clBlack
+    Font.Height = -12
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 88
+    Height = 30
+    Top = 519
+    Width = 548
+    Caption = 'Skrypt działa w oparciu o stronę na serwerze zdalnym, jeśli coś na niej zostanie zmienione'#10'wtedy tu pojawią się błędy. Nie są one związane z kodem programu, a z zawartością strony.'
+    Font.Color = clBlack
+    Font.Height = -12
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+  end
+end

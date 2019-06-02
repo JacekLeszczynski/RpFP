@@ -1,0 +1,260 @@
+object dm: Tdm
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
+  OldCreateOrder = False
+  Height = 513
+  HorizontalOffset = 330
+  VerticalOffset = 143
+  Width = 469
+  PPI = 96
+  object conn: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = False
+    ClientCodepage = 'UTF-8'
+    Properties.Strings = (
+      'codepage=UTF-8'
+    )
+    Port = 0
+    Database = '/home/tao/.config/radio_player_40_plus/db.sqlite'
+    Protocol = 'sqlite-3'
+    left = 32
+    top = 16
+  end
+  object trans: TZTransaction
+    Database = conn
+    left = 121
+    top = 16
+  end
+  object db_create_disk: TZSQLProcessor
+    Params = <>
+    Script.Strings = (
+      'create table ustawienia'
+      '('
+      '  id integer primary key,'
+      '  zmienna text,'
+      '  wartosc text'
+      ');'
+      'create unique index ustawienia_zmienna on ustawienia (zmienna);'
+      ''
+      'create table stacje'
+      '('
+      '  id integer primary key,'
+      '  nazwa text,'
+      '  url text,'
+      '  chat text'
+      ');'
+      'create unique index stacje_nazwa on stacje (nazwa);'
+      'insert into  stacje (nazwa,url,chat) values (''Forty Plus'',''http://sc.noviktech.pl:8020'',''Radio_FortyPlus'');'
+      'insert into  stacje (nazwa,url) values (''Paranormalium'',''http://51.38.133.200:8000/2'');'
+      ''
+      'create table emotki'
+      '('
+      '  id integer primary key,'
+      '  link text,'
+      '  emotka blob'
+      ');'
+      'create unique index emotki_link on emotki (link);'
+    )
+    Connection = conn
+    Delimiter = ';'
+    left = 81
+    top = 72
+  end
+  object db_read_var: TZQuery
+    Connection = conn
+    SQL.Strings = (
+      'select wartosc from ustawienia'
+      'where zmienna=:zmienna'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'zmienna'
+        ParamType = ptUnknown
+      end>
+    left = 81
+    top = 128
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'zmienna'
+        ParamType = ptUnknown
+      end>
+  end
+  object db_update_var: TZQuery
+    Connection = conn
+    SQL.Strings = (
+      'update ustawienia'
+      'set wartosc=:wartosc'
+      'where zmienna=:zmienna'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'wartosc'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'zmienna'
+        ParamType = ptUnknown
+      end>
+    left = 81
+    top = 192
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'wartosc'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'zmienna'
+        ParamType = ptUnknown
+      end>
+  end
+  object db_insert_var: TZQuery
+    Connection = conn
+    SQL.Strings = (
+      'insert into ustawienia'
+      '(zmienna,wartosc)'
+      'values'
+      '(:zmienna,:wartosc)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'zmienna'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'wartosc'
+        ParamType = ptUnknown
+      end>
+    left = 81
+    top = 248
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'zmienna'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'wartosc'
+        ParamType = ptUnknown
+      end>
+  end
+  object db_stacje: TZQuery
+    Connection = conn
+    SQL.Strings = (
+      'select'
+      '  id,'
+      '  nazwa,'
+      '  url,'
+      '  chat'
+      'from stacje'
+      'order by nazwa'
+    )
+    Params = <>
+    left = 81
+    top = 304
+  end
+  object http: TNetSynHTTP
+    Method = meGet
+    UserAgent = '<auto>'
+    left = 184
+    top = 16
+  end
+  object conn_mem: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = False
+    ClientCodepage = 'UTF-8'
+    Properties.Strings = (
+      'codepage=UTF-8'
+    )
+    Port = 0
+    Database = ':memory:'
+    Protocol = 'sqlite-3'
+    left = 304
+    top = 16
+  end
+  object trans_mem: TZTransaction
+    Database = conn_mem
+    left = 392
+    top = 16
+  end
+  object m_kategorie: TZQuery
+    Connection = conn_mem
+    AfterOpen = _OPEN_CLOSE
+    AfterClose = _OPEN_CLOSE
+    SQL.Strings = (
+      'select nr,nazwa from kategorie'
+      'order by nr'
+    )
+    Params = <>
+    left = 304
+    top = 128
+  end
+  object m_emotki: TZQuery
+    Connection = conn_mem
+    SQL.Strings = (
+      'select id,nazwa,plik,kategoria,seks from emotki'
+      'order by id'
+    )
+    Params = <>
+    left = 304
+    top = 192
+  end
+  object m_create: TZSQLProcessor
+    Params = <>
+    Script.Strings = (
+      'create table kategorie'
+      '('
+      '  id integer primary key,'
+      '  nr integer,'
+      '  nazwa text'
+      ');'
+      'create unique index kategorie_nr on kategorie (nr);'
+      'create unique index kategorie_nazwa on kategorie (nazwa);'
+      ''
+      'create table emotki'
+      '('
+      '  id integer primary key,'
+      '  nazwa text,'
+      '  plik text,'
+      '  kategoria integer,'
+      '  seks integer'
+      ');'
+      'create unique index emotki_nazwa on emotki (nazwa);'
+      'create index emotki_kategoria on emotki (kategoria);'
+      'create index emotki_seks on emotki (seks);'
+    )
+    Connection = conn_mem
+    Delimiter = ';'
+    left = 304
+    top = 72
+  end
+  object db_delete_var: TZQuery
+    Connection = conn
+    SQL.Strings = (
+      'delete from ustawienia'
+      'where zmienna=:zmienna'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'zmienna'
+        ParamType = ptUnknown
+      end>
+    left = 81
+    top = 360
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'zmienna'
+        ParamType = ptUnknown
+      end>
+  end
+end

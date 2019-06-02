@@ -1,0 +1,161 @@
+object FZamowUtwor: TFZamowUtwor
+  Left = 336
+  Height = 285
+  Top = 520
+  Width = 515
+  Caption = 'RpFP - Panel Zamawiania Utworów'
+  ClientHeight = 285
+  ClientWidth = 515
+  OnCreate = FormCreate
+  Position = poOwnerFormCenter
+  SessionProperties = 'od_kogo.Text'
+  LCLVersion = '2.0.0.4'
+  object Label1: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    Left = 16
+    Height = 19
+    Top = 8
+    Width = 84
+    BorderSpacing.Left = 16
+    BorderSpacing.Top = 8
+    Caption = 'Wykonawca:'
+    ParentColor = False
+  end
+  object wykonawca: TEdit
+    AnchorSideLeft.Control = Label1
+    AnchorSideTop.Control = Label1
+    AnchorSideTop.Side = asrBottom
+    Left = 16
+    Height = 31
+    Top = 27
+    Width = 480
+    MaxLength = 45
+    OnChange = wykonawcaChange
+    TabOrder = 0
+  end
+  object Label2: TLabel
+    AnchorSideLeft.Control = wykonawca
+    AnchorSideTop.Control = wykonawca
+    AnchorSideTop.Side = asrBottom
+    Left = 16
+    Height = 19
+    Top = 62
+    Width = 37
+    BorderSpacing.Top = 4
+    Caption = 'Tytuł:'
+    ParentColor = False
+  end
+  object tytul: TEdit
+    AnchorSideLeft.Control = Label2
+    AnchorSideTop.Control = Label2
+    AnchorSideTop.Side = asrBottom
+    Left = 16
+    Height = 31
+    Top = 81
+    Width = 480
+    MaxLength = 45
+    OnChange = wykonawcaChange
+    TabOrder = 1
+  end
+  object Label3: TLabel
+    AnchorSideLeft.Control = tytul
+    AnchorSideTop.Control = tytul
+    AnchorSideTop.Side = asrBottom
+    Left = 16
+    Height = 19
+    Top = 116
+    Width = 57
+    BorderSpacing.Top = 4
+    Caption = 'Od kogo:'
+    ParentColor = False
+  end
+  object od_kogo: TEdit
+    AnchorSideLeft.Control = Label3
+    AnchorSideTop.Control = Label3
+    AnchorSideTop.Side = asrBottom
+    Left = 16
+    Height = 31
+    Top = 135
+    Width = 254
+    MaxLength = 45
+    OnChange = wykonawcaChange
+    TabOrder = 2
+  end
+  object Label4: TLabel
+    AnchorSideLeft.Control = od_kogo
+    AnchorSideTop.Control = od_kogo
+    AnchorSideTop.Side = asrBottom
+    Left = 16
+    Height = 19
+    Top = 170
+    Width = 61
+    BorderSpacing.Top = 4
+    Caption = 'Dla kogo:'
+    ParentColor = False
+  end
+  object dla_kogo: TEdit
+    AnchorSideLeft.Control = Label4
+    AnchorSideTop.Control = Label4
+    AnchorSideTop.Side = asrBottom
+    Left = 16
+    Height = 31
+    Top = 189
+    Width = 254
+    MaxLength = 45
+    OnChange = wykonawcaChange
+    TabOrder = 3
+  end
+  object BitBtn1: TBitBtn
+    AnchorSideTop.Control = BitBtn2
+    AnchorSideRight.Control = BitBtn2
+    Left = 345
+    Height = 30
+    Top = 239
+    Width = 75
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 4
+    Caption = 'Anuluj'
+    OnClick = BitBtn1Click
+    TabOrder = 4
+  end
+  object BitBtn2: TBitBtn
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 424
+    Height = 30
+    Top = 239
+    Width = 75
+    Anchors = [akRight, akBottom]
+    BorderSpacing.Right = 16
+    BorderSpacing.Bottom = 16
+    Caption = 'Wyślij'
+    Enabled = False
+    OnClick = BitBtn2Click
+    TabOrder = 5
+  end
+  object html: TNetSynHTTP
+    Method = mePost
+    UserAgent = '<auto>'
+    left = 288
+    top = 136
+  end
+  object mess: TExtMessage
+    Caption = '<Auto>'
+    HelpContext = 0
+    PosTop = 0
+    PosLeft = 0
+    StringToCR = '^'
+    left = 448
+    top = 136
+  end
+  object PropStorage: TXMLPropStorage
+    StoredValues = <>
+    RootNodePath = 'zamowienia'
+    Active = False
+    left = 368
+    top = 136
+  end
+end

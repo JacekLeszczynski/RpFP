@@ -1,0 +1,58 @@
+object FConsola: TFConsola
+  Left = 330
+  Height = 365
+  Top = 131
+  Width = 551
+  Caption = 'RpFP - Konsola'
+  ClientHeight = 365
+  ClientWidth = 551
+  OnClose = FormClose
+  OnCreate = FormCreate
+  SessionProperties = 'WindowState;Top;Left;Height;Width'
+  ShowInTaskBar = stAlways
+  LCLVersion = '2.0.0.4'
+  object Memo1: TMemo
+    Left = 0
+    Height = 365
+    Top = 0
+    Width = 551
+    Align = alClient
+    Color = clBlack
+    Font.Color = clYellow
+    Font.Height = -12
+    Font.Name = 'Monospace'
+    ParentFont = False
+    PopupMenu = PopupMenu1
+    ReadOnly = True
+    ScrollBars = ssAutoVertical
+    TabOrder = 0
+  end
+  object PropStorage: TXMLPropStorage
+    StoredValues = <>
+    RootNodePath = 'konsola'
+    Active = False
+    left = 72
+    top = 48
+  end
+  object PopupMenu1: TPopupMenu
+    left = 240
+    top = 48
+    object MenuItem1: TMenuItem
+      Caption = 'Zapisz do pliku'
+      OnClick = MenuItem1Click
+    end
+    object N1: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'Wyczyść'
+      OnClick = MenuItem2Click
+    end
+  end
+  object SaveDialog1: TSaveDialog
+    DefaultExt = '.txt'
+    Filter = 'Pliki tekstowe|*.txt'
+    left = 240
+    top = 112
+  end
+end

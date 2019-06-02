@@ -1,0 +1,70 @@
+object FEmotki: TFEmotki
+  Left = 433
+  Height = 246
+  Top = 147
+  Width = 653
+  Caption = 'Radio Player Forty Plus - Emotki'
+  ClientHeight = 246
+  ClientWidth = 653
+  OnClose = FormClose
+  LCLVersion = '2.0.0.4'
+  object Panel1: TPanel
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 653
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 26
+    ClientWidth = 653
+    TabOrder = 0
+    object Label1: TLabel
+      AnchorSideLeft.Control = Panel1
+      AnchorSideTop.Control = Panel1
+      AnchorSideTop.Side = asrCenter
+      Left = 4
+      Height = 15
+      Top = 6
+      Width = 516
+      BorderSpacing.Left = 4
+      Caption = 'Jeśli nie widzisz obrazków, zrób synchronizację bazy, możesz to powtarzać z czasem...'
+      Font.Height = -12
+      Font.Name = 'Sans'
+      ParentColor = False
+      ParentFont = False
+    end
+    object BitBtn1: TBitBtn
+      AnchorSideTop.Control = Panel1
+      AnchorSideRight.Control = Panel1
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = Panel1
+      AnchorSideBottom.Side = asrBottom
+      Left = 545
+      Height = 26
+      Top = 0
+      Width = 108
+      Anchors = [akTop, akRight, akBottom]
+      Caption = 'Synchronizacja'
+      Font.Height = -12
+      Font.Name = 'Sans'
+      OnClick = BitBtn1Click
+      ParentFont = False
+      TabOrder = 0
+    end
+  end
+  object http: TNetSynHTTP
+    Method = meGet
+    UserAgent = '<auto>'
+    left = 529
+    top = 54
+  end
+  object mess: TExtMessage
+    Caption = '<Auto>'
+    HelpContext = 0
+    PosTop = 0
+    PosLeft = 0
+    StringToCR = '^'
+    left = 231
+    top = 95
+  end
+end

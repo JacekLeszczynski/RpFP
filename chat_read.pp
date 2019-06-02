@@ -1,0 +1,3 @@
+aDropNow:=true;
+aDeleteFromLogSrc:=true;
+

@@ -1,0 +1,4 @@
+./translate -program 2 -from pl -to en -i radio-player.po -t tmp_en.txt -o radio-player.en.po
+./translate -program 2 -from pl -to pl -i radio-player.po -t tmp_pl.txt -o radio-player.pl.po
+./translate -program 2 -from pl -to en -i radio-player-client.po -t tmp-client_en.txt -o radio-player-client.en.po
+./translate -program 2 -from pl -to pl -i radio-player-client.po -t tmp-client_pl.txt -o radio-player-client.pl.po

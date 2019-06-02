@@ -1,0 +1,12 @@
+lib
+PACK
+GnuPG
+backup
+grafiki
+plugin
+sound
+uos
+ja
+locale/tmp*
+radio-player
+project1.lps
