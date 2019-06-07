@@ -1190,6 +1190,7 @@ begin
       if p_emotki.RecordCount=0 then
       begin
         p_emotki.Close;
+        podpowiedz.Visible:=false;
         exit;
       end;
       ListBox1.Items.BeginUpdate;
@@ -1560,7 +1561,7 @@ begin
   if podpowiedz.Visible then
   begin
     s:=Edit1.Text;
-    if Key=#8 then exit else s:=s+Key;
+    if (Key=#8) or (Key=#13) or (Key=#10) then exit else s:=s+Key;
     set_podpowiedz(s);
   end;
 end;

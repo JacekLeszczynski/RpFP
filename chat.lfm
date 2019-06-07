@@ -1,7 +1,7 @@
 object FChat: TFChat
-  Left = 370
+  Left = 353
   Height = 617
-  Top = 352
+  Top = 206
   Width = 1078
   ActiveControl = html
   Caption = 'RpFP - Chat'
@@ -12,7 +12,7 @@ object FChat: TFChat
   OnShow = FormShow
   SessionProperties = 'ColorButton1.ButtonColor;galeria.Height;galeria.Left;galeria.Top;galeria.Width;Height;Left;Panel4.Width;ShowImgTitle.Checked;SpeedButton1.Down;SpeedButton2.Down;SpeedButton3.Down;SpeedButton4.Visible;SpeedButton5.Visible;SpeedButton6.Visible;Top;Width;WindowState'
   ShowInTaskBar = stAlways
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.2.0'
   object uETilePanel1: TuETilePanel
     Left = 0
     Height = 48

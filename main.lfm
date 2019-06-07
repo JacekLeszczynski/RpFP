@@ -12661,8 +12661,8 @@ object FMain: TFMain
     Enabled = False
     Interval = 250
     OnTimer = timer_czasTimer
-    left = 352
-    top = 440
+    left = 288
+    top = 376
   end
   object ImageList1: TImageList
     Height = 24
