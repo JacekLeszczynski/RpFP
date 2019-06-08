@@ -11,6 +11,7 @@ uos/plugin
 uos/*.so
 radio-player
 radio-player-client
+radio-player-bot
 project1
 project1.lps
 *.dbg

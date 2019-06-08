@@ -11,7 +11,11 @@ uses
   {$IFDEF CLIENT}
   config, client;
   {$ELSE}
-  main, config, datamodule, consola;
+    {$IFDEF BOT}
+    config, bot;
+    {$ELSE}
+    main, config, datamodule, consola;
+    {$ENDIF}
   {$ENDIF}
 
 {$R *.res}
@@ -58,6 +62,9 @@ procedure TRadioPlayer.DoRun;
 var
   v1,v2,v3,v4: integer;
   go_exit: boolean;
+  {$IFDEF BOT}
+  FBOT: TBot;
+  {$ENDIF}
 begin
   inherited DoRun;
   go_exit:=false;
@@ -65,7 +72,7 @@ begin
   if not POFileIsExists(lang) then lang:='en';
   SetDefaultLang(lang);
 
-  {$IFNDEF CLIENT}
+  {$IFDEF APP}
   par:=TExtParams.Create(nil);
   try
     _DEV:=false;
@@ -98,17 +105,26 @@ begin
   randomize;
   {$ENDIF}
 
+  {$IFDEF BOT}
+  FBOT:=TBot.Create;
+  try
+    FBOT.Execute;
+  finally
+    FBOT.Free;
+  end;
+  {$ELSE}
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
   Application.Initialize;
-  {$IFDEF CLIENT}
-  Application.CreateForm(TFClient, FClient);
-  {$ELSE}
-  Application.CreateForm(TFMain, FMain);
-  Application.CreateForm(Tdm, dm);
-  Application.CreateForm(TFConsola, FConsola);
-  {$ENDIF}
+    {$IFDEF CLIENT}
+    Application.CreateForm(TFClient, FClient);
+    {$ELSE}
+    Application.CreateForm(TFMain, FMain);
+    Application.CreateForm(Tdm, dm);
+    Application.CreateForm(TFConsola, FConsola);
+    {$ENDIF}
   Application.Run;
+  {$ENDIF}
   Terminate;
 end;
 

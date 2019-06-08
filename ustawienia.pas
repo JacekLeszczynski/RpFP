@@ -44,8 +44,10 @@ type
     Edit3: TEdit;
     FontsSize: TSpinEdit;
     force_room: TEdit;
+    bot_room: TEdit;
     GroupBox3: TGroupBox;
     haslo: TEdit;
+    bot_haslo: TEdit;
     HistMemLinesCode: TSpinEdit;
     Image1: TImage;
     ImageList1: TImageList;
@@ -90,9 +92,13 @@ type
     Label43: TLabel;
     Label44: TLabel;
     Label45: TLabel;
+    Label46: TLabel;
     Label47: TLabel;
     Label48: TLabel;
+    Label49: TLabel;
     Label5: TLabel;
+    Label50: TLabel;
+    Label57: TLabel;
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
@@ -108,6 +114,7 @@ type
     Panel5: TPanel;
     Panel6: TPanel;
     Panel7: TPanel;
+    Panel8: TPanel;
     PropStorage: TXMLPropStorage;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
@@ -122,6 +129,8 @@ type
     SpeedButton4: TSpeedButton;
     SpeedButton5: TSpeedButton;
     SpeedButton6: TSpeedButton;
+    SpeedButton7: TSpeedButton;
+    TabSheet7: TTabSheet;
     TestBeep: TSpeedButton;
     SpinEdit1: TSpinEdit;
     SpinEdit2: TSpinEdit;
@@ -137,10 +146,14 @@ type
     TabSheet5: TTabSheet;
     TabSheet6: TTabSheet;
     uzytkownik: TEdit;
+    bot_user: TEdit;
     wypelnienie: TSpinEdit;
     wypelnienie1: TSpinEdit;
     zaraz_wracam: TEdit;
     procedure BitBtn1Click(Sender: TObject);
+    procedure bot_hasloChange(Sender: TObject);
+    procedure bot_roomChange(Sender: TObject);
+    procedure bot_userChange(Sender: TObject);
     procedure cache1Change(Sender: TObject);
     procedure cacheChange(Sender: TObject);
     procedure ChatBackgroundColorChange(Sender: TObject);
@@ -258,6 +271,10 @@ begin
   ComboBox2.ItemIndex:=_VIDEO_ISO_DEFAULT;
   SpinEdit1.Value:=_VIDEO_SUBPOS_DEFAULT;
   SpinEdit2.Value:=_VIDEO_SUBSCALE_DEFAULT;
+  {bot}
+  bot_room.Text:=_BOT_ROOM;
+  bot_user.Text:=_BOT_USER;
+  bot_haslo.Text:=_BOT_PASSW;
 end;
 
 function TFUstawienia.czy_jest_nowsza_wersja(v1, v2, v3, v4: integer): boolean;
@@ -288,6 +305,21 @@ procedure TFUstawienia.BitBtn1Click(Sender: TObject);
 begin
   OUT_OK:=true;
   close;
+end;
+
+procedure TFUstawienia.bot_hasloChange(Sender: TObject);
+begin
+  _BOT_PASSW:=bot_haslo.Text;
+end;
+
+procedure TFUstawienia.bot_roomChange(Sender: TObject);
+begin
+  _BOT_ROOM:=bot_room.Text;
+end;
+
+procedure TFUstawienia.bot_userChange(Sender: TObject);
+begin
+  _BOT_USER:=bot_user.Text;
 end;
 
 procedure TFUstawienia.cache1Change(Sender: TObject);

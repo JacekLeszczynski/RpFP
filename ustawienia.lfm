@@ -1571,9 +1571,9 @@ object FUstawienia: TFUstawienia
     Height = 392
     Top = 160
     Width = 720
-    ActivePage = TabSheet1
+    ActivePage = TabSheet7
     Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Ustawienia'
@@ -1826,12 +1826,12 @@ object FUstawienia: TFUstawienia
       ClientWidth = 710
       object Panel2: TPanel
         Left = 0
-        Height = 333
+        Height = 361
         Top = 0
         Width = 710
         Align = alClient
         BevelOuter = bvLowered
-        ClientHeight = 333
+        ClientHeight = 361
         ClientWidth = 710
         TabOrder = 0
         object Label9: TLabel
@@ -2145,6 +2145,137 @@ object FUstawienia: TFUstawienia
           BorderSpacing.Left = 4
           BorderSpacing.Top = 4
           Caption = 'Dane logowania się na chat polfanu:'
+          Font.Height = -13
+          Font.Name = 'Sans'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+      end
+    end
+    object TabSheet7: TTabSheet
+      Caption = 'Bot'
+      ClientHeight = 361
+      ClientWidth = 710
+      object Panel8: TPanel
+        Left = 0
+        Height = 361
+        Top = 0
+        Width = 710
+        Align = alClient
+        BevelOuter = bvLowered
+        ClientHeight = 361
+        ClientWidth = 710
+        TabOrder = 0
+        object Label46: TLabel
+          AnchorSideLeft.Control = Label57
+          AnchorSideTop.Control = Label57
+          AnchorSideTop.Side = asrBottom
+          Left = 141
+          Height = 17
+          Top = 30
+          Width = 81
+          Align = alCustom
+          Alignment = taRightJustify
+          BorderSpacing.Left = 136
+          BorderSpacing.Top = 8
+          Caption = 'Użytkownik:'
+          ParentColor = False
+        end
+        object bot_user: TEdit
+          AnchorSideLeft.Control = Label46
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = Label46
+          AnchorSideTop.Side = asrCenter
+          Left = 222
+          Height = 25
+          Top = 26
+          Width = 176
+          AutoSize = False
+          BorderSpacing.Top = 4
+          Font.Height = -11
+          Font.Name = 'Sans'
+          OnChange = bot_userChange
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Label49: TLabel
+          AnchorSideTop.Control = bot_haslo
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = bot_haslo
+          Left = 128
+          Height = 17
+          Top = 63
+          Width = 90
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 4
+          Caption = 'Hasło (opcja):'
+          ParentColor = False
+        end
+        object bot_haslo: TEdit
+          AnchorSideLeft.Control = bot_user
+          AnchorSideTop.Control = bot_user
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = bot_user
+          AnchorSideRight.Side = asrBottom
+          Left = 222
+          Height = 25
+          Top = 59
+          Width = 176
+          Anchors = [akTop, akLeft, akRight]
+          AutoSize = False
+          BorderSpacing.Top = 8
+          EchoMode = emPassword
+          Font.Height = -11
+          Font.Name = 'Sans'
+          OnChange = bot_hasloChange
+          ParentFont = False
+          PasswordChar = '*'
+          TabOrder = 1
+        end
+        object Label50: TLabel
+          AnchorSideTop.Control = bot_room
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = bot_room
+          Left = 122
+          Height = 19
+          Top = 95
+          Width = 96
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 4
+          Caption = 'Nazwa pokoju:'
+          ParentColor = False
+          ParentFont = False
+        end
+        object bot_room: TEdit
+          AnchorSideLeft.Control = bot_user
+          AnchorSideTop.Control = bot_haslo
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = bot_user
+          AnchorSideRight.Side = asrBottom
+          Left = 222
+          Height = 25
+          Top = 92
+          Width = 176
+          Anchors = [akTop, akLeft, akRight]
+          AutoSize = False
+          BorderSpacing.Top = 8
+          Font.Height = -11
+          Font.Name = 'Sans'
+          OnChange = bot_roomChange
+          ParentFont = False
+          TabOrder = 2
+        end
+        object Label57: TLabel
+          AnchorSideLeft.Control = Panel8
+          AnchorSideTop.Control = Panel8
+          Left = 5
+          Height = 17
+          Top = 5
+          Width = 122
+          BorderSpacing.Left = 4
+          BorderSpacing.Top = 4
+          Caption = 'Dane logowania:'
           Font.Height = -13
           Font.Name = 'Sans'
           Font.Style = [fsBold]
@@ -3153,16 +3284,16 @@ object FUstawienia: TFUstawienia
       OnClick = _TAB_CLICK
     end
     object SpeedButton3: TSpeedButton
-      Tag = 2
-      AnchorSideLeft.Control = SpeedButton2
-      AnchorSideTop.Control = SpeedButton2
+      Tag = 3
+      AnchorSideLeft.Control = SpeedButton7
+      AnchorSideTop.Control = SpeedButton7
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Control = SpeedButton2
       AnchorSideRight.Side = asrBottom
-      Left = 4
+      Left = 5
       Height = 30
-      Top = 64
-      Width = 162
+      Top = 95
+      Width = 161
       Anchors = [akTop, akLeft, akRight]
       BorderSpacing.Around = 1
       Caption = 'Stacje radiowe'
@@ -3171,16 +3302,16 @@ object FUstawienia: TFUstawienia
       OnClick = _TAB_CLICK
     end
     object SpeedButton4: TSpeedButton
-      Tag = 3
+      Tag = 4
       AnchorSideLeft.Control = SpeedButton3
       AnchorSideTop.Control = SpeedButton3
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Control = SpeedButton3
       AnchorSideRight.Side = asrBottom
-      Left = 5
+      Left = 6
       Height = 30
-      Top = 95
-      Width = 160
+      Top = 126
+      Width = 159
       Anchors = [akTop, akLeft, akRight]
       BorderSpacing.Around = 1
       Caption = 'Wideo'
@@ -3189,27 +3320,9 @@ object FUstawienia: TFUstawienia
       OnClick = _TAB_CLICK
     end
     object SpeedButton5: TSpeedButton
-      Tag = 4
+      Tag = 5
       AnchorSideLeft.Control = SpeedButton4
       AnchorSideTop.Control = SpeedButton4
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = SpeedButton4
-      AnchorSideRight.Side = asrBottom
-      Left = 6
-      Height = 30
-      Top = 126
-      Width = 158
-      Anchors = [akTop, akLeft, akRight]
-      BorderSpacing.Around = 1
-      Caption = 'Opcje serwisowe'
-      Flat = True
-      GroupIndex = 1
-      OnClick = _TAB_CLICK
-    end
-    object SpeedButton6: TSpeedButton
-      Tag = 5
-      AnchorSideLeft.Control = SpeedButton5
-      AnchorSideTop.Control = SpeedButton5
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Control = SpeedButton4
       AnchorSideRight.Side = asrBottom
@@ -3219,7 +3332,43 @@ object FUstawienia: TFUstawienia
       Width = 157
       Anchors = [akTop, akLeft, akRight]
       BorderSpacing.Around = 1
+      Caption = 'Opcje serwisowe'
+      Flat = True
+      GroupIndex = 1
+      OnClick = _TAB_CLICK
+    end
+    object SpeedButton6: TSpeedButton
+      Tag = 6
+      AnchorSideLeft.Control = SpeedButton5
+      AnchorSideTop.Control = SpeedButton5
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = SpeedButton4
+      AnchorSideRight.Side = asrBottom
+      Left = 8
+      Height = 30
+      Top = 188
+      Width = 156
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Around = 1
       Caption = 'Przydział pamięci'
+      Flat = True
+      GroupIndex = 1
+      OnClick = _TAB_CLICK
+    end
+    object SpeedButton7: TSpeedButton
+      Tag = 2
+      AnchorSideLeft.Control = SpeedButton2
+      AnchorSideTop.Control = SpeedButton2
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = SpeedButton4
+      AnchorSideRight.Side = asrBottom
+      Left = 4
+      Height = 30
+      Top = 64
+      Width = 160
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Around = 1
+      Caption = 'Bot'
       Flat = True
       GroupIndex = 1
       OnClick = _TAB_CLICK

@@ -241,6 +241,7 @@ type
   end;
 
 const
+  POLFAN_TOKEN = '7342e8rh87df6d86fs78ydf7wrd883yrhe';
   GALLERY_SIDE_COUNT = 14;
   ExtMusicCount=5;
   ExtFilmsCount=8;
@@ -309,6 +310,7 @@ var
   _VIDEO_MPV_OSC: boolean = false;
   _FILM_PLAYING: boolean = false;
   _SERVER_ON: boolean = false;
+  _BOT_ROOM,_BOT_USER,_BOT_PASSW: string;
 
 var {flagi wyłączające}
   _OFF_CHAT_SOUND_INFO: boolean = false;

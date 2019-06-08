@@ -294,7 +294,6 @@ type
 const
   FLAGA_DECK = '[REC]';
   LINK_MPLAYERS_ENGINE = 'https://sourceforge.net/projects/paczki-do-moich-program-w/files/mplayer.zip/download';
-  POLFAN_TOKEN = '7342e8rh87df6d86fs78ydf7wrd883yrhe';
 
 var
   AUTOSTART: boolean = true;
@@ -1406,6 +1405,7 @@ begin
   finally
     FreeAndNil(FUstawienia);
   end;
+  PropStorage.Save;
   init_preferences;
 end;
 
@@ -1512,6 +1512,9 @@ begin
   _VIDEO_FONT_FACTOR:=PropStorage.ReadInteger('VideoFontFactor',1);
   _VIDEO_SUBPOS_DEFAULT:=PropStorage.ReadInteger('VideoSubposDefault',95);
   _VIDEO_SUBSCALE_DEFAULT:=PropStorage.ReadInteger('VideoSubscaleDefault',25);
+  _BOT_ROOM:=PropStorage.ReadString('BotRoom','');
+  _BOT_USER:=PropStorage.ReadString('BotUser','Bot');
+  _BOT_PASSW:=DecryptString(PropStorage.ReadString('BotPassw',''),POLFAN_TOKEN,true);
   { przywrócenie listy playera i start jeśli trzeba }
   PlayerMultimedia.katalog:=PropStorage.ReadString('PlayerDirectory','');
   PropStorage.ReadStrings('PlayerListNames',list1.Items);
@@ -1567,6 +1570,9 @@ begin
   PropStorage.WriteInteger('VideoFontFactor',_VIDEO_FONT_FACTOR);
   PropStorage.WriteInteger('VideoSubposDefault',_VIDEO_SUBPOS_DEFAULT);
   PropStorage.WriteInteger('VideoSubscaleDefault',_VIDEO_SUBSCALE_DEFAULT);
+  PropStorage.WriteString('BotRoom',_BOT_ROOM);
+  PropStorage.WriteString('BotUser',_BOT_USER);
+  PropStorage.WriteString('BotPassw',EncryptString(_BOT_PASSW,POLFAN_TOKEN,100));
   { zapis danych playera }
   PropStorage.WriteString('PlayerDirectory',PlayerMultimedia.katalog);
   PropStorage.WriteStrings('PlayerListNames',list1.Items);
