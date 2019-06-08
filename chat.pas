@@ -10,7 +10,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, XMLPropStorage,
-  Buttons, StdCtrls, ExtCtrls, ComCtrls, Menus, DBCtrls, IpHtml, Ipfilebroker,
+  Buttons, StdCtrls, ExtCtrls, ComCtrls, Menus, IpHtml,
   ueled, uETilePanel, HtmlView, Polfan, ExtMessage, NetSynHTTP,
   cyPanel, config, Types, db, HtmlGlobals, HTMLUn2, switches, ZDataset;
 
@@ -106,6 +106,7 @@ type
     procedure Edit1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Edit1MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -235,10 +236,19 @@ uses
   {$IFDEF MSWINDOWS}
   Windows,
   {$ENDIF}
-  dynlibs, ecode, datamodule, HTMLSubs, LCLType, chat_pomoc, dumpsrc, synacode,
-  fpjson, jsonparser;
+  ecode, datamodule, HTMLSubs, LCLType, chat_pomoc, dumpsrc, synacode, fpjson;
 
 {$R *.lfm}
+
+{$IFDEF WINDOWS}
+{$if defined(cpu64)}
+function CalculateFingerPrint: string; stdcall; external 'libpolfan64.dll';
+{$else}
+function CalculateFingerPrint: string; stdcall; external 'libpolfan32.dll';
+{$endif}
+{$ELSE}
+function CalculateFingerPrint: string; stdcall; external 'libpolfan64.so';
+{$ENDIF}
 
 function ostatni_wyraz(aText: string): string;
 var
@@ -839,31 +849,8 @@ begin
 end;
 
 procedure TFChat.ConnectToChat;
-type
-  TCalculateFingerPrint = function(): string; stdcall;
-var
-  LibPolfan: TLibHandle = dynlibs.NilHandle;
-  CalculateFingerPrint: TCalculateFingerPrint;
 begin
-  if _FINGERPRINT='' then
-  begin
-    {odczytuję fingerprint}
-    {$IFDEF UNIX}
-    LibPolfan:=LoadLibrary(MyDir('libpolfan64.so'));
-    {$ELSE}
-      {$if defined(cpu64)}
-      LibPolfan:=LoadLibrary(MyDir('libpolfan64.dll'));
-      {$else}
-      LibPolfan:=LoadLibrary(MyDir('libpolfan32.dll'));
-      {$endif}
-    {$ENDIF}
-    if LibPolfan=dynlibs.NilHandle then _FINGERPRINT:='NULL' else
-    begin
-      CalculateFingerPrint:=TCalculateFingerPrint(GetProcedureAddress(LibPolfan,'CalculateFingerPrint'));
-      _FINGERPRINT:=CalculateFingerPrint();
-      if LibPolfan<>DynLibs.NilHandle then if FreeLibrary(LibPolfan) then LibPolfan:=DynLibs.NilHandle;
-    end;
-  end;
+  if _FINGERPRINT='' then _FINGERPRINT:=CalculateFingerPrint;
   if web.DeveloperCodeOn then web.SourceDumpClear;
   web.BaseDirectory:=MyConfDir;
   if in_force_room='' then web.Room:=in_room else web.Room:=in_force_room;
@@ -1430,6 +1417,7 @@ end;
 
 procedure TFChat.FormCreate(Sender: TObject);
 begin
+  _DEV_CHAT_CREATE:=true;
   wiszace_downloady:=TStringList.Create;
   simage:=TMemoryStream.Create;
   watki:=0;
@@ -1472,6 +1460,7 @@ begin
   uzyt.Free;
   uzyt_opis.Free;
   uzyt_attr.Free;
+  _DEV_CHAT_CREATE:=false;
 end;
 
 procedure TFChat.FormShow(Sender: TObject);
@@ -1604,6 +1593,11 @@ procedure TFChat.Edit1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
   if Button=mbMiddle then Edit1.PasteFromClipboard;
+end;
+
+procedure TFChat.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  if web.Active then CloseAction:=caHide else CloseAction:=caFree;
 end;
 
 procedure TFChat.SrcDumpClick(Sender: TObject);

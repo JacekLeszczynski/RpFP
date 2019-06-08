@@ -1,12 +1,13 @@
 object FChat: TFChat
-  Left = 353
+  Left = 333
   Height = 617
-  Top = 206
+  Top = 207
   Width = 1078
   ActiveControl = html
   Caption = 'RpFP - Chat'
   ClientHeight = 617
   ClientWidth = 1078
+  OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow

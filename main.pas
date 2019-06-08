@@ -392,6 +392,7 @@ end;
 
 procedure TFMain.FormDestroy(Sender: TObject);
 begin
+  if _DEV_CHAT_CREATE then FChat.Free;
   radio.Stop;
   player.Stop;
   player2.Stop;
@@ -1380,6 +1381,11 @@ end;
 
 procedure TFMain.SpeedButton9Click(Sender: TObject);
 begin
+  if not _DEV_CHAT_CREATE then
+  begin
+    FChat:=TFChat.Create(self);
+    FChat.InitService;
+  end;
   if trim(_POLFAN_USER)='' then
   begin
     mess.ShowWarning(RS_INFO_5+'^^'+RS_INFO_6);
@@ -1815,7 +1821,6 @@ end;
 
 procedure TFMain.init_preferences;
 var
-  b_play,b_pause: boolean;
   adres: string;
 begin
   uETilePanel0.Visible:=_SHOW_KINO;
@@ -1832,7 +1837,7 @@ begin
     if stacje_adresy[ComboBox1.ItemIndex]<>adres then ComboBox1Change(nil);
   end;
   przyciski_radia_update;
-  FChat.InitService;
+  if _DEV_CHAT_CREATE then FChat.InitService;
   if _SHOW_CONSOLE then
   begin
     if not FConsola.Showing then

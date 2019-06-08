@@ -7,11 +7,11 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Classes, CustApp, ExtParams, cverinfo, Forms, Interfaces,
-  DefaultTranslator, LCLTranslator, lnetvisual, LazUTF8,
+  DefaultTranslator, LCLTranslator, LazUTF8,
   {$IFDEF CLIENT}
   config, client;
   {$ELSE}
-  main, config, datamodule, chat, consola;
+  main, config, datamodule, consola;
   {$ENDIF}
 
 {$R *.res}
@@ -106,7 +106,6 @@ begin
   {$ELSE}
   Application.CreateForm(TFMain, FMain);
   Application.CreateForm(Tdm, dm);
-  Application.CreateForm(TFChat, FChat);
   Application.CreateForm(TFConsola, FConsola);
   {$ENDIF}
   Application.Run;

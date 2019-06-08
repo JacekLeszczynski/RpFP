@@ -263,6 +263,7 @@ var
   _GPG: boolean = false;
   _DEV_CLEAR_CONFIG: boolean = false;
   _DEV: boolean;
+  _DEV_CHAT_CREATE: boolean = false;
   _DEV_CHAT_IDENTIFY: string = '';
   _DEV_GNUPG: boolean = false;
   _DEBUG: boolean;
