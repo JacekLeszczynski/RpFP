@@ -310,7 +310,7 @@ var
   _VIDEO_MPV_OSC: boolean = false;
   _FILM_PLAYING: boolean = false;
   _SERVER_ON: boolean = false;
-  _BOT_ROOM,_BOT_USER,_BOT_PASSW: string;
+  _BOT_ROOM,_BOT_USER,_BOT_PASSW,_BOT_SCRIPT: string;
 
 var {flagi wyłączające}
   _OFF_CHAT_SOUND_INFO: boolean = false;
@@ -323,6 +323,7 @@ var {zmienne ograniczające}
 
 function POFileIsExists(kod: string): boolean;
 procedure cAdd(AText: string);
+function test_ip(adres,blokowany: string): boolean;
 
 implementation
 
@@ -337,6 +338,19 @@ end;
 procedure cAdd(AText: string);
 begin
   if FConsola.Showing then FConsola.Add(AText);
+end;
+
+function test_ip(adres,blokowany: string): boolean;
+var
+  kropki: integer;
+  i: integer;
+  s: string;
+begin
+  s:=blokowany;
+  for i:=length(s) downto 1 do if not (((s[i]>='0') and (s[i]<='9')) or (s[i]='.')) then delete(s,i,1);
+  kropki:=0;
+  for i:=1 to length(s) do if s[i]='.' then inc(kropki);
+  result:=((kropki=4) and (adres=s)) or ((kropki<4) and (pos(s,adres)=1));
 end;
 
 { TAutoResponseDelay }

@@ -1571,9 +1571,9 @@ object FUstawienia: TFUstawienia
     Height = 392
     Top = 160
     Width = 720
-    ActivePage = TabSheet7
+    ActivePage = TabSheet1
     Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Ustawienia'
@@ -2171,13 +2171,13 @@ object FUstawienia: TFUstawienia
           AnchorSideLeft.Control = Label57
           AnchorSideTop.Control = Label57
           AnchorSideTop.Side = asrBottom
-          Left = 141
+          Left = 45
           Height = 17
           Top = 30
           Width = 81
           Align = alCustom
           Alignment = taRightJustify
-          BorderSpacing.Left = 136
+          BorderSpacing.Left = 40
           BorderSpacing.Top = 8
           Caption = 'Użytkownik:'
           ParentColor = False
@@ -2187,7 +2187,7 @@ object FUstawienia: TFUstawienia
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = Label46
           AnchorSideTop.Side = asrCenter
-          Left = 222
+          Left = 126
           Height = 25
           Top = 26
           Width = 176
@@ -2203,7 +2203,7 @@ object FUstawienia: TFUstawienia
           AnchorSideTop.Control = bot_haslo
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = bot_haslo
-          Left = 128
+          Left = 32
           Height = 17
           Top = 63
           Width = 90
@@ -2218,7 +2218,7 @@ object FUstawienia: TFUstawienia
           AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = bot_user
           AnchorSideRight.Side = asrBottom
-          Left = 222
+          Left = 126
           Height = 25
           Top = 59
           Width = 176
@@ -2237,7 +2237,7 @@ object FUstawienia: TFUstawienia
           AnchorSideTop.Control = bot_room
           AnchorSideTop.Side = asrCenter
           AnchorSideRight.Control = bot_room
-          Left = 122
+          Left = 26
           Height = 19
           Top = 95
           Width = 96
@@ -2253,7 +2253,7 @@ object FUstawienia: TFUstawienia
           AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = bot_user
           AnchorSideRight.Side = asrBottom
-          Left = 222
+          Left = 126
           Height = 25
           Top = 92
           Width = 176
@@ -2281,6 +2281,26 @@ object FUstawienia: TFUstawienia
           Font.Style = [fsBold]
           ParentColor = False
           ParentFont = False
+        end
+        object Label51: TLabel
+          Left = 76
+          Height = 19
+          Top = 125
+          Width = 46
+          Anchors = [akTop, akRight]
+          BorderSpacing.Right = 4
+          Caption = 'Skrypt:'
+          ParentColor = False
+          ParentFont = False
+        end
+        object BitBtn3: TBitBtn
+          Left = 352
+          Height = 30
+          Top = 26
+          Width = 163
+          Caption = 'Edytor kodu'
+          OnClick = BitBtn3Click
+          TabOrder = 3
         end
       end
     end
@@ -3283,10 +3303,10 @@ object FUstawienia: TFUstawienia
       GroupIndex = 1
       OnClick = _TAB_CLICK
     end
-    object SpeedButton3: TSpeedButton
+    object SpeedButton4: TSpeedButton
       Tag = 3
-      AnchorSideLeft.Control = SpeedButton7
-      AnchorSideTop.Control = SpeedButton7
+      AnchorSideLeft.Control = SpeedButton3
+      AnchorSideTop.Control = SpeedButton3
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Control = SpeedButton2
       AnchorSideRight.Side = asrBottom
@@ -3301,12 +3321,12 @@ object FUstawienia: TFUstawienia
       GroupIndex = 1
       OnClick = _TAB_CLICK
     end
-    object SpeedButton4: TSpeedButton
+    object SpeedButton5: TSpeedButton
       Tag = 4
-      AnchorSideLeft.Control = SpeedButton3
-      AnchorSideTop.Control = SpeedButton3
+      AnchorSideLeft.Control = SpeedButton4
+      AnchorSideTop.Control = SpeedButton4
       AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = SpeedButton3
+      AnchorSideRight.Control = SpeedButton4
       AnchorSideRight.Side = asrBottom
       Left = 6
       Height = 30
@@ -3319,12 +3339,12 @@ object FUstawienia: TFUstawienia
       GroupIndex = 1
       OnClick = _TAB_CLICK
     end
-    object SpeedButton5: TSpeedButton
+    object SpeedButton6: TSpeedButton
       Tag = 5
-      AnchorSideLeft.Control = SpeedButton4
-      AnchorSideTop.Control = SpeedButton4
+      AnchorSideLeft.Control = SpeedButton5
+      AnchorSideTop.Control = SpeedButton5
       AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = SpeedButton4
+      AnchorSideRight.Control = SpeedButton5
       AnchorSideRight.Side = asrBottom
       Left = 7
       Height = 30
@@ -3337,12 +3357,12 @@ object FUstawienia: TFUstawienia
       GroupIndex = 1
       OnClick = _TAB_CLICK
     end
-    object SpeedButton6: TSpeedButton
+    object SpeedButton7: TSpeedButton
       Tag = 6
-      AnchorSideLeft.Control = SpeedButton5
-      AnchorSideTop.Control = SpeedButton5
+      AnchorSideLeft.Control = SpeedButton6
+      AnchorSideTop.Control = SpeedButton6
       AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = SpeedButton4
+      AnchorSideRight.Control = SpeedButton5
       AnchorSideRight.Side = asrBottom
       Left = 8
       Height = 30
@@ -3355,12 +3375,12 @@ object FUstawienia: TFUstawienia
       GroupIndex = 1
       OnClick = _TAB_CLICK
     end
-    object SpeedButton7: TSpeedButton
+    object SpeedButton3: TSpeedButton
       Tag = 2
       AnchorSideLeft.Control = SpeedButton2
       AnchorSideTop.Control = SpeedButton2
       AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = SpeedButton4
+      AnchorSideRight.Control = SpeedButton5
       AnchorSideRight.Side = asrBottom
       Left = 4
       Height = 30

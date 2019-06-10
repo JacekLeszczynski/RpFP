@@ -185,6 +185,42 @@ msgstr "z"
 msgid "Zamawianie utworów wyłączone!"
 msgstr "Zamawianie utworów wyłączone!"
 
+#: tfbot.caption
+msgid "FBot"
+msgstr ""
+
+#: tfbotedytorkodu.bitbtn1.caption
+msgid "Anuluj i wyjdź"
+msgstr ""
+
+#: tfbotedytorkodu.bitbtn2.caption
+msgid "Zapisz i wyjdź"
+msgstr ""
+
+#: tfbotedytorkodu.bitbtn3.caption
+msgid "Test"
+msgstr ""
+
+#: tfbotedytorkodu.bitbtn4.caption
+msgid "Help"
+msgstr ""
+
+#: tfbotedytorkodu.bitbtn5.caption
+msgid "Load"
+msgstr ""
+
+#: tfbotedytorkodu.bitbtn6.caption
+msgid "Save"
+msgstr ""
+
+#: tfbotedytorkodu.bitbtn7.caption
+msgid "Default"
+msgstr ""
+
+#: tfbotedytorkodu.caption
+msgid "Bot - Edytor kodu"
+msgstr ""
+
 #: tfchat.caption
 msgid "RpFP - Chat"
 msgstr ""
@@ -378,6 +414,7 @@ msgid "Radio Player Forty +"
 msgstr ""
 
 #: tfmain.menuitem1.caption
+msgctxt "tfmain.menuitem1.caption"
 msgid "Wyjście"
 msgstr ""
 
@@ -463,5 +500,416 @@ msgstr ""
 
 #: tfmain.utwor.caption
 msgid "utwor"
+msgstr ""
+
+#: tfpomockodera.bitbtn1.caption
+msgctxt "tfpomockodera.bitbtn1.caption"
+msgid "Wyjście"
+msgstr ""
+
+#: tfpomockodera.caption
+msgid "Pomoc Kodera"
+msgstr ""
+
+#: tfustawienia.bitbtn1.caption
+msgid "OK"
+msgstr ""
+
+#: tfustawienia.bitbtn3.caption
+msgid "Edytor kodu"
+msgstr ""
+
+#: tfustawienia.caption
+msgid "RpFP - Ustawienia"
+msgstr ""
+
+#: tfustawienia.chatregister.caption
+msgid "Rejestrowanie komunikacji z polfanem*"
+msgstr ""
+
+#: tfustawienia.checkbox1.caption
+msgid "Włącz panel radiowy"
+msgstr ""
+
+#: tfustawienia.checkbox2.caption
+msgid "Włącz panel radiomagnetofonu"
+msgstr ""
+
+#: tfustawienia.checkbox3.caption
+msgid "Włącz panel odtwarzacza multimedii"
+msgstr ""
+
+#: tfustawienia.checkbox4.caption
+msgid "Odtwórz stan odtwarzacza multimedii"
+msgstr ""
+
+#: tfustawienia.checkbox5.caption
+msgid "Pliki Video otwieraj na pełnym ekranie"
+msgstr ""
+
+#: tfustawienia.checkbox6.caption
+msgid "Wyłącz obsługę obrazków/emotek na czacie - obrazki nie będą ładowane"
+msgstr ""
+
+#: tfustawienia.checkbox7.caption
+msgid "Panel kina"
+msgstr ""
+
+#: tfustawienia.checkbox8.caption
+msgid "Zawsze używaj silnika MPV zamiast MPLayer"
+msgstr ""
+
+#: tfustawienia.checkbox9.caption
+msgid "Włącz sterowanie OSC (działa tylko z MPV)"
+msgstr ""
+
+#: tfustawienia.clear_config.caption
+msgid "Czyszczenie konfiguracji"
+msgstr ""
+
+#: tfustawienia.dbgrid1.columns[0].title.caption
+msgid "ID"
+msgstr ""
+
+#: tfustawienia.dbgrid1.columns[1].title.caption
+msgid "Nazwa"
+msgstr ""
+
+#: tfustawienia.dbgrid1.columns[2].title.caption
+msgid "Url"
+msgstr ""
+
+#: tfustawienia.dbgrid1.columns[3].title.caption
+msgid "Pokój"
+msgstr ""
+
+#: tfustawienia.groupbox3.caption
+msgid "Mechanizm zamykania systemu"
+msgstr ""
+
+#: tfustawienia.klickoff.caption
+msgid "Wyłącz kod odpowiedzialny za dźwiękowe powiadomienia na czacie"
+msgstr ""
+
+#: tfustawienia.label1.caption
+msgid "Radio Player Forty+"
+msgstr ""
+
+#: tfustawienia.label10.caption
+msgctxt "tfustawienia.label10.caption"
+msgid "Hasło (opcja):"
+msgstr ""
+
+#: tfustawienia.label11.caption
+msgid "Stacje radiowe:"
+msgstr ""
+
+#: tfustawienia.label12.caption
+msgid "Pokój testowy:"
+msgstr ""
+
+#: tfustawienia.label13.caption
+msgid "Inne:"
+msgstr ""
+
+#: tfustawienia.label14.caption
+msgid "Historia pamiętanych linii kodu:"
+msgstr ""
+
+#: tfustawienia.label15.caption
+msgid "(w raize potrzeby przykryje r+r)"
+msgstr ""
+
+#: tfustawienia.label16.caption
+msgctxt "tfustawienia.label16.caption"
+msgid "Wielkość pamięci cache"
+msgstr ""
+
+#: tfustawienia.label17.caption
+msgctxt "tfustawienia.label17.caption"
+msgid "Początkowe wypełnienie:"
+msgstr ""
+
+#: tfustawienia.label18.caption
+msgctxt "tfustawienia.label18.caption"
+msgid "%"
+msgstr ""
+
+#: tfustawienia.label19.caption
+msgid "Wartości wyzerowane ustawiają te wartości automatycznie. Ustawienie ich wpłynie na przydział, początkowe wypełnienie musi być osiągnięte zanim radio będzie odtwarzane."
+msgstr ""
+
+#: tfustawienia.label2.caption
+msgid "..."
+msgstr ""
+
+#: tfustawienia.label20.caption
+msgctxt "tfustawienia.label20.caption"
+msgid "Flagi:"
+msgstr ""
+
+#: tfustawienia.label21.caption
+msgid "Poniżej znajdują się opcje, które mogą się przydać w sytuacjach awaryjnych, np. gdy aplikacja się wywala z niewiadomych przyczyn, zachowuje się niewłaściwie, właśnie tu możesz wyłączyć pewne części programu, jeśli to pomoże, znalezienie przyczyny i załatanie błędu stanie się łatwiejsze."
+msgstr ""
+
+#: tfustawienia.label22.caption
+msgid "Informacja dźwiękowa:"
+msgstr ""
+
+#: tfustawienia.label23.caption
+msgid "http://radio40plus.pl/"
+msgstr ""
+
+#: tfustawienia.label24.caption
+msgid "Informacja o niedostępności:"
+msgstr ""
+
+#: tfustawienia.label25.caption
+msgid "Możesz umieszczać kolory w formacie <#FFFFFF><#> wraca do koloru odpowiedzi, <biu/b/i/u>, znak \"$\" zostanie zamieniony na nick osoby, która napisała do ciebie."
+msgstr ""
+
+#: tfustawienia.label26.caption
+msgid "Odtwarzanie filmów:"
+msgstr ""
+
+#: tfustawienia.label27.caption
+msgctxt "tfustawienia.label27.caption"
+msgid "Czcionka:"
+msgstr ""
+
+#: tfustawienia.label28.caption
+msgid "Wielkość:"
+msgstr ""
+
+#: tfustawienia.label29.caption
+msgid "Kolor tła:"
+msgstr ""
+
+#: tfustawienia.label3.caption
+msgid "by Jacek Leszczyński (Samu)"
+msgstr ""
+
+#: tfustawienia.label30.caption
+msgctxt "tfustawienia.label30.caption"
+msgid "Flagi:"
+msgstr ""
+
+#: tfustawienia.label31.caption
+msgid "Opcje domyślne:"
+msgstr ""
+
+#: tfustawienia.label32.caption
+msgid "Wybrana ścieżka audio:"
+msgstr ""
+
+#: tfustawienia.label33.caption
+msgid "(trzyliterowe kody języków oddzielone przecinkami)"
+msgstr ""
+
+#: tfustawienia.label34.caption
+msgid "Ścieżka napisów:"
+msgstr ""
+
+#: tfustawienia.label35.caption
+msgid "https://sourceforge.net/projects/radio-player-forte-plus/files/"
+msgstr ""
+
+#: tfustawienia.label36.caption
+msgid "Napisy są w kodowaniu:"
+msgstr ""
+
+#: tfustawienia.label37.caption
+msgid "Pozycja napisów na ekranie:"
+msgstr ""
+
+#: tfustawienia.label38.caption
+msgid "(pozycja pozioma w %)"
+msgstr ""
+
+#: tfustawienia.label39.caption
+msgid "Skalowanie napisów:"
+msgstr ""
+
+#: tfustawienia.label4.caption
+msgctxt "tfustawienia.label4.caption"
+msgid "KB."
+msgstr ""
+
+#: tfustawienia.label40.caption
+msgid "(25 jest wartością domyślną)"
+msgstr ""
+
+#: tfustawienia.label41.caption
+msgctxt "tfustawienia.label41.caption"
+msgid "Wielkość pamięci cache"
+msgstr ""
+
+#: tfustawienia.label42.caption
+msgctxt "tfustawienia.label42.caption"
+msgid "Początkowe wypełnienie:"
+msgstr ""
+
+#: tfustawienia.label43.caption
+msgid "j.w."
+msgstr ""
+
+#: tfustawienia.label44.caption
+msgctxt "tfustawienia.label44.caption"
+msgid "KB."
+msgstr ""
+
+#: tfustawienia.label45.caption
+msgctxt "tfustawienia.label45.caption"
+msgid "%"
+msgstr ""
+
+#: tfustawienia.label46.caption
+msgctxt "tfustawienia.label46.caption"
+msgid "Użytkownik:"
+msgstr ""
+
+#: tfustawienia.label47.caption
+msgctxt "tfustawienia.label47.caption"
+msgid "Czcionka:"
+msgstr ""
+
+#: tfustawienia.label48.caption
+msgid "Czarny zarys wokół czcionki:"
+msgstr ""
+
+#: tfustawienia.label49.caption
+msgctxt "tfustawienia.label49.caption"
+msgid "Hasło (opcja):"
+msgstr ""
+
+#: tfustawienia.label5.caption
+msgid "(wymaga ponownego uruchomienia programu)"
+msgstr ""
+
+#: tfustawienia.label50.caption
+msgid "Nazwa pokoju:"
+msgstr ""
+
+#: tfustawienia.label51.caption
+msgid "Skrypt:"
+msgstr ""
+
+#: tfustawienia.label57.caption
+msgid "Dane logowania:"
+msgstr ""
+
+#: tfustawienia.label6.caption
+msgid "Panele:"
+msgstr ""
+
+#: tfustawienia.label7.caption
+msgid "Streaming - odbiór radia:"
+msgstr ""
+
+#: tfustawienia.label8.caption
+msgid "Dane logowania się na chat polfanu:"
+msgstr ""
+
+#: tfustawienia.label9.caption
+msgctxt "tfustawienia.label9.caption"
+msgid "Użytkownik:"
+msgstr ""
+
+#: tfustawienia.radiobutton1.caption
+msgid "Unix: shutdows -P now"
+msgstr ""
+
+#: tfustawienia.radiobutton2.caption
+msgid "Unix: shutdows -p now"
+msgstr ""
+
+#: tfustawienia.radiobutton3.caption
+msgid "Unix: qdbus org.kde.ksmserver"
+msgstr ""
+
+#: tfustawienia.radiobutton4.caption
+msgid "Windows API Shutdown"
+msgstr ""
+
+#: tfustawienia.radiobutton5.caption
+msgid "Wykonaj komendę:"
+msgstr ""
+
+#: tfustawienia.serweron.caption
+msgid "Tryb serwera"
+msgstr ""
+
+#: tfustawienia.showconsole.caption
+msgid "Pokazuj okno konsoli i przechwytuj wszelkie komunikaty aplikacji na nią"
+msgstr ""
+
+#: tfustawienia.speedbutton1.caption
+msgctxt "tfustawienia.speedbutton1.caption"
+msgid "Ustawienia"
+msgstr ""
+
+#: tfustawienia.speedbutton2.caption
+msgctxt "tfustawienia.speedbutton2.caption"
+msgid "Chat"
+msgstr ""
+
+#: tfustawienia.speedbutton3.caption
+msgctxt "tfustawienia.speedbutton3.caption"
+msgid "Bot"
+msgstr ""
+
+#: tfustawienia.speedbutton4.caption
+msgctxt "tfustawienia.speedbutton4.caption"
+msgid "Stacje radiowe"
+msgstr ""
+
+#: tfustawienia.speedbutton5.caption
+msgctxt "tfustawienia.speedbutton5.caption"
+msgid "Wideo"
+msgstr ""
+
+#: tfustawienia.speedbutton6.caption
+msgctxt "tfustawienia.speedbutton6.caption"
+msgid "Opcje serwisowe"
+msgstr ""
+
+#: tfustawienia.speedbutton7.caption
+msgctxt "tfustawienia.speedbutton7.caption"
+msgid "Przydział pamięci"
+msgstr ""
+
+#: tfustawienia.tabsheet1.caption
+msgctxt "tfustawienia.tabsheet1.caption"
+msgid "Ustawienia"
+msgstr ""
+
+#: tfustawienia.tabsheet2.caption
+msgctxt "tfustawienia.tabsheet2.caption"
+msgid "Chat"
+msgstr ""
+
+#: tfustawienia.tabsheet3.caption
+msgctxt "tfustawienia.tabsheet3.caption"
+msgid "Stacje radiowe"
+msgstr ""
+
+#: tfustawienia.tabsheet4.caption
+msgctxt "tfustawienia.tabsheet4.caption"
+msgid "Wideo"
+msgstr ""
+
+#: tfustawienia.tabsheet5.caption
+msgctxt "tfustawienia.tabsheet5.caption"
+msgid "Opcje serwisowe"
+msgstr ""
+
+#: tfustawienia.tabsheet6.caption
+msgctxt "tfustawienia.tabsheet6.caption"
+msgid "Przydział pamięci"
+msgstr ""
+
+#: tfustawienia.tabsheet7.caption
+msgctxt "tfustawienia.tabsheet7.caption"
+msgid "Bot"
 msgstr ""
 

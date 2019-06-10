@@ -1,0 +1,42 @@
+var
+  {zmienne do wczytania danych z zewnątrz kodu}
+  wRoom, wUser, room, user, message: string;
+  {zmienne do użytku lokalnego}
+  b: boolean;
+  num,L: integer;
+  s: string;
+begin
+
+  { inicjowanie zmiennych }
+  s:='';
+  b:=GetData(num,wRoom,wUser,room,user,message);
+
+  { jeśli wszystko ok - działamy }
+  if b then
+  begin
+
+    { kod do np. witania nowych użytkowników wchodzących do pokoju }
+    if num=1 then
+    begin
+      if user<>wUser then s:='Witaj '+user+' <hej>';
+      if s<>'' then
+      begin
+        L:=random(500,3000);
+        send(s,L);
+      end;
+    end else
+
+    { kod do obsługi zdarzeń }
+    if num=2 then
+    begin
+      if message='czas?' then
+      s:=user+' nie wiem która jest godzina :)';
+      if s<>'' then
+      begin
+        L:=random(500,3000);
+        send(s,L);
+      end;
+    end;
+
+  end;
+end.

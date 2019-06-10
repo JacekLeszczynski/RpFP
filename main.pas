@@ -1515,6 +1515,7 @@ begin
   _BOT_ROOM:=PropStorage.ReadString('BotRoom','');
   _BOT_USER:=PropStorage.ReadString('BotUser','Bot');
   _BOT_PASSW:=DecryptString(PropStorage.ReadString('BotPassw',''),POLFAN_TOKEN,true);
+  _BOT_SCRIPT:=PropStorage.ReadString('BotScript','');
   { przywrócenie listy playera i start jeśli trzeba }
   PlayerMultimedia.katalog:=PropStorage.ReadString('PlayerDirectory','');
   PropStorage.ReadStrings('PlayerListNames',list1.Items);
@@ -1573,6 +1574,7 @@ begin
   PropStorage.WriteString('BotRoom',_BOT_ROOM);
   PropStorage.WriteString('BotUser',_BOT_USER);
   PropStorage.WriteString('BotPassw',EncryptString(_BOT_PASSW,POLFAN_TOKEN,100));
+  PropStorage.WriteString('BotScript',_BOT_SCRIPT);
   { zapis danych playera }
   PropStorage.WriteString('PlayerDirectory',PlayerMultimedia.katalog);
   PropStorage.WriteStrings('PlayerListNames',list1.Items);

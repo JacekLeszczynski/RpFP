@@ -1,0 +1,179 @@
+object FPomocKodera: TFPomocKodera
+  Left = 135
+  Height = 445
+  Top = 527
+  Width = 1056
+  Caption = 'Pomoc Kodera'
+  ClientHeight = 445
+  ClientWidth = 1056
+  ShowInTaskBar = stAlways
+  LCLVersion = '2.0.2.0'
+  object StringGrid1: TStringGrid
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = BitBtn1
+    Left = 0
+    Height = 399
+    Top = 0
+    Width = 1056
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BorderSpacing.Bottom = 8
+    ColCount = 3
+    FixedCols = 0
+    Font.Height = -11
+    Font.Name = 'Sans'
+    ParentFont = False
+    RowCount = 12
+    TabOrder = 0
+    TitleFont.Height = -11
+    TitleFont.Name = 'Sans'
+    ColWidths = (
+      65
+      650
+      339
+    )
+    RowHeights = (
+      26
+      26
+      26
+      26
+      26
+      21
+      21
+      21
+      21
+      21
+      21
+      21
+    )
+    Cells = (
+      36
+      0
+      0
+      'Funkcja'
+      0
+      1
+      'we/wy'
+      0
+      2
+      'we/wy'
+      0
+      3
+      'we/wy'
+      0
+      4
+      'tools'
+      0
+      5
+      'tools'
+      0
+      6
+      'tools'
+      0
+      7
+      'tools'
+      0
+      8
+      'tools'
+      0
+      9
+      'tools'
+      0
+      10
+      'tools'
+      0
+      11
+      'tools'
+      1
+      0
+      'Użycie'
+      1
+      1
+      'function GetData(var aNumber: integer; var aWebRoom,aWebUser,aRoom,aUser,aMessage: string): boolean;'')'
+      1
+      2
+      'procedure Send(const aText: string; const aSleep: integer);'
+      1
+      3
+      'procedure SendToUser(const aText: string; const aSleep: integer; const aUser: string);'
+      1
+      4
+      'function random(const min, max: integer): integer;'
+      1
+      5
+      'function pos(const aFragment, aText: string): integer;'
+      1
+      6
+      'procedure delete(var aText: string; const aStart, aCount: integer);'
+      1
+      7
+      'function StringReplace(const aText, aS1, aS2: string; const aTryb: integer): string;'
+      1
+      8
+      'function DeleteHtml(const aText: string): string;'
+      1
+      9
+      'function UpCase(const aText: string): string;'
+      1
+      10
+      'function LineToStr(const aText: string; const aIndex: integer; const aSeparator: char): string;'
+      1
+      11
+      'function DateTime(const aMask: string): string;'
+      2
+      0
+      'Opis'
+      2
+      1
+      'Funkcja Wejścia'
+      2
+      2
+      'Procedura Wyjścia'
+      2
+      3
+      'Procedura Wyjścia'
+      2
+      4
+      'Zwraca liczbę losową z pomiędzy podanego zakresu'
+      2
+      5
+      'Zwraca indeks początku szukanego stringu'
+      2
+      6
+      'Usuwa fragment stringu'
+      2
+      7
+      'Gdzie aTryb: 0-nic, 1-ign, 2-all,3-ign+all'
+      2
+      8
+      'Usuwa fragmenty rodzaju "<...>"'
+      2
+      9
+      'Wszystko dużymi literami'
+      2
+      10
+      'Wyciągnij n-ty element stringu określony parametrami'
+      2
+      11
+      'Zwraca datę/czas określony maską'
+    )
+  end
+  object BitBtn1: TBitBtn
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 952
+    Height = 30
+    Top = 407
+    Width = 96
+    Anchors = [akRight, akBottom]
+    BorderSpacing.Right = 8
+    BorderSpacing.Bottom = 8
+    Caption = 'Wyjście'
+    OnClick = BitBtn1Click
+    TabOrder = 1
+  end
+end

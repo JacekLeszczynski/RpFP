@@ -437,19 +437,6 @@ begin
   end;
 end;
 
-function test_ip(adres,blokowany: string): boolean;
-var
-  kropki: integer;
-  i: integer;
-  s: string;
-begin
-  s:=blokowany;
-  for i:=length(s) downto 1 do if not (((s[i]>='0') and (s[i]<='9')) or (s[i]='.')) then delete(s,i,1);
-  kropki:=0;
-  for i:=1 to length(s) do if s[i]='.' then inc(kropki);
-  result:=((kropki=4) and (adres=s)) or ((kropki<4) and (pos(s,adres)=1));
-end;
-
 procedure TFChat.webBeforeConnect(Sender: TObject; aUser, aFingerPrint,
   aOS: string; var aAccepted: boolean);
 var

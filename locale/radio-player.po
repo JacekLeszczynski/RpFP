@@ -189,6 +189,38 @@ msgstr ""
 msgid "FBot"
 msgstr ""
 
+#: tfbotedytorkodu.bitbtn1.caption
+msgid "Anuluj i wyjdź"
+msgstr ""
+
+#: tfbotedytorkodu.bitbtn2.caption
+msgid "Zapisz i wyjdź"
+msgstr ""
+
+#: tfbotedytorkodu.bitbtn3.caption
+msgid "Test"
+msgstr ""
+
+#: tfbotedytorkodu.bitbtn4.caption
+msgid "Help"
+msgstr ""
+
+#: tfbotedytorkodu.bitbtn5.caption
+msgid "Load"
+msgstr ""
+
+#: tfbotedytorkodu.bitbtn6.caption
+msgid "Save"
+msgstr ""
+
+#: tfbotedytorkodu.bitbtn7.caption
+msgid "Default"
+msgstr ""
+
+#: tfbotedytorkodu.caption
+msgid "Bot - Edytor kodu"
+msgstr ""
+
 #: tfchat.caption
 msgid "RpFP - Chat"
 msgstr ""
@@ -382,6 +414,7 @@ msgid "Radio Player Forty +"
 msgstr ""
 
 #: tfmain.menuitem1.caption
+msgctxt "tfmain.menuitem1.caption"
 msgid "Wyjście"
 msgstr ""
 
@@ -469,8 +502,21 @@ msgstr ""
 msgid "utwor"
 msgstr ""
 
+#: tfpomockodera.bitbtn1.caption
+msgctxt "tfpomockodera.bitbtn1.caption"
+msgid "Wyjście"
+msgstr ""
+
+#: tfpomockodera.caption
+msgid "Pomoc Kodera"
+msgstr ""
+
 #: tfustawienia.bitbtn1.caption
 msgid "OK"
+msgstr ""
+
+#: tfustawienia.bitbtn3.caption
+msgid "Edytor kodu"
 msgstr ""
 
 #: tfustawienia.caption
@@ -744,6 +790,10 @@ msgstr ""
 msgid "Nazwa pokoju:"
 msgstr ""
 
+#: tfustawienia.label51.caption
+msgid "Skrypt:"
+msgstr ""
+
 #: tfustawienia.label57.caption
 msgid "Dane logowania:"
 msgstr ""
@@ -805,27 +855,27 @@ msgstr ""
 
 #: tfustawienia.speedbutton3.caption
 msgctxt "tfustawienia.speedbutton3.caption"
-msgid "Stacje radiowe"
+msgid "Bot"
 msgstr ""
 
 #: tfustawienia.speedbutton4.caption
 msgctxt "tfustawienia.speedbutton4.caption"
-msgid "Wideo"
+msgid "Stacje radiowe"
 msgstr ""
 
 #: tfustawienia.speedbutton5.caption
 msgctxt "tfustawienia.speedbutton5.caption"
-msgid "Opcje serwisowe"
+msgid "Wideo"
 msgstr ""
 
 #: tfustawienia.speedbutton6.caption
 msgctxt "tfustawienia.speedbutton6.caption"
-msgid "Przydział pamięci"
+msgid "Opcje serwisowe"
 msgstr ""
 
 #: tfustawienia.speedbutton7.caption
 msgctxt "tfustawienia.speedbutton7.caption"
-msgid "Bot"
+msgid "Przydział pamięci"
 msgstr ""
 
 #: tfustawienia.tabsheet1.caption

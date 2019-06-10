@@ -15,7 +15,7 @@
         <DpiAware Value="True"/>
       </XPManifest>
       <Icon Value="0"/>
-      <Resources Count="7">
+      <Resources Count="8">
         <Resource_0 FileName="sound/Button-click-sound.mp3" Type="RCDATA" ResourceName="SOUND6"/>
         <Resource_1 FileName="sound/Airplane-ding-sound.mp3" Type="RCDATA" ResourceName="SOUND1"/>
         <Resource_2 FileName="sound/Beep-tone.mp3" Type="RCDATA" ResourceName="SOUND4"/>
@@ -23,6 +23,7 @@
         <Resource_4 FileName="sound/Blooper-sound-effect.mp3" Type="RCDATA" ResourceName="SOUND0"/>
         <Resource_5 FileName="sound/Button-beep-tone.mp3" Type="RCDATA" ResourceName="SOUND5"/>
         <Resource_6 FileName="sound/Ticket-machine-sound-effect.mp3" Type="RCDATA" ResourceName="SOUND3"/>
+        <Resource_7 FileName="example_code.ps" Type="RCDATA" ResourceName="EXAMPLE_CODE"/>
       </Resources>
     </General>
     <i18n>
@@ -32,12 +33,10 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
-      <MajorVersionNr Value="5"/>
-      <MinorVersionNr Value="6"/>
-      <RevisionNr Value="3"/>
+      <MajorVersionNr Value="6"/>
       <Language Value="0415"/>
     </VersionInfo>
-    <BuildModes Count="14">
+    <BuildModes Count="16">
       <Item1 Name="Default" Default="True"/>
       <Item2 Name="Default - Client">
         <CompilerOptions>
@@ -69,7 +68,39 @@
           </Other>
         </CompilerOptions>
       </Item2>
-      <Item3 Name="Debug">
+      <Item3 Name="Default-Bot">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="radio-player-bot"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="../../components/extlazarus;../../lib"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <TargetCPU Value="x86_64"/>
+            <TargetOS Value="linux"/>
+          </CodeGeneration>
+          <Linking>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-dBOT
+-dNOGUI"/>
+            <OtherDefines Count="2">
+              <Define0 Value="BOT"/>
+              <Define1 Value="NOGUI"/>
+            </OtherDefines>
+          </Other>
+        </CompilerOptions>
+      </Item3>
+      <Item4 Name="Debug">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -116,8 +147,57 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item3>
-      <Item4 Name="DebugWindows">
+      </Item4>
+      <Item5 Name="Debug-Bot">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="radio-player-bot"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="../../components/extlazarus;../../lib"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <IncludeAssertionCode Value="True"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <Checks>
+              <IOChecks Value="True"/>
+              <RangeChecks Value="True"/>
+              <OverflowChecks Value="True"/>
+              <StackChecks Value="True"/>
+            </Checks>
+            <VerifyObjMethodCallValidity Value="True"/>
+            <TargetCPU Value="x86_64"/>
+            <TargetOS Value="linux"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsDwarf2Set"/>
+              <UseHeaptrc Value="True"/>
+              <TrashVariables Value="True"/>
+            </Debugging>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-dBOT
+-dNOGUI"/>
+            <OtherDefines Count="2">
+              <Define0 Value="BOT"/>
+              <Define1 Value="NOGUI"/>
+            </OtherDefines>
+          </Other>
+        </CompilerOptions>
+      </Item5>
+      <Item6 Name="DebugWindows">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -163,8 +243,8 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item4>
-      <Item5 Name="Release-Jacek">
+      </Item6>
+      <Item7 Name="Release-Jacek">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -198,13 +278,13 @@
             <CustomOptions Value="-dAPP
 -dJACEK"/>
             <OtherDefines Count="2">
-              <Define0 Value="APP"/>
-              <Define1 Value="JACEK"/>
+              <Define0 Value="BOT"/>
+              <Define1 Value="NOGUI"/>
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item5>
-      <Item6 Name="Release">
+      </Item7>
+      <Item8 Name="Release">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -241,8 +321,8 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item6>
-      <Item7 Name="Release-Client">
+      </Item8>
+      <Item9 Name="Release-Client">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -279,8 +359,8 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item7>
-      <Item8 Name="Release-Bot">
+      </Item9>
+      <Item10 Name="Release-Bot">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -311,14 +391,16 @@
             </Options>
           </Linking>
           <Other>
-            <CustomOptions Value="-dBOT"/>
-            <OtherDefines Count="1">
+            <CustomOptions Value="-dBOT
+-dNOGUI"/>
+            <OtherDefines Count="2">
               <Define0 Value="BOT"/>
+              <Define1 Value="NOGUI"/>
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item8>
-      <Item9 Name="Windows">
+      </Item10>
+      <Item11 Name="Windows">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -350,13 +432,14 @@
           </Linking>
           <Other>
             <CustomOptions Value="-dAPP"/>
-            <OtherDefines Count="1">
-              <Define0 Value="APP"/>
+            <OtherDefines Count="2">
+              <Define0 Value="BOT"/>
+              <Define1 Value="NOGUI"/>
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item9>
-      <Item10 Name="Windows-Client">
+      </Item11>
+      <Item12 Name="Windows-Client">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -393,8 +476,8 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item10>
-      <Item11 Name="Windows-Bot">
+      </Item12>
+      <Item13 Name="Windows-Bot">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -425,14 +508,16 @@
             </Options>
           </Linking>
           <Other>
-            <CustomOptions Value="-dBOT"/>
-            <OtherDefines Count="1">
+            <CustomOptions Value="-dBOT
+-dNOGUI"/>
+            <OtherDefines Count="2">
               <Define0 Value="BOT"/>
+              <Define1 Value="NOGUI"/>
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item11>
-      <Item12 Name="Windows64">
+      </Item13>
+      <Item14 Name="Windows64">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -469,8 +554,8 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item12>
-      <Item13 Name="Windows64-Client">
+      </Item14>
+      <Item15 Name="Windows64-Client">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -507,8 +592,8 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item13>
-      <Item14 Name="Windows64-Bot">
+      </Item15>
+      <Item16 Name="Windows64-Bot">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -539,13 +624,15 @@
             </Options>
           </Linking>
           <Other>
-            <CustomOptions Value="-dBOT"/>
-            <OtherDefines Count="1">
+            <CustomOptions Value="-dBOT
+-dNOGUI"/>
+            <OtherDefines Count="2">
               <Define0 Value="BOT"/>
+              <Define1 Value="NOGUI"/>
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item14>
+      </Item16>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
@@ -557,60 +644,66 @@
       <FormatVersion Value="2"/>
       <Modes Count="0"/>
     </RunParams>
-    <RequiredPackages Count="17">
+    <RequiredPackages Count="19">
       <Item1>
-        <PackageName Value="lnetvisual"/>
+        <PackageName Value="SynEdit"/>
       </Item1>
       <Item2>
-        <PackageName Value="cindy"/>
+        <PackageName Value="pascalscript"/>
       </Item2>
       <Item3>
-        <PackageName Value="FrameViewer09"/>
+        <PackageName Value="lnetvisual"/>
       </Item3>
       <Item4>
-        <PackageName Value="TurboPowerIPro"/>
+        <PackageName Value="cindy"/>
       </Item4>
       <Item5>
-        <PackageName Value="rxnew"/>
+        <PackageName Value="FrameViewer09"/>
       </Item5>
       <Item6>
-        <PackageName Value="pl_excontrols"/>
+        <PackageName Value="TurboPowerIPro"/>
       </Item6>
       <Item7>
-        <PackageName Value="BGRAControlsFX"/>
+        <PackageName Value="rxnew"/>
       </Item7>
       <Item8>
-        <PackageName Value="bgracontrols"/>
+        <PackageName Value="pl_excontrols"/>
       </Item8>
       <Item9>
-        <PackageName Value="industrial"/>
+        <PackageName Value="BGRAControlsFX"/>
       </Item9>
       <Item10>
-        <PackageName Value="FCL"/>
+        <PackageName Value="bgracontrols"/>
       </Item10>
       <Item11>
-        <PackageName Value="zcomponent"/>
+        <PackageName Value="industrial"/>
       </Item11>
       <Item12>
-        <PackageName Value="lib_register"/>
+        <PackageName Value="FCL"/>
       </Item12>
       <Item13>
-        <PackageName Value="Abbrevia"/>
+        <PackageName Value="zcomponent"/>
       </Item13>
       <Item14>
-        <PackageName Value="pkg_gifanim"/>
+        <PackageName Value="lib_register"/>
       </Item14>
       <Item15>
-        <PackageName Value="uEControls"/>
+        <PackageName Value="Abbrevia"/>
       </Item15>
       <Item16>
-        <PackageName Value="ExtLazarus"/>
+        <PackageName Value="pkg_gifanim"/>
       </Item16>
       <Item17>
-        <PackageName Value="LCL"/>
+        <PackageName Value="uEControls"/>
       </Item17>
+      <Item18>
+        <PackageName Value="ExtLazarus"/>
+      </Item18>
+      <Item19>
+        <PackageName Value="LCL"/>
+      </Item19>
     </RequiredPackages>
-    <Units Count="19">
+    <Units Count="21">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -735,6 +828,19 @@
         <Filename Value="bot.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit18>
+      <Unit19>
+        <Filename Value="bot_edytor_kodu.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FBotEdytorKodu"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="bot_code_help.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FPomocKodera"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit20>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

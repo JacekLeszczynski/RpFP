@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  Buttons, Spin, ColorBox, ComCtrls, DBGrids, XMLPropStorage, ZDataset,
-  ExtMessage, db;
+  Buttons, Spin, ColorBox, ComCtrls, DBGrids, XMLPropStorage,
+  ZDataset, ExtMessage, db;
 
 type
 
@@ -15,6 +15,7 @@ type
 
   TFUstawienia = class(TForm)
     BitBtn1: TBitBtn;
+    BitBtn3: TBitBtn;
     cache: TSpinEdit;
     cache1: TSpinEdit;
     ChatBackgroundColor: TColorBox;
@@ -98,6 +99,7 @@ type
     Label49: TLabel;
     Label5: TLabel;
     Label50: TLabel;
+    Label51: TLabel;
     Label57: TLabel;
     Label6: TLabel;
     Label7: TLabel;
@@ -125,11 +127,11 @@ type
     ShowConsole: TCheckBox;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
-    SpeedButton3: TSpeedButton;
     SpeedButton4: TSpeedButton;
     SpeedButton5: TSpeedButton;
     SpeedButton6: TSpeedButton;
     SpeedButton7: TSpeedButton;
+    SpeedButton3: TSpeedButton;
     TabSheet7: TTabSheet;
     TestBeep: TSpeedButton;
     SpinEdit1: TSpinEdit;
@@ -151,6 +153,7 @@ type
     wypelnienie1: TSpinEdit;
     zaraz_wracam: TEdit;
     procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
     procedure bot_hasloChange(Sender: TObject);
     procedure bot_roomChange(Sender: TObject);
     procedure bot_userChange(Sender: TObject);
@@ -217,7 +220,7 @@ var
 implementation
 
 uses
-  config, cverinfo, ecode, lclintf;
+  config, cverinfo, ecode, lclintf, bot_edytor_kodu;
 
 {$R *.lfm}
 
@@ -305,6 +308,19 @@ procedure TFUstawienia.BitBtn1Click(Sender: TObject);
 begin
   OUT_OK:=true;
   close;
+end;
+
+procedure TFUstawienia.BitBtn3Click(Sender: TObject);
+begin
+  FBotEdytorKodu:=TFBotEdytorKodu.Create(self);
+  try
+    FBotEdytorKodu.SynEdit1.Lines.Clear;
+    FBotEdytorKodu.SynEdit1.Lines.AddText(_BOT_SCRIPT);
+    FBotEdytorKodu.ShowModal;
+    if FBotEdytorKodu.out_ok then _BOT_SCRIPT:=FBotEdytorKodu.SynEdit1.Lines.Text;
+  finally
+    FBotEdytorKodu.Free;
+  end;
 end;
 
 procedure TFUstawienia.bot_hasloChange(Sender: TObject);
@@ -509,6 +525,7 @@ begin
     3: SpeedButton4.Down:=true;
     4: SpeedButton5.Down:=true;
     5: SpeedButton6.Down:=true;
+    6: SpeedButton7.Down:=true;
   end;
   init;
   db_stacje.Open;

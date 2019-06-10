@@ -6,15 +6,16 @@ uses
   {$IFDEF UNIX}{$IFDEF UseCThreads}
   cthreads,
   {$ENDIF}{$ENDIF}
-  Classes, CustApp, ExtParams, cverinfo, Forms, Interfaces,
+  Classes, CustApp, ExtParams, cverinfo,
+  Forms, Interfaces,
   DefaultTranslator, LCLTranslator, LazUTF8,
   {$IFDEF CLIENT}
   config, client;
   {$ELSE}
     {$IFDEF BOT}
-    config, bot;
+    config, bot, bot_edytor_kodu;
     {$ELSE}
-    main, config, datamodule, consola;
+    main, config, datamodule, consola, bot_code_help;
     {$ENDIF}
   {$ENDIF}
 
