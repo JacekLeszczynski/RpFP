@@ -34,6 +34,8 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="6"/>
+      <MinorVersionNr Value="1"/>
+      <RevisionNr Value="1"/>
       <Language Value="0415"/>
     </VersionInfo>
     <BuildModes Count="16">
@@ -839,6 +841,7 @@
         <Filename Value="bot_code_help.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FPomocKodera"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit20>
     </Units>

@@ -107,6 +107,14 @@ begin
   {$ENDIF}
 
   {$IFDEF BOT}
+  par:=TExtParams.Create(nil);
+  try
+    par.Execute;
+    if par.Count>0 then _komenda:=par.GetValue(0);
+  finally
+    par.Free;
+  end;
+
   FBOT:=TBot.Create;
   try
     FBOT.Execute;

@@ -266,6 +266,7 @@ var
   _DEV: boolean;
   _DEV_CHAT_CREATE: boolean = false;
   _DEV_CHAT_IDENTIFY: string = '';
+  _DEV_CHAT_SHOW_BOT_CODE: boolean = false;
   _DEV_GNUPG: boolean = false;
   _DEBUG: boolean;
   _DIR_TAP: string;

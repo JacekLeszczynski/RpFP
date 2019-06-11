@@ -1,14 +1,14 @@
 object FBotEdytorKodu: TFBotEdytorKodu
   Left = 334
-  Height = 580
+  Height = 594
   Top = 133
-  Width = 655
+  Width = 764
   Caption = 'Bot - Edytor kodu'
-  ClientHeight = 580
-  ClientWidth = 655
+  ClientHeight = 594
+  ClientWidth = 764
   OnClose = FormClose
   OnCreate = FormCreate
-  Position = poOwnerFormCenter
+  SessionProperties = 'WindowState;Left;Top;Height;Width'
   LCLVersion = '2.0.2.0'
   inline SynEdit1: TSynEdit
     AnchorSideLeft.Control = Owner
@@ -17,9 +17,9 @@ object FBotEdytorKodu: TFBotEdytorKodu
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = BitBtn1
     Left = 0
-    Height = 534
+    Height = 548
     Top = 0
-    Width = 655
+    Width = 764
     BorderSpacing.Bottom = 8
     Anchors = [akTop, akLeft, akRight, akBottom]
     Font.Height = 13
@@ -28,6 +28,7 @@ object FBotEdytorKodu: TFBotEdytorKodu
     Font.Quality = fqNonAntialiased
     ParentColor = False
     ParentFont = False
+    PopupMenu = PopupMenu1
     TabOrder = 0
     Gutter.Width = 57
     Gutter.MouseActions = <>
@@ -458,9 +459,6 @@ object FBotEdytorKodu: TFBotEdytorKodu
     MouseActions = <>
     MouseTextActions = <>
     MouseSelActions = <>
-    Lines.Strings = (
-      'SynEdit1'
-    )
     VisibleSpecialChars = [vscSpace, vscTabAtLast]
     SelectedColor.BackPriority = 50
     SelectedColor.ForePriority = 50
@@ -519,13 +517,13 @@ object FBotEdytorKodu: TFBotEdytorKodu
   object BitBtn1: TBitBtn
     AnchorSideTop.Control = BitBtn2
     AnchorSideRight.Control = BitBtn2
-    Left = 394
+    Left = 503
     Height = 30
-    Top = 542
+    Top = 556
     Width = 132
     Anchors = [akTop, akRight]
     BorderSpacing.Right = 4
-    Caption = 'Anuluj i wyjdź'
+    Caption = 'Zapisz i wyjdź'
     OnClick = BitBtn1Click
     TabOrder = 1
   end
@@ -534,14 +532,14 @@ object FBotEdytorKodu: TFBotEdytorKodu
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 530
+    Left = 639
     Height = 30
-    Top = 542
+    Top = 556
     Width = 117
     Anchors = [akRight, akBottom]
     BorderSpacing.Right = 8
     BorderSpacing.Bottom = 8
-    Caption = 'Zapisz i wyjdź'
+    Caption = 'Wyjdź'
     OnClick = BitBtn2Click
     TabOrder = 2
   end
@@ -549,10 +547,10 @@ object FBotEdytorKodu: TFBotEdytorKodu
     AnchorSideLeft.Control = BitBtn4
     AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = BitBtn4
-    Left = 71
+    Left = 63
     Height = 30
-    Top = 542
-    Width = 59
+    Top = 556
+    Width = 99
     BorderSpacing.Left = 4
     Caption = 'Test'
     OnClick = BitBtn3Click
@@ -564,8 +562,8 @@ object FBotEdytorKodu: TFBotEdytorKodu
     AnchorSideBottom.Side = asrBottom
     Left = 8
     Height = 30
-    Top = 542
-    Width = 59
+    Top = 556
+    Width = 51
     Anchors = [akLeft, akBottom]
     BorderSpacing.Left = 8
     BorderSpacing.Bottom = 8
@@ -573,44 +571,19 @@ object FBotEdytorKodu: TFBotEdytorKodu
     OnClick = BitBtn4Click
     TabOrder = 4
   end
-  object BitBtn5: TBitBtn
-    AnchorSideLeft.Control = BitBtn3
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = BitBtn3
-    Left = 134
-    Height = 30
-    Top = 542
-    Width = 59
-    BorderSpacing.Left = 4
-    Caption = 'Load'
-    OnClick = BitBtn5Click
+  object CheckBox1: TCheckBox
+    AnchorSideTop.Control = BitBtn1
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = BitBtn1
+    Left = 221
+    Height = 23
+    Top = 560
+    Width = 278
+    Alignment = taLeftJustify
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 4
+    Caption = 'Przy zapisie nie wychodź, ale przeładuj'
     TabOrder = 5
-  end
-  object BitBtn6: TBitBtn
-    AnchorSideLeft.Control = BitBtn5
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = BitBtn5
-    Left = 197
-    Height = 30
-    Top = 542
-    Width = 59
-    BorderSpacing.Left = 4
-    Caption = 'Save'
-    OnClick = BitBtn6Click
-    TabOrder = 6
-  end
-  object BitBtn7: TBitBtn
-    AnchorSideLeft.Control = BitBtn6
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = BitBtn6
-    Left = 260
-    Height = 30
-    Top = 542
-    Width = 75
-    BorderSpacing.Left = 4
-    Caption = 'Default'
-    OnClick = BitBtn7Click
-    TabOrder = 7
   end
   object SynPasSyn1: TSynPasSyn
     Enabled = False
@@ -644,5 +617,47 @@ object FBotEdytorKodu: TFBotEdytorKodu
     Filter = 'Skrypty pascalowe|*.ps|Wszystkie pliki|*.*'
     left = 172
     top = 264
+  end
+  object PropStorage: TXMLPropStorage
+    StoredValues = <>
+    RootNodePath = 'bot_edytor'
+    Active = False
+    left = 496
+    top = 128
+  end
+  object PopupMenu1: TPopupMenu
+    left = 382
+    top = 269
+    object MenuItem1: TMenuItem
+      Caption = 'Zainicjuj konfigurację przykładową'
+      OnClick = MenuItem1Click
+    end
+    object N1: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'Odczytaj z dysku'
+      OnClick = MenuItem2Click
+    end
+    object MenuItem3: TMenuItem
+      Caption = 'Zapisz na dysk'
+      OnClick = MenuItem3Click
+    end
+  end
+  object proc: TProcess
+    Active = False
+    Options = []
+    Priority = ppNormal
+    StartupOptions = []
+    ShowWindow = swoNone
+    WindowColumns = 0
+    WindowHeight = 0
+    WindowLeft = 0
+    WindowRows = 0
+    WindowTop = 0
+    WindowWidth = 0
+    FillAttribute = 0
+    left = 172
+    top = 328
   end
 end

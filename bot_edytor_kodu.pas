@@ -5,8 +5,8 @@ unit bot_edytor_kodu;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Buttons, ExtMessage,
-  SynEdit, SynHighlighterPas;
+  Classes, SysUtils, process, Forms, Controls, Graphics, Dialogs, Buttons,
+  XMLPropStorage, Menus, StdCtrls, ExtMessage, SynEdit, SynHighlighterPas;
 
 type
 
@@ -17,11 +17,16 @@ type
     BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
     BitBtn4: TBitBtn;
-    BitBtn5: TBitBtn;
-    BitBtn6: TBitBtn;
-    BitBtn7: TBitBtn;
+    CheckBox1: TCheckBox;
+    MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
+    N1: TMenuItem;
     mess: TExtMessage;
     OpenDialog1: TOpenDialog;
+    PopupMenu1: TPopupMenu;
+    proc: TProcess;
+    PropStorage: TXMLPropStorage;
     SaveDialog1: TSaveDialog;
     SynEdit1: TSynEdit;
     SynPasSyn1: TSynPasSyn;
@@ -29,13 +34,14 @@ type
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
     procedure BitBtn4Click(Sender: TObject);
-    procedure BitBtn5Click(Sender: TObject);
-    procedure BitBtn6Click(Sender: TObject);
-    procedure BitBtn7Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure MenuItem1Click(Sender: TObject);
+    procedure MenuItem2Click(Sender: TObject);
+    procedure MenuItem3Click(Sender: TObject);
   private
-
+    procedure conf_load;
+    procedure conf_save;
   public
     out_ok: boolean;
   end;
@@ -46,7 +52,7 @@ var
 implementation
 
 uses
-  LCLType, bot, bot_code_help;
+  LCLType, ecode, bot, bot_code_help;
 
 {$R *.lfm}
 
@@ -54,7 +60,6 @@ uses
 
 procedure TFBotEdytorKodu.BitBtn2Click(Sender: TObject);
 begin
-  out_ok:=true;
   close;
 end;
 
@@ -78,17 +83,40 @@ begin
   FPomocKodera.Show;
 end;
 
-procedure TFBotEdytorKodu.BitBtn5Click(Sender: TObject);
+procedure TFBotEdytorKodu.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
 begin
-  if OpenDialog1.Execute then SynEdit1.Lines.LoadFromFile(OpenDialog1.FileName);
+  CloseAction:=caFree;
 end;
 
-procedure TFBotEdytorKodu.BitBtn6Click(Sender: TObject);
+procedure TFBotEdytorKodu.BitBtn1Click(Sender: TObject);
 begin
-  if SaveDialog1.Execute then SynEdit1.Lines.SaveToFile(SaveDialog1.FileName);
+  conf_save;
+  if CheckBox1.Checked then
+  begin
+    {$IFDEF WINDOWS}
+    proc.Executable:=MyDir('radio-player-bot.exe');
+    {$ELSE}
+    proc.Executable:=MyDir('radio-player-bot');
+    {$ENDIF}
+    proc.Parameters.Clear;
+    proc.Parameters.Add('reload');
+    proc.Execute;
+  end else begin
+    out_ok:=true;
+    close;
+  end;
 end;
 
-procedure TFBotEdytorKodu.BitBtn7Click(Sender: TObject);
+procedure TFBotEdytorKodu.FormCreate(Sender: TObject);
+begin
+  PropStorage.FileName:=MyConfDir('config.xml');
+  PropStorage.Active:=true;
+  out_ok:=false;
+  conf_load;
+end;
+
+procedure TFBotEdytorKodu.MenuItem1Click(Sender: TObject);
 var
   res: TResourceStream;
 begin
@@ -103,20 +131,25 @@ begin
   end;
 end;
 
-procedure TFBotEdytorKodu.FormClose(Sender: TObject;
-  var CloseAction: TCloseAction);
+procedure TFBotEdytorKodu.MenuItem2Click(Sender: TObject);
 begin
-  CloseAction:=caFree;
+  if OpenDialog1.Execute then SynEdit1.Lines.LoadFromFile(OpenDialog1.FileName);
 end;
 
-procedure TFBotEdytorKodu.BitBtn1Click(Sender: TObject);
+procedure TFBotEdytorKodu.MenuItem3Click(Sender: TObject);
 begin
-  close;
+  if SaveDialog1.Execute then SynEdit1.Lines.SaveToFile(SaveDialog1.FileName);
 end;
 
-procedure TFBotEdytorKodu.FormCreate(Sender: TObject);
+procedure TFBotEdytorKodu.conf_load;
 begin
-  out_ok:=false;
+  if FileExists(MyConfDir('config_bot.script')) then
+    SynEdit1.Lines.LoadFromFile(MyConfDir('config_bot.script'));
+end;
+
+procedure TFBotEdytorKodu.conf_save;
+begin
+  SynEdit1.Lines.SaveToFile(MyConfDir('config_bot.script'));
 end;
 
 end.

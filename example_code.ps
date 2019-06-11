@@ -1,27 +1,39 @@
 var
   {zmienne do wczytania danych z zewnątrz kodu}
-  wRoom, wUser, room, user, message: string;
+  wRoom, wUser, room, user, m, u: string;
   {zmienne do użytku lokalnego}
   b: boolean;
-  num,L: integer;
-  s: string;
+  num,L,a: integer;
+  s,mm: string;
+  {zmienna pomocnicza}
+  pom: string;
 begin
 
   { inicjowanie zmiennych }
   s:='';
-  b:=GetData(num,wRoom,wUser,room,user,message);
+  b:=GetData(num,wRoom,wUser,room,user,m);
+  m:=upcase(m);    //zamień wszystkie litery na duże
+  mm:=rmciapki(m); //pozbądź się wszystkich polskich znaków: ą->a itd...
+  u:=upcase(user);
 
   { jeśli wszystko ok - działamy }
   if b then
   begin
 
+    { kod wykonywany tylko raz przy wejściu do pokoju }
+    if num=0 then
+    begin
+      s:='Witam wszystkich <hej>';
+      send(s,0); //bez opóźnienia
+    end else
+
     { kod do np. witania nowych użytkowników wchodzących do pokoju }
     if num=1 then
     begin
-      if user<>wUser then s:='Witaj '+user+' <hej>';
+      if u='SAMU' then s:='Witaj '+user+', <b>Panie!</b> <kiss>' else s:='Witaj '+user+' <hej>';
       if s<>'' then
       begin
-        L:=random(500,3000);
+        L:=random(500,3000); //losowe opóźnienie, symuluje człowieka
         send(s,L);
       end;
     end else
@@ -29,11 +41,15 @@ begin
     { kod do obsługi zdarzeń }
     if num=2 then
     begin
-      if message='czas?' then
-      s:=user+' nie wiem która jest godzina :)';
+      if (m='CZAS?') or (m='GODZINA?') then
+        if u='SAMU' then s:=user+', <b>Panie!</b> Jest godzina <b>'+DateTime('hh:nn')+'</b> <kiss>' else s:=user+', Jest godzina <b>'+DateTime('hh:nn')+'</b> :)';
+      if (pos('GODZINA',m)>0) and (pos(upcase(wUser),m)>0) then
+        if u='SAMU' then s:=user+', <b>Panie!</b> Jest godzina <b>'+DateTime('hh:nn')+'</b> <kiss>' else s:=user+', Jest godzina <b>'+DateTime('hh:nn')+'</b> :)';
+      if (pos('DZIEKI',mm)>0) and (pos(upcase(wUser),m)>0) then
+        if u='SAMU' then s:=user+', <b>Panie!</b> Nie ma sprawy. <kiss>';
       if s<>'' then
       begin
-        L:=random(500,3000);
+        L:=random(200,1000);  //losowe opóźnienie, symuluje człowieka
         send(s,L);
       end;
     end;

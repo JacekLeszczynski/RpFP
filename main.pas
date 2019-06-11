@@ -1495,6 +1495,7 @@ begin
   _CHAT_BACKGROUND_COLOR:=PropStorage.ReadInteger('ChatBackgroundColor',clWhite);
   _CHAT_SOUND:=PropStorage.ReadInteger('ChatSoundInfo',0);
   _CHAT_BOOT_AUTORESPONSE:=PropStorage.ReadString('ChatBootAutoResponse','* * * <i><b><#008000>$<#></b> chwilowo nie ma mnie... <#004F64>Ale będę <oczko0></i> <#>* * *');
+  _DEV_CHAT_SHOW_BOT_CODE:=PropStorage.ReadBoolean('ChatShowBotCode',false);
   {$IFDEF UNIX}
   _SHUTDOWN_MODE:=PropStorage.ReadInteger('ShutdownMode',1);
   {$ENDIF}
@@ -1512,10 +1513,6 @@ begin
   _VIDEO_FONT_FACTOR:=PropStorage.ReadInteger('VideoFontFactor',1);
   _VIDEO_SUBPOS_DEFAULT:=PropStorage.ReadInteger('VideoSubposDefault',95);
   _VIDEO_SUBSCALE_DEFAULT:=PropStorage.ReadInteger('VideoSubscaleDefault',25);
-  _BOT_ROOM:=PropStorage.ReadString('BotRoom','');
-  _BOT_USER:=PropStorage.ReadString('BotUser','Bot');
-  _BOT_PASSW:=DecryptString(PropStorage.ReadString('BotPassw',''),POLFAN_TOKEN,true);
-  _BOT_SCRIPT:=PropStorage.ReadString('BotScript','');
   { przywrócenie listy playera i start jeśli trzeba }
   PlayerMultimedia.katalog:=PropStorage.ReadString('PlayerDirectory','');
   PropStorage.ReadStrings('PlayerListNames',list1.Items);
@@ -1559,6 +1556,7 @@ begin
   PropStorage.WriteBoolean('OffChatEngineImg',_OFF_CHAT_IMG);
   PropStorage.WriteInteger('ChatSoundInfo',_CHAT_SOUND);
   PropStorage.WriteString('ChatBootAutoResponse',_CHAT_BOOT_AUTORESPONSE);
+  PropStorage.WriteBoolean('ChatShowBotCode',_DEV_CHAT_SHOW_BOT_CODE);
   PropStorage.WriteInteger('ShutdownMode',_SHUTDOWN_MODE);
   PropStorage.WriteString('ShutdownCMD',_SHUTDOWN_CMD);
   PropStorage.WriteBoolean('VideoMPV',_VIDEO_MPV);
@@ -1571,10 +1569,6 @@ begin
   PropStorage.WriteInteger('VideoFontFactor',_VIDEO_FONT_FACTOR);
   PropStorage.WriteInteger('VideoSubposDefault',_VIDEO_SUBPOS_DEFAULT);
   PropStorage.WriteInteger('VideoSubscaleDefault',_VIDEO_SUBSCALE_DEFAULT);
-  PropStorage.WriteString('BotRoom',_BOT_ROOM);
-  PropStorage.WriteString('BotUser',_BOT_USER);
-  PropStorage.WriteString('BotPassw',EncryptString(_BOT_PASSW,POLFAN_TOKEN,100));
-  PropStorage.WriteString('BotScript',_BOT_SCRIPT);
   { zapis danych playera }
   PropStorage.WriteString('PlayerDirectory',PlayerMultimedia.katalog);
   PropStorage.WriteStrings('PlayerListNames',list1.Items);

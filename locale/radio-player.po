@@ -190,11 +190,13 @@ msgid "FBot"
 msgstr ""
 
 #: tfbotedytorkodu.bitbtn1.caption
-msgid "Anuluj i wyjdź"
+msgctxt "tfbotedytorkodu.bitbtn1.caption"
+msgid "Zapisz i wyjdź"
 msgstr ""
 
 #: tfbotedytorkodu.bitbtn2.caption
-msgid "Zapisz i wyjdź"
+msgctxt "tfbotedytorkodu.bitbtn2.caption"
+msgid "Wyjdź"
 msgstr ""
 
 #: tfbotedytorkodu.bitbtn3.caption
@@ -205,20 +207,24 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: tfbotedytorkodu.bitbtn5.caption
-msgid "Load"
-msgstr ""
-
-#: tfbotedytorkodu.bitbtn6.caption
-msgid "Save"
-msgstr ""
-
-#: tfbotedytorkodu.bitbtn7.caption
-msgid "Default"
-msgstr ""
-
 #: tfbotedytorkodu.caption
 msgid "Bot - Edytor kodu"
+msgstr ""
+
+#: tfbotedytorkodu.checkbox1.caption
+msgid "Przy zapisie nie wychodź, ale przeładuj"
+msgstr ""
+
+#: tfbotedytorkodu.menuitem1.caption
+msgid "Zainicjuj konfigurację przykładową"
+msgstr ""
+
+#: tfbotedytorkodu.menuitem2.caption
+msgid "Odczytaj z dysku"
+msgstr ""
+
+#: tfbotedytorkodu.menuitem3.caption
+msgid "Zapisz na dysk"
 msgstr ""
 
 #: tfchat.caption
@@ -511,12 +517,28 @@ msgstr ""
 msgid "Pomoc Kodera"
 msgstr ""
 
+#: tfpomockodera.label1.caption
+msgid " Info: W celu uzyskania dodatkowych funkcji w edytorze kodu kliknij prawym przyciskiem myszy... "
+msgstr ""
+
 #: tfustawienia.bitbtn1.caption
 msgid "OK"
 msgstr ""
 
+#: tfustawienia.bitbtn2.caption
+msgid "Uruchom bota"
+msgstr ""
+
 #: tfustawienia.bitbtn3.caption
 msgid "Edytor kodu"
+msgstr ""
+
+#: tfustawienia.bitbtn4.caption
+msgid "Zamknij bota"
+msgstr ""
+
+#: tfustawienia.bitbtn5.caption
+msgid "Przeładuj konfigurację"
 msgstr ""
 
 #: tfustawienia.caption
@@ -529,6 +551,10 @@ msgstr ""
 
 #: tfustawienia.checkbox1.caption
 msgid "Włącz panel radiowy"
+msgstr ""
+
+#: tfustawienia.checkbox10.caption
+msgid "Pokaż ikonkę do edycji kodu w oknie czatu"
 msgstr ""
 
 #: tfustawienia.checkbox2.caption
@@ -791,7 +817,8 @@ msgid "Nazwa pokoju:"
 msgstr ""
 
 #: tfustawienia.label51.caption
-msgid "Skrypt:"
+msgctxt "tfustawienia.label51.caption"
+msgid "Flagi:"
 msgstr ""
 
 #: tfustawienia.label57.caption

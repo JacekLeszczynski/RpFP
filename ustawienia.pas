@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  Buttons, Spin, ColorBox, ComCtrls, DBGrids, XMLPropStorage,
-  ZDataset, ExtMessage, db;
+  Buttons, Spin, ColorBox, ComCtrls, DBGrids, XMLPropStorage, JSONPropStorage,
+  ZDataset, ExtMessage, db, process, IniFiles;
 
 type
 
@@ -15,12 +15,16 @@ type
 
   TFUstawienia = class(TForm)
     BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
     cache: TSpinEdit;
     cache1: TSpinEdit;
     ChatBackgroundColor: TColorBox;
     ChatRegister: TCheckBox;
     CheckBox1: TCheckBox;
+    CheckBox10: TCheckBox;
     CheckBox2: TCheckBox;
     CheckBox3: TCheckBox;
     CheckBox4: TCheckBox;
@@ -117,6 +121,7 @@ type
     Panel6: TPanel;
     Panel7: TPanel;
     Panel8: TPanel;
+    proc: TProcess;
     PropStorage: TXMLPropStorage;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
@@ -153,7 +158,10 @@ type
     wypelnienie1: TSpinEdit;
     zaraz_wracam: TEdit;
     procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn4Click(Sender: TObject);
+    procedure BitBtn5Click(Sender: TObject);
     procedure bot_hasloChange(Sender: TObject);
     procedure bot_roomChange(Sender: TObject);
     procedure bot_userChange(Sender: TObject);
@@ -161,6 +169,7 @@ type
     procedure cacheChange(Sender: TObject);
     procedure ChatBackgroundColorChange(Sender: TObject);
     procedure ChatRegisterChange(Sender: TObject);
+    procedure CheckBox10Change(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
     procedure CheckBox2Change(Sender: TObject);
     procedure CheckBox3Change(Sender: TObject);
@@ -183,6 +192,7 @@ type
     procedure force_roomChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure hasloChange(Sender: TObject);
     procedure HistMemLinesCodeChange(Sender: TObject);
@@ -207,9 +217,12 @@ type
     procedure _TAB_CLICK(Sender: TObject);
     procedure _ZMIANA(DataSet: TDataSet);
   private
+    bot_conf: TIniFile;
     vMajorVersion,vMinorVersion,vRelease,vBuild: integer;
     procedure init;
     function czy_jest_nowsza_wersja(v1,v2,v3,v4: integer): boolean;
+    procedure conf_load;
+    procedure conf_save;
   public
     OUT_OK: boolean;
   end;
@@ -278,6 +291,7 @@ begin
   bot_room.Text:=_BOT_ROOM;
   bot_user.Text:=_BOT_USER;
   bot_haslo.Text:=_BOT_PASSW;
+  CheckBox10.Checked:=_DEV_CHAT_SHOW_BOT_CODE;
 end;
 
 function TFUstawienia.czy_jest_nowsza_wersja(v1, v2, v3, v4: integer): boolean;
@@ -287,6 +301,20 @@ begin
   ((v1=vMajorVersion) and (v2=vMinorVersion) and (v3>vRelease)) or
   ((v1=vMajorVersion) and (v2=vMinorVersion) and (v3=vRelease) and (v4>vBuild))
   then result:=true else result:=false;
+end;
+
+procedure TFUstawienia.conf_load;
+begin
+  _BOT_ROOM:=bot_conf.ReadString('root','BotRoom','');
+  _BOT_USER:=bot_conf.ReadString('root','BotUser','Bot');
+  _BOT_PASSW:=DecryptString(bot_conf.ReadString('root','BotPassw',''),POLFAN_TOKEN,true);
+end;
+
+procedure TFUstawienia.conf_save;
+begin
+  bot_conf.WriteString('root','BotRoom',_BOT_ROOM);
+  bot_conf.WriteString('root','BotUser',_BOT_USER);
+  bot_conf.WriteString('root','BotPassw',EncryptString(_BOT_PASSW,POLFAN_TOKEN,100));
 end;
 
 procedure TFUstawienia.CheckBox2Change(Sender: TObject);
@@ -310,17 +338,46 @@ begin
   close;
 end;
 
+procedure TFUstawienia.BitBtn2Click(Sender: TObject);
+begin
+  {$IFDEF WINDOWS}
+  proc.Executable:=MyDir('radio-player-bot.exe');
+  {$ELSE}
+  proc.Executable:=MyDir('radio-player-bot');
+  {$ENDIF}
+  proc.Parameters.Clear;
+  proc.Parameters.Add('start');
+  proc.Execute;
+end;
+
 procedure TFUstawienia.BitBtn3Click(Sender: TObject);
 begin
   FBotEdytorKodu:=TFBotEdytorKodu.Create(self);
-  try
-    FBotEdytorKodu.SynEdit1.Lines.Clear;
-    FBotEdytorKodu.SynEdit1.Lines.AddText(_BOT_SCRIPT);
-    FBotEdytorKodu.ShowModal;
-    if FBotEdytorKodu.out_ok then _BOT_SCRIPT:=FBotEdytorKodu.SynEdit1.Lines.Text;
-  finally
-    FBotEdytorKodu.Free;
-  end;
+  FBotEdytorKodu.ShowModal;
+end;
+
+procedure TFUstawienia.BitBtn4Click(Sender: TObject);
+begin
+  {$IFDEF WINDOWS}
+  proc.Executable:=MyDir('radio-player-bot.exe');
+  {$ELSE}
+  proc.Executable:=MyDir('radio-player-bot');
+  {$ENDIF}
+  proc.Parameters.Clear;
+  proc.Parameters.Add('stop');
+  proc.Execute;
+end;
+
+procedure TFUstawienia.BitBtn5Click(Sender: TObject);
+begin
+  {$IFDEF WINDOWS}
+  proc.Executable:=MyDir('radio-player-bot.exe');
+  {$ELSE}
+  proc.Executable:=MyDir('radio-player-bot');
+  {$ENDIF}
+  proc.Parameters.Clear;
+  proc.Parameters.Add('reload');
+  proc.Execute;
 end;
 
 procedure TFUstawienia.bot_hasloChange(Sender: TObject);
@@ -346,6 +403,11 @@ end;
 procedure TFUstawienia.ChatRegisterChange(Sender: TObject);
 begin
   _CHAT_REGISTER:=ChatRegister.Checked;
+end;
+
+procedure TFUstawienia.CheckBox10Change(Sender: TObject);
+begin
+  _DEV_CHAT_SHOW_BOT_CODE:=CheckBox10.Checked;
 end;
 
 procedure TFUstawienia.CheckBox1Change(Sender: TObject);
@@ -477,6 +539,8 @@ var
 begin
   PropStorage.FileName:=MyConfDir('config.xml');
   PropStorage.Active:=true;
+  bot_conf:=TIniFile.Create(MyConfDir('config_bot.ini'));
+  conf_load;
   PageControl1.ShowTabs:=false;
   GetProgramVersion(vMajorVersion,vMinorVersion,vRelease,vBuild);
   GetProgramVersion(s1,s2,s3);
@@ -512,6 +576,12 @@ begin
     5: RadioButton5.Checked:=true;
   end;
   Edit1.Enabled:=RadioButton5.Checked;
+end;
+
+procedure TFUstawienia.FormDestroy(Sender: TObject);
+begin
+  conf_save;
+  bot_conf.Free;
 end;
 
 procedure TFUstawienia.FormShow(Sender: TObject);

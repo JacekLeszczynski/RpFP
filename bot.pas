@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, XMLPropStorage, Polfan, NetSynHTTP, uPSComponent,
-  PointerTab; //ExtSharedMemory
+  PointerTab, ExtSharedMemory, IniFiles;
 
 type
 
@@ -16,32 +16,38 @@ type
   private
     FTest: boolean;
     FDebug: boolean;
+    ini: TIniFile;
     me: TPointerTab;
     web: TPolfan;
-    PropStorage: TXMLPropStorage;
+    MemSH: TExtSharedMemory;
     script: TPSScript;
     get_login: TNetSynHTTP;
-    _laczenie,_exit: boolean;
+    _laczenie,_exit,_reload: boolean;
     _licznik,_polaczono: integer;
     _error: integer;
     nadawca,adresat: string;
     script_loaded: boolean;
     procedure Init;
     procedure DeInit;
+    procedure conf_load;
+    procedure conf_save;
+    procedure MemSHSendMessage(Sender: TObject; var AMessage: string);
+    procedure MemSHReceiveMessage(Sender: TObject; AMessage: string);
+    procedure MemSHServer(Sender: TObject);
+    procedure MemSHClient(Sender: TObject);
     procedure ScriptCompile(Sender: TPSScript);
     procedure ListaCreateElement(Sender: TObject; var AWskaznik: Pointer);
     procedure ListaDestroyElement(Sender: TObject; var AWskaznik: Pointer);
     procedure ListaReadElement(Sender: TObject; var AWskaznik: Pointer);
     procedure ListaWriteElement(Sender: TObject; var AWskaznik: Pointer);
-    procedure PropStorageRestoreProperties(Sender: TObject);
-    procedure PropStorageSaveProperties(Sender: TObject);
+    procedure webOpen(Sender: TObject);
+    procedure webListUserInit(Sender: TObject; AUsers, ADescriptions, AAttributes: TStrings);
     procedure webBeforeConnect(Sender: TObject; aUser, aFingerPrint, aOS: string; var aAccepted: boolean);
     procedure webBeforeReadDocument(Sender: TObject; AName, aNadawca, aAdresat: string;
       AMode: TPolfanRoomMode; AMessage: string; var aDropNow, aDeleteFromLogSrc: boolean);
     procedure webReadDocument(Sender: TObject; AName: string; AMode: TPolfanRoomMode;
       AMessage: string; ADocument: TStrings; ARefresh: boolean);
     procedure webListUserAdd(Sender: TObject; ARoom, AUsername, ADescription: string; aAttr: integer);
-    procedure webOpen(Sender: TObject);
     procedure webClose(Sender: TObject; aErr: integer; aErrorString: string);
     procedure ConnectToChat;
     procedure DisconnectToChat;
@@ -58,6 +64,7 @@ type
     function _StringReplace(const aText,aS1,aS2: string; const aTryb: integer): string;
     function _DeleteHtml(const aText: string): string;
     function _UpCase(const aText: string): string;
+    function _DeleteCiapki(const aText: string): string;
     function _GetLineToStr(const aText: string; const aIndex: integer; const aSeparator: char): string;
     function _DateTime(const aMask: string): string;
   public
@@ -68,6 +75,9 @@ type
   published
     property Debug: boolean read FDebug write FDebug;
   end;
+
+var
+  _komenda: string;
 
 implementation
 
@@ -85,6 +95,7 @@ type
   end;
 
 var
+  czekaj: boolean = true;
   element: TElement;
   pp: ^TElement;
 
@@ -102,20 +113,59 @@ function CalculateFingerPrint: string; stdcall; external 'libpolfan64.so';
 
 procedure TBot.Init;
 begin
-  SetConfDir('radio_player_40_plus');
   FDebug:=false;
-  _exit:=false;
   _licznik:=0;
   _polaczono:=0;
   _laczenie:=false;
-  PropStorage.FileName:=MyConfDir('config.xml');
-  PropStorage.Active:=true;
-  PropStorage.Restore;
+  conf_load;
 end;
 
 procedure TBot.DeInit;
 begin
-  PropStorage.Active:=false;
+end;
+
+procedure TBot.conf_load;
+var
+  s: TStringList;
+begin
+  _BOT_ROOM:=ini.ReadString('root','BotRoom','');
+  _BOT_USER:=ini.ReadString('root','BotUser','Bot');
+  _BOT_PASSW:=DecryptString(ini.ReadString('root','BotPassw',''),POLFAN_TOKEN,true);
+  s:=TStringList.Create;
+  try
+    if FileExists(MyConfDir('config_bot.script')) then s.LoadFromFile(MyConfDir('config_bot.script'));
+    if load_script(s) then script_loaded:=true else _exit:=true;
+  finally
+    s.Free;
+  end;
+end;
+
+procedure TBot.conf_save;
+begin
+
+end;
+
+procedure TBot.MemSHSendMessage(Sender: TObject; var AMessage: string);
+begin
+  AMessage:=_komenda;
+end;
+
+procedure TBot.MemSHReceiveMessage(Sender: TObject; AMessage: string);
+begin
+  if AMessage='stop' then _exit:=true else
+  if AMessage='reload' then _reload:=true;
+end;
+
+procedure TBot.MemSHServer(Sender: TObject);
+begin
+  if _komenda='stop' then _exit:=true;
+  czekaj:=false;
+end;
+
+procedure TBot.MemSHClient(Sender: TObject);
+begin
+  _exit:=true;
+  czekaj:=false;
 end;
 
 procedure TBot.ScriptCompile(Sender: TPSScript);
@@ -133,6 +183,7 @@ begin
   Sender.AddMethod(self,@TBot._UpCase,'function UpCase(const aText: string): string;');
   Sender.AddMethod(self,@TBot._GetLineToStr,'function LineToStr(const aText: string; const aIndex: integer; const aSeparator: char): string;');
   Sender.AddMethod(self,@TBot._DateTime,'function DateTime(const aMask: string): string;');
+  Sender.AddMethod(self,@TBot._DeleteCiapki,'function rmCiapki(const aText: string): string;');
 end;
 
 procedure TBot.ListaCreateElement(Sender: TObject; var AWskaznik: Pointer);
@@ -157,27 +208,6 @@ procedure TBot.ListaWriteElement(Sender: TObject; var AWskaznik: Pointer);
 begin
   pp^:=element;
   AWskaznik:=pp;
-end;
-
-procedure TBot.PropStorageRestoreProperties(Sender: TObject);
-var
-  s: TStringList;
-begin
-  _BOT_ROOM:=PropStorage.ReadString('BotRoom','');
-  _BOT_USER:=PropStorage.ReadString('BotUser','Bot');
-  _BOT_PASSW:=DecryptString(PropStorage.ReadString('BotPassw',''),POLFAN_TOKEN,true);
-  s:=TStringList.Create;
-  try
-    s.AddText(PropStorage.ReadString('BotScript',''));
-    if load_script(s) then script_loaded:=true else _exit:=true;
-  finally
-    s.Free;
-  end;
-end;
-
-procedure TBot.PropStorageSaveProperties(Sender: TObject);
-begin
-
 end;
 
 procedure TBot.webBeforeConnect(Sender: TObject; aUser, aFingerPrint,
@@ -395,6 +425,18 @@ begin
   _error:=0;
 end;
 
+procedure TBot.webListUserInit(Sender: TObject; AUsers, ADescriptions,
+  AAttributes: TStrings);
+begin
+  element.Number:=0;
+  element.WebRoom:=web.Room;
+  element.WebUser:=web.User;
+  element.Room:=web.Room;
+  element.User:=web.User;
+  me.Add;
+  if not script.Execute then if FDebug then writeln('Błąd skryptu (1)!');
+end;
+
 procedure TBot.webClose(Sender: TObject; aErr: integer; aErrorString: string);
 begin
   _laczenie:=false;
@@ -443,10 +485,14 @@ var
   s: string;
 begin
   if FDebug then writeln('*** SEND ***');
-  s:='{"numbers":[410],"strings":["<'+SColorToHtmlColor(clBlack)+'>'+aText+'", "'+web.Room+'"]}';
-  wysylka:=TAutoResponseDelay.Create(aSleep,s);
-  wysylka.OnSendNow:=@SendNow;
-  wysylka.Resume;
+  s:=StringReplace(aText,'"','&#34;',[rfReplaceAll]);
+  s:='{"numbers":[410],"strings":["<'+SColorToHtmlColor(clBlack)+'>'+s+'", "'+web.Room+'"]}';
+  if aSleep=0 then web.SendText(s) else
+  begin
+    wysylka:=TAutoResponseDelay.Create(aSleep,s);
+    wysylka.OnSendNow:=@SendNow;
+    wysylka.Resume;
+  end;
 end;
 
 procedure TBot.SendToUser(const aText: string; const aSleep: integer;
@@ -456,10 +502,14 @@ var
   s: string;
 begin
   if FDebug then writeln('*** SEND TO USER ***');
-  s:='{"numbers":[410],"strings":["/msg '+aUser+' <'+SColorToHtmlColor(clBlack)+'>'+aText+'", ""]}';
-  wysylka:=TAutoResponseDelay.Create(aSleep,s);
-  wysylka.OnSendNow:=@SendNow;
-  wysylka.Resume;
+  s:=StringReplace(aText,'"','&#34;',[rfReplaceAll]);
+  s:='{"numbers":[410],"strings":["/msg '+aUser+' <'+SColorToHtmlColor(clBlack)+'>'+s+'", ""]}';
+  if aSleep=0 then web.SendText(s) else
+  begin
+    wysylka:=TAutoResponseDelay.Create(aSleep,s);
+    wysylka.OnSendNow:=@SendNow;
+    wysylka.Resume;
+  end;
 end;
 
 {aNumer: 1 - dot. nowych użytkowników}
@@ -579,7 +629,20 @@ end;
 
 function TBot._UpCase(const aText: string): string;
 begin
-  result:=UpCase(aText);
+  result:=AnsiUpperCase(aText);
+end;
+
+function TBot._DeleteCiapki(const aText: string): string;
+const
+  t_ciapki: array [1..18] of string = ('Ę','Ó','Ą','Ś','Ł','Ż','Ź','Ć','Ń','ę','ó','ą','ś','ł','ż','ź','ć','ń');
+  t_b_apki: array [1..18] of string = ('E','O','A','S','L','Z','Z','C','N','e','o','a','s','l','z','z','c','n');
+var
+  s: string;
+  i: integer;
+begin
+  s:=aText;
+  for i:=1 to 18 do s:=StringReplace(s,t_ciapki[i],t_b_apki[i],[rfReplaceAll]);
+  result:=s;
 end;
 
 function TBot._GetLineToStr(const aText: string; const aIndex: integer; const aSeparator: char): string;
@@ -597,13 +660,19 @@ begin
   FTest:=aTestMode;
   if not FTest then
   begin
+    SetConfDir('radio_player_40_plus');
     randomize;
     script_loaded:=false;
+    _reload:=false;
     _exit:=false;
-    PropStorage:=TXMLPropStorage.Create(nil);
-    PropStorage.OnRestoreProperties:=@PropStorageRestoreProperties;
-    PropStorage.OnSaveProperties:=@PropStorageSaveProperties;
-    PropStorage.RootNodePath:='root';
+    MemSH:=TExtSharedMemory.Create(nil);
+    MemSH.ApplicationKey:='343678273647236457438246374572';
+    MemSH.OnSendMessage:=@MemSHSendMessage;
+    MemSH.OnMessage:=@MemSHReceiveMessage;
+    MemSH.OnServer:=@MemSHServer;
+    MemSH.OnClient:=@MemSHClient;
+    MemSH.Execute;
+    ini:=TIniFile.Create(MyConfDir('config_bot.ini'));
     me:=TPointerTab.Create(nil);
     me.Rodzaj:=roKolejka;
     me.OnCreateElement:=@ListaCreateElement;
@@ -624,6 +693,7 @@ begin
     web.OnOpen:=@webOpen;
     web.OnClose:=@webClose;
     web.OnListUserAdd:=@webListUserAdd;
+    web.OnListUserInit:=@webListUserInit;
     Init;
   end;
 end;
@@ -640,7 +710,8 @@ begin
   begin
     get_login.Free;
     me.Free;
-    PropStorage.Free;
+    ini.Free;
+    MemSH.Free;
   end;
   inherited Destroy;
 end;
@@ -652,6 +723,14 @@ begin
     if FDebug then writeln('Niewypełniona nazwa pokoju, wychodzę.');
     exit;
   end;
+
+  while czekaj do
+  begin
+    checkSynchronize;
+    sleep(50);
+  end;
+  if _exit then exit;
+
   try
     if FDebug then writeln('BOT Hello - Tryb wyświetlania informacji o pracy bota uruchomiony');
     while true do
@@ -673,16 +752,21 @@ begin
         end;
         if FDebug then writeln('Łączę się z czatem (',_licznik,')...');
         ConnectToChat;
-        //while _laczenie do begin application.ProcessMessages; sleep(50); end;
         while _laczenie do begin checkSynchronize; sleep(50); end;
       end;
       checkSynchronize;
       sleep(50);
       if _exit then break;
+      if _reload then
+      begin
+        _reload:=false;
+        conf_load;
+      end;
     end;
   finally
     if web.Active then DisconnectToChat;
   end;
+
 end;
 
 function TBot.TestCompilation(aScript: string): boolean;

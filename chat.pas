@@ -20,6 +20,7 @@ type
 
   TFChat = class(TForm)
     ButtonChat: TOnOffSwitch;
+    code_edit: TSpeedButton;
     Label11: TLabel;
     Label12: TLabel;
     Label13: TLabel;
@@ -101,6 +102,7 @@ type
     procedure ButtonChatChange(Sender: TObject);
     procedure button_siChange(Sender: TObject);
     procedure CheckBox2Change(Sender: TObject);
+    procedure code_editClick(Sender: TObject);
     procedure Edit1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Edit1KeyPress(Sender: TObject; var Key: char);
     procedure Edit1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -236,7 +238,8 @@ uses
   {$IFDEF MSWINDOWS}
   Windows,
   {$ENDIF}
-  ecode, datamodule, HTMLSubs, LCLType, chat_pomoc, dumpsrc, synacode, fpjson;
+  ecode, datamodule, HTMLSubs, LCLType, chat_pomoc, dumpsrc, synacode, fpjson,
+  bot_edytor_kodu;
 
 {$R *.lfm}
 
@@ -1421,6 +1424,7 @@ begin
     SrcDump.Visible:=true;
     wyslij_source.Visible:=true;
   end;
+  code_edit.Visible:=_DEV_CHAT_SHOW_BOT_CODE;
   if _CHAT_REGISTER then
   begin
     web.DeveloperCodeOn:=true;
@@ -1487,6 +1491,12 @@ begin
   emotki_nr:=1;
   timer_opoznienie.Enabled:=false;
   timer_opoznienie.Enabled:=true;
+end;
+
+procedure TFChat.code_editClick(Sender: TObject);
+begin
+  FBotEdytorKodu:=TFBotEdytorKodu.Create(self);
+  FBotEdytorKodu.Show;
 end;
 
 procedure TFChat.Edit1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState

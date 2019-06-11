@@ -11,6 +11,7 @@ object FUstawienia: TFUstawienia
   Font.Name = 'Sans'
   OnClose = FormClose
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnShow = FormShow
   Position = poOwnerFormCenter
   SessionProperties = 'Top;Left;PageControl1.ActivePage'
@@ -2282,25 +2283,69 @@ object FUstawienia: TFUstawienia
           ParentColor = False
           ParentFont = False
         end
-        object Label51: TLabel
-          Left = 76
-          Height = 19
-          Top = 125
-          Width = 46
-          Anchors = [akTop, akRight]
-          BorderSpacing.Right = 4
-          Caption = 'Skrypt:'
-          ParentColor = False
-          ParentFont = False
-        end
         object BitBtn3: TBitBtn
           Left = 352
           Height = 30
           Top = 26
-          Width = 163
+          Width = 160
           Caption = 'Edytor kodu'
           OnClick = BitBtn3Click
           TabOrder = 3
+        end
+        object BitBtn2: TBitBtn
+          Left = 352
+          Height = 30
+          Top = 59
+          Width = 160
+          Caption = 'Uruchom bota'
+          OnClick = BitBtn2Click
+          TabOrder = 4
+        end
+        object BitBtn4: TBitBtn
+          Left = 352
+          Height = 30
+          Top = 92
+          Width = 160
+          Caption = 'Zamknij bota'
+          OnClick = BitBtn4Click
+          TabOrder = 5
+        end
+        object BitBtn5: TBitBtn
+          Left = 352
+          Height = 30
+          Top = 128
+          Width = 160
+          Caption = 'Przeładuj konfigurację'
+          OnClick = BitBtn5Click
+          TabOrder = 6
+        end
+        object Label51: TLabel
+          AnchorSideLeft.Control = Panel8
+          Left = 5
+          Height = 17
+          Top = 160
+          Width = 40
+          BorderSpacing.Left = 4
+          Caption = 'Flagi:'
+          Font.Height = -13
+          Font.Name = 'Sans'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object CheckBox10: TCheckBox
+          AnchorSideLeft.Control = Label51
+          AnchorSideTop.Control = Label51
+          AnchorSideTop.Side = asrBottom
+          Left = 13
+          Height = 23
+          Top = 181
+          Width = 306
+          BorderSpacing.Left = 8
+          BorderSpacing.Top = 4
+          Caption = 'Pokaż ikonkę do edycji kodu w oknie czatu'
+          OnChange = CheckBox10Change
+          TabOrder = 7
         end
       end
     end
@@ -5228,5 +5273,21 @@ object FUstawienia: TFUstawienia
     Active = False
     left = 808
     top = 16
+  end
+  object proc: TProcess
+    Active = False
+    Options = []
+    Priority = ppNormal
+    StartupOptions = []
+    ShowWindow = swoNone
+    WindowColumns = 0
+    WindowHeight = 0
+    WindowLeft = 0
+    WindowRows = 0
+    WindowTop = 0
+    WindowWidth = 0
+    FillAttribute = 0
+    left = 712
+    top = 240
   end
 end

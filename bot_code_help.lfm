@@ -1,11 +1,14 @@
 object FPomocKodera: TFPomocKodera
-  Left = 135
+  Left = 369
   Height = 445
-  Top = 527
+  Top = 515
   Width = 1056
   Caption = 'Pomoc Kodera'
   ClientHeight = 445
   ClientWidth = 1056
+  OnClose = FormClose
+  OnCreate = FormCreate
+  SessionProperties = 'Top;Left'
   ShowInTaskBar = stAlways
   LCLVersion = '2.0.2.0'
   object StringGrid1: TStringGrid
@@ -19,13 +22,12 @@ object FPomocKodera: TFPomocKodera
     Top = 0
     Width = 1056
     Anchors = [akTop, akLeft, akRight, akBottom]
-    BorderSpacing.Bottom = 8
     ColCount = 3
     FixedCols = 0
     Font.Height = -11
     Font.Name = 'Sans'
     ParentFont = False
-    RowCount = 12
+    RowCount = 13
     TabOrder = 0
     TitleFont.Height = -11
     TitleFont.Name = 'Sans'
@@ -47,9 +49,10 @@ object FPomocKodera: TFPomocKodera
       21
       21
       21
+      21
     )
     Cells = (
-      36
+      39
       0
       0
       'Funkcja'
@@ -85,6 +88,9 @@ object FPomocKodera: TFPomocKodera
       'tools'
       0
       11
+      'tools'
+      0
+      12
       'tools'
       1
       0
@@ -122,6 +128,9 @@ object FPomocKodera: TFPomocKodera
       1
       11
       'function DateTime(const aMask: string): string;'
+      1
+      12
+      'function rmCiapki(const aText: string): string;'
       2
       0
       'Opis'
@@ -151,13 +160,16 @@ object FPomocKodera: TFPomocKodera
       'Usuwa fragmenty rodzaju "<...>"'
       2
       9
-      'Wszystko dużymi literami'
+      'Wszystko dużymi literami łącznie z polskimi znaczkami'
       2
       10
       'Wyciągnij n-ty element stringu określony parametrami'
       2
       11
       'Zwraca datę/czas określony maską'
+      2
+      12
+      'usuwa ciapki: ą->a, Ą->A, ę->e, itd.'
     )
   end
   object BitBtn1: TBitBtn
@@ -170,10 +182,32 @@ object FPomocKodera: TFPomocKodera
     Top = 407
     Width = 96
     Anchors = [akRight, akBottom]
+    BorderSpacing.Top = 8
     BorderSpacing.Right = 8
     BorderSpacing.Bottom = 8
     Caption = 'Wyjście'
     OnClick = BitBtn1Click
     TabOrder = 1
+  end
+  object Label1: TLabel
+    AnchorSideLeft.Control = StringGrid1
+    AnchorSideTop.Control = StringGrid1
+    AnchorSideTop.Side = asrBottom
+    Left = 0
+    Height = 19
+    Top = 399
+    Width = 629
+    Caption = ' Info: W celu uzyskania dodatkowych funkcji w edytorze kodu kliknij prawym przyciskiem myszy... '
+    Font.Color = clGray
+    Font.Style = [fsItalic]
+    ParentColor = False
+    ParentFont = False
+  end
+  object PropStorage: TXMLPropStorage
+    StoredValues = <>
+    RootNodePath = 'pomoc_kodera'
+    Active = False
+    left = 808
+    top = 72
   end
 end
