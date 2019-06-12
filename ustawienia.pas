@@ -530,7 +530,9 @@ end;
 
 procedure TFUstawienia.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+  conf_save;
   db_stacje.Close;
+  CloseAction:=caFree;
 end;
 
 procedure TFUstawienia.FormCreate(Sender: TObject);
@@ -580,7 +582,6 @@ end;
 
 procedure TFUstawienia.FormDestroy(Sender: TObject);
 begin
-  conf_save;
   bot_conf.Free;
 end;
 

@@ -1400,11 +1400,7 @@ end;
 procedure TFMain.ustawieniaClick(Sender: TObject);
 begin
   FUstawienia:=TFUstawienia.Create(self);
-  try
-    FUstawienia.ShowModal;
-  finally
-    FreeAndNil(FUstawienia);
-  end;
+  FUstawienia.ShowModal;
   PropStorage.Save;
   init_preferences;
 end;

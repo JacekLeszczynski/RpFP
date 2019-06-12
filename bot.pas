@@ -5,7 +5,11 @@ unit bot;
 interface
 
 uses
-  Classes, SysUtils, XMLPropStorage, Polfan, NetSynHTTP, uPSComponent,
+  Classes, SysUtils,
+  {$IFDEF WINDOWS}
+  windows,
+  {$ENDIF}
+  XMLPropStorage, Polfan, NetSynHTTP, uPSComponent,
   PointerTab, ExtSharedMemory, IniFiles;
 
 type
@@ -109,6 +113,24 @@ function CalculateFingerPrint: string; stdcall; external 'libpolfan32.dll';
 function CalculateFingerPrint: string; stdcall; external 'libpolfan64.so';
 {$ENDIF}
 
+procedure ProcessMessages;
+{$IFDEF WINDOWS}
+var
+  Msg: TMsg;
+{$ENDIF}
+begin
+  checkSynchronize;
+  {$IFDEF WINDOWS}
+  while PeekMessage(Msg, 0, 0, 0, PM_REMOVE) do begin
+    if Msg.Message <> WM_QUIT then begin
+      TranslateMessage(Msg);
+      DispatchMessage(Msg);
+    end else
+      exit;
+  end;
+  {$ENDIF}
+end;
+
 { FBot }
 
 procedure TBot.Init;
@@ -152,8 +174,13 @@ end;
 
 procedure TBot.MemSHReceiveMessage(Sender: TObject; AMessage: string);
 begin
+  {$IFDEF WINDOWS}
+  if AMessage='stop' then halt else
+  if AMessage='reload' then _reload:=true;
+  {$ELSE}
   if AMessage='stop' then _exit:=true else
   if AMessage='reload' then _reload:=true;
+  {$ENDIF}
 end;
 
 procedure TBot.MemSHServer(Sender: TObject);
@@ -726,7 +753,7 @@ begin
 
   while czekaj do
   begin
-    checkSynchronize;
+    ProcessMessages;
     sleep(50);
   end;
   if _exit then exit;
@@ -752,9 +779,9 @@ begin
         end;
         if FDebug then writeln('Łączę się z czatem (',_licznik,')...');
         ConnectToChat;
-        while _laczenie do begin checkSynchronize; sleep(50); end;
+        while _laczenie do begin ProcessMessages; sleep(50); end;
       end;
-      checkSynchronize;
+      ProcessMessages;
       sleep(50);
       if _exit then break;
       if _reload then

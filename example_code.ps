@@ -41,12 +41,18 @@ begin
     { kod do obsługi zdarzeń }
     if num=2 then
     begin
-      if (m='CZAS?') or (m='GODZINA?') then
-        if u='SAMU' then s:=user+', <b>Panie!</b> Jest godzina <b>'+DateTime('hh:nn')+'</b> <kiss>' else s:=user+', Jest godzina <b>'+DateTime('hh:nn')+'</b> :)';
-      if (pos('GODZINA',m)>0) and (pos(upcase(wUser),m)>0) then
-        if u='SAMU' then s:=user+', <b>Panie!</b> Jest godzina <b>'+DateTime('hh:nn')+'</b> <kiss>' else s:=user+', Jest godzina <b>'+DateTime('hh:nn')+'</b> :)';
-      if (pos('DZIEKI',mm)>0) and (pos(upcase(wUser),m)>0) then
-        if u='SAMU' then s:=user+', <b>Panie!</b> Nie ma sprawy. <kiss>';
+
+      if u='SAMU' then
+      begin
+        if (m='CZAS?') or (m='GODZINA?') then s:=user+', <b>Panie!</b> Jest godzina <b>'+DateTime('hh:nn')+'</b> <kiss>' else
+        if (pos('GODZINA',m)>0) and (pos(upcase(wUser),m)>0) then s:=user+', <b>Panie!</b> Jest godzina <b>'+DateTime('hh:nn')+'</b> <kiss>' else
+        if (pos('DZIEKI',mm)>0) and (pos(upcase(wUser),m)>0) then s:=user+', <b>Panie!</b> Nie ma sprawy. <kiss>';
+      end else begin
+        if (m='CZAS?') or (m='GODZINA?') then s:=user+', Jest godzina <b>'+DateTime('hh:nn')+'</b> :)' else
+        if (pos('GODZINA',m)>0) and (pos(upcase(wUser),m)>0) then s:=user+', Jest godzina <b>'+DateTime('hh:nn')+'</b> :)' else
+        if (pos('DZIEKI',mm)>0) and (pos(upcase(wUser),m)>0) then s:='Nie ma sprawy '+user;
+      end;
+
       if s<>'' then
       begin
         L:=random(200,1000);  //losowe opóźnienie, symuluje człowieka

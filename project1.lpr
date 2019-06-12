@@ -1,6 +1,7 @@
 program project1;
 
 {$mode objfpc}{$H+}
+{ $APPTYPE CONSOLE}
 
 uses
   {$IFDEF UNIX}{$IFDEF UseCThreads}
@@ -121,6 +122,7 @@ begin
   finally
     FBOT.Free;
   end;
+
   {$ELSE}
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
@@ -140,7 +142,7 @@ end;
 constructor TRadioPlayer.Create(TheOwner: TComponent);
 begin
   inherited Create(TheOwner);
-  StopOnException:=True;
+  StopOnException:=true;
 end;
 
 destructor TRadioPlayer.Destroy;
@@ -155,8 +157,11 @@ begin
   Application.Title:='Radio Player 40 Plus';
   Application.Scaled:=True;
   L:=TRadioPlayer.Create(nil);
-  L.Title:='RpFP';
-  L.Run;
-  L.Free;
+  try
+    L.Title:='RpFP';
+    L.Run;
+  finally
+    L.Free;
+  end;
 end.
 

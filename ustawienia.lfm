@@ -5267,19 +5267,12 @@ object FUstawienia: TFUstawienia
       0000000000000000000000000000
     }
   end
-  object PropStorage: TXMLPropStorage
-    StoredValues = <>
-    RootNodePath = 'ustawienia'
-    Active = False
-    left = 808
-    top = 16
-  end
   object proc: TProcess
     Active = False
     Options = []
     Priority = ppNormal
     StartupOptions = []
-    ShowWindow = swoNone
+    ShowWindow = swoShowNormal
     WindowColumns = 0
     WindowHeight = 0
     WindowLeft = 0
@@ -5289,5 +5282,12 @@ object FUstawienia: TFUstawienia
     FillAttribute = 0
     left = 712
     top = 240
+  end
+  object PropStorage: TXMLPropStorage
+    StoredValues = <>
+    RootNodePath = 'ustawienia'
+    Active = False
+    left = 792
+    top = 24
   end
 end

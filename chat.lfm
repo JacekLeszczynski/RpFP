@@ -1,7 +1,7 @@
 object FChat: TFChat
-  Left = 313
+  Left = 387
   Height = 617
-  Top = 374
+  Top = 370
   Width = 1078
   ActiveControl = html
   Caption = 'RpFP - Chat'

@@ -35,7 +35,7 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="6"/>
       <MinorVersionNr Value="1"/>
-      <RevisionNr Value="1"/>
+      <RevisionNr Value="3"/>
       <Language Value="0415"/>
     </VersionInfo>
     <BuildModes Count="16">
