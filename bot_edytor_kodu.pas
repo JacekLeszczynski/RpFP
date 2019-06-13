@@ -29,7 +29,7 @@ type
     PropStorage: TXMLPropStorage;
     SaveDialog1: TSaveDialog;
     SynEdit1: TSynEdit;
-    SynPasSyn1: TSynPasSyn;
+    SynFreePascalSyn1: TSynFreePascalSyn;
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);

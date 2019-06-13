@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  Buttons, Spin, ColorBox, ComCtrls, DBGrids, XMLPropStorage, JSONPropStorage,
-  ZDataset, ExtMessage, db, process, IniFiles;
+  Buttons, Spin, ColorBox, ComCtrls, DBGrids,
+  ZDataset, RxXMLPropStorage, ExtMessage, db, process, IniFiles;
 
 type
 
@@ -122,12 +122,12 @@ type
     Panel7: TPanel;
     Panel8: TPanel;
     proc: TProcess;
-    PropStorage: TXMLPropStorage;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
     RadioButton3: TRadioButton;
     RadioButton4: TRadioButton;
     RadioButton5: TRadioButton;
+    PropStorage: TRxXMLPropStorage;
     SerwerOn: TCheckBox;
     ShowConsole: TCheckBox;
     SpeedButton1: TSpeedButton;
@@ -583,6 +583,7 @@ end;
 procedure TFUstawienia.FormDestroy(Sender: TObject);
 begin
   bot_conf.Free;
+  Propstorage.Active:=false;
 end;
 
 procedure TFUstawienia.FormShow(Sender: TObject);

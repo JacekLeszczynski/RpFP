@@ -6,10 +6,10 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  Buttons, ComCtrls, Menus, XMLPropStorage, ueled, uETilePanel, GifAnim,
-  BGRAKnob, TplProgressBarUnit, rxctrls, A3nalogGauge, MPlayerCtrl, ExtMessage,
-  NetSynHTTP, ExtShutdown, DirectoryPack, LResources, Types, lNet,
-  UOSPlayer, NetSocket;
+  Buttons, ComCtrls, Menus, ueled, uETilePanel, GifAnim,
+  BGRAKnob, TplProgressBarUnit, rxctrls, RxXMLPropStorage, A3nalogGauge,
+  MPlayerCtrl, ExtMessage, NetSynHTTP, ExtShutdown, DirectoryPack, LResources,
+  Types, lNet, UOSPlayer, NetSocket;
 
 type
 
@@ -26,6 +26,7 @@ type
     ledF: TuELED;
     list1: TListBox;
     MenuItem9: TMenuItem;
+    PropStorage: TRxXMLPropStorage;
     tcp: TNetSocket;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
@@ -123,7 +124,6 @@ type
     uETilePanel1: TuETilePanel;
     Panel1: TPanel;
     autorun: TTimer;
-    PropStorage: TXMLPropStorage;
     uETilePanel2: TuETilePanel;
     uETilePanel0: TuETilePanel;
     uETilePanelTitle: TuETilePanel;
@@ -391,6 +391,7 @@ end;
 
 procedure TFMain.FormDestroy(Sender: TObject);
 begin
+  PropStorage.Active:=false;
   if _DEV_CHAT_CREATE then FChat.Free;
   radio.Stop;
   player.Stop;

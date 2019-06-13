@@ -27,7 +27,7 @@ object FPomocKodera: TFPomocKodera
     Font.Height = -11
     Font.Name = 'Sans'
     ParentFont = False
-    RowCount = 13
+    RowCount = 16
     TabOrder = 0
     TitleFont.Height = -11
     TitleFont.Name = 'Sans'
@@ -50,9 +50,12 @@ object FPomocKodera: TFPomocKodera
       21
       21
       21
+      21
+      21
+      21
     )
     Cells = (
-      39
+      48
       0
       0
       'Funkcja'
@@ -92,6 +95,15 @@ object FPomocKodera: TFPomocKodera
       0
       12
       'tools'
+      0
+      13
+      'we/wy'
+      0
+      14
+      'we/wy'
+      0
+      15
+      'we/wy'
       1
       0
       'Użycie'
@@ -131,6 +143,15 @@ object FPomocKodera: TFPomocKodera
       1
       12
       'function rmCiapki(const aText: string): string;'
+      1
+      13
+      'function ReadTab(const aTabName: string; const aIndex: integer): string;'
+      1
+      14
+      'function UsersCount: integer;'
+      1
+      15
+      'function UsersGet(const aIndex: integer): string;'
       2
       0
       'Opis'
@@ -170,6 +191,15 @@ object FPomocKodera: TFPomocKodera
       2
       12
       'usuwa ciapki: ą->a, Ą->A, ę->e, itd.'
+      2
+      13
+      'Zwraca element tablicy'
+      2
+      14
+      'Aktualna ilość zalogowanych użytkowników'
+      2
+      15
+      'Odczytanie użytkownika określonego przez jego Index'
     )
   end
   object BitBtn1: TBitBtn

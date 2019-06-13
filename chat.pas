@@ -608,8 +608,7 @@ begin
   end;
 end;
 
-procedure TFChat.webListUserAdd(Sender: TObject; ARoom, AUsername,
-  ADescription: string; aAttr: integer);
+procedure TFChat.webListUserAdd(Sender: TObject; ARoom, AUsername, ADescription: string; aAttr: integer);
 begin
   if tabname=ARoom then
   begin

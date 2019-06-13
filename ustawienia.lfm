@@ -5283,11 +5283,12 @@ object FUstawienia: TFUstawienia
     left = 712
     top = 240
   end
-  object PropStorage: TXMLPropStorage
+  object PropStorage: TRxXMLPropStorage
     StoredValues = <>
     RootNodePath = 'ustawienia'
     Active = False
-    left = 792
-    top = 24
+    SeparateFiles = False
+    left = 789
+    top = 33
   end
 end

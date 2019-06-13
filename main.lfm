@@ -14428,15 +14428,6 @@ object FMain: TFMain
     left = 664
     top = 248
   end
-  object PropStorage: TXMLPropStorage
-    StoredValues = <>
-    RootNodePath = 'root'
-    Active = False
-    OnSaveProperties = PropStorageSaveProperties
-    OnRestoreProperties = PropStorageRestoreProperties
-    left = 48
-    top = 64
-  end
   object MenuStacje: TPopupMenu
     left = 72
     top = 496
@@ -14549,5 +14540,15 @@ object FMain: TFMain
     OnDecryptString = tcpDecryptString
     left = 256
     top = 64
+  end
+  object PropStorage: TRxXMLPropStorage
+    StoredValues = <>
+    RootNodePath = 'root'
+    Active = False
+    OnSaveProperties = PropStorageSaveProperties
+    OnRestoreProperties = PropStorageRestoreProperties
+    SeparateFiles = False
+    left = 54
+    top = 92
   end
 end

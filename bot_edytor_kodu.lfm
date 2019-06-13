@@ -1,7 +1,7 @@
 object FBotEdytorKodu: TFBotEdytorKodu
-  Left = 334
+  Left = 322
   Height = 594
-  Top = 133
+  Top = 211
   Width = 764
   Caption = 'Bot - Edytor kodu'
   ClientHeight = 594
@@ -34,7 +34,7 @@ object FBotEdytorKodu: TFBotEdytorKodu
     Gutter.MouseActions = <>
     RightGutter.Width = 0
     RightGutter.MouseActions = <>
-    Highlighter = SynPasSyn1
+    Highlighter = SynFreePascalSyn1
     Keystrokes = <    
       item
         Command = ecUp
@@ -585,18 +585,6 @@ object FBotEdytorKodu: TFBotEdytorKodu
     Caption = 'Przy zapisie nie wychodź, ale przeładuj'
     TabOrder = 5
   end
-  object SynPasSyn1: TSynPasSyn
-    Enabled = False
-    CommentAttri.Foreground = clBlue
-    CommentAttri.Style = [fsBold]
-    StringAttri.Foreground = clBlue
-    DirectiveAttri.Foreground = clRed
-    DirectiveAttri.Style = [fsBold]
-    CompilerMode = pcmDelphi
-    NestedComments = False
-    left = 376
-    top = 128
-  end
   object mess: TExtMessage
     Caption = '<Auto>'
     HelpContext = 0
@@ -659,5 +647,17 @@ object FBotEdytorKodu: TFBotEdytorKodu
     FillAttribute = 0
     left = 172
     top = 328
+  end
+  object SynFreePascalSyn1: TSynFreePascalSyn
+    Enabled = False
+    CommentAttri.Foreground = clBlue
+    CommentAttri.Style = [fsBold]
+    StringAttri.Foreground = clBlue
+    DirectiveAttri.Foreground = clRed
+    DirectiveAttri.Style = [fsBold]
+    CompilerMode = pcmObjFPC
+    NestedComments = True
+    left = 376
+    top = 128
   end
 end

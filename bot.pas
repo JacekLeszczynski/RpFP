@@ -29,6 +29,7 @@ type
     _laczenie,_exit,_reload: boolean;
     _licznik,_polaczono: integer;
     _error: integer;
+    _users: TStringList;
     nadawca,adresat: string;
     script_loaded: boolean;
     procedure Init;
@@ -46,12 +47,14 @@ type
     procedure ListaWriteElement(Sender: TObject; var AWskaznik: Pointer);
     procedure webOpen(Sender: TObject);
     procedure webListUserInit(Sender: TObject; AUsers, ADescriptions, AAttributes: TStrings);
+    procedure webListUserAdd(Sender: TObject; ARoom, AUsername, ADescription: string; aAttr: integer);
+    procedure webListUserDel(Sender: TObject; ARoom, AUsername: string);
+    procedure webListUserDeInit(Sender: TObject);
     procedure webBeforeConnect(Sender: TObject; aUser, aFingerPrint, aOS: string; var aAccepted: boolean);
     procedure webBeforeReadDocument(Sender: TObject; AName, aNadawca, aAdresat: string;
       AMode: TPolfanRoomMode; AMessage: string; var aDropNow, aDeleteFromLogSrc: boolean);
     procedure webReadDocument(Sender: TObject; AName: string; AMode: TPolfanRoomMode;
       AMessage: string; ADocument: TStrings; ARefresh: boolean);
-    procedure webListUserAdd(Sender: TObject; ARoom, AUsername, ADescription: string; aAttr: integer);
     procedure webClose(Sender: TObject; aErr: integer; aErrorString: string);
     procedure ConnectToChat;
     procedure DisconnectToChat;
@@ -60,6 +63,9 @@ type
     procedure SendToUser(const aText: string; const aSleep: integer; const aUser: string);
     function load_script(aScript: string): boolean;
     function load_script(aScript: TStringList): boolean;
+    procedure zeruj_tablice;
+    procedure wczytaj_tablice;
+    function odczytaj_element_tablicy(aName: string; aIndex: integer): string;
   protected
     function GetScriptData(var aNumber: integer; var aWebRoom,aWebUser,aRoom,aUser,aMessage: string): boolean;
     function _random(const min,max:integer): integer;
@@ -71,6 +77,9 @@ type
     function _DeleteCiapki(const aText: string): string;
     function _GetLineToStr(const aText: string; const aIndex: integer; const aSeparator: char): string;
     function _DateTime(const aMask: string): string;
+    function _odczytaj_element_tablicy(const aName: string; const aIndex: integer): string;
+    function _UsersCount: integer;
+    function _UsersGet(const aIndex: integer): string;
   public
     constructor Create(aTestMode: boolean = false);
     destructor Destroy; override;
@@ -102,6 +111,15 @@ var
   czekaj: boolean = true;
   element: TElement;
   pp: ^TElement;
+
+var
+  tabs_count: integer = 0;
+  tabs_elements: integer = 0;
+  tabs_name: array of record
+    nazwa: string;
+    start,count: integer;
+  end;
+  tabs_var: array of string;
 
 {$IFDEF WINDOWS}
 {$if defined(cpu64)}
@@ -201,6 +219,9 @@ begin
   Sender.AddMethod(self,@TBot.GetScriptData,'function GetData(var aNumber: integer; var aWebRoom,aWebUser,aRoom,aUser,aMessage: string): boolean;');
   Sender.AddMethod(self,@TBot.Send,'procedure Send(const aText: string; const aSleep: integer);');
   Sender.AddMethod(self,@TBot.SendToUser,'procedure SendToUser(const aText: string; const aSleep: integer; const aUser: string);');
+  Sender.AddMethod(self,@TBot._odczytaj_element_tablicy,'function ReadTab(const aName: string; const aIndex: integer): string;');
+  Sender.AddMethod(self,@TBot._UsersCount,'function UsersCount: integer;');
+  Sender.AddMethod(self,@TBot._UsersGet,'function UsersGet(const aIndex: integer): string;');
   {funkcje operujące na stringach}
   Sender.AddMethod(self,@TBot._random,'function random(const min, max: integer): integer;');
   Sender.AddMethod(self,@TBot._pos,'function pos(const aFragment, aText: string): integer;');
@@ -436,6 +457,7 @@ end;
 procedure TBot.webListUserAdd(Sender: TObject; ARoom, AUsername,
   ADescription: string; aAttr: integer);
 begin
+  _users.Add(AUsername);
   if AUsername=web.User then exit;
   element.Number:=1;
   element.WebUser:=web.User;
@@ -443,6 +465,19 @@ begin
   element.User:=AUsername;
   me.Add;
   if not script.Execute then if FDebug then writeln('Błąd skryptu (1)!');
+end;
+
+procedure TBot.webListUserDel(Sender: TObject; ARoom, AUsername: string);
+var
+  a: integer;
+begin
+  a:=ecode.StringToItemIndex(_users,AUsername);
+  if a>-1 then _users.Delete(a);
+end;
+
+procedure TBot.webListUserDeInit(Sender: TObject);
+begin
+  _users.Clear;
 end;
 
 procedure TBot.webOpen(Sender: TObject);
@@ -455,6 +490,7 @@ end;
 procedure TBot.webListUserInit(Sender: TObject; AUsers, ADescriptions,
   AAttributes: TStrings);
 begin
+  _users.Assign(AUsers);
   element.Number:=0;
   element.WebRoom:=web.Room;
   element.WebUser:=web.User;
@@ -562,6 +598,7 @@ begin
       script.Script.Assign(old);
       if script.Script.Count>0 then script.Compile;
     end;
+    wczytaj_tablice;
   finally
     old.Free;
   end;
@@ -587,9 +624,86 @@ begin
       script.Script.Assign(old);
       if script.Script.Count>0 then script.Compile;
     end;
+    wczytaj_tablice;
   finally
     old.Free;
   end;
+end;
+
+procedure TBot.zeruj_tablice;
+begin
+  tabs_count:=0;
+  tabs_elements:=0;
+  SetLength(tabs_name,0);
+  SetLength(tabs_var,0);
+end;
+
+procedure TBot.wczytaj_tablice;
+var
+  i,j,a,el: integer;
+  s,s1,s2: string;
+begin
+  zeruj_tablice;
+  for i:=0 to script.Script.Count-1 do
+  begin
+    s:=script.Script[i];
+    a:=pos('{#',s);
+    if a>0 then
+    begin
+      s:=trim(StringReplace(s,' ','',[rfReplaceAll]));
+      delete(s,1,2);
+      delete(s,length(s),1);
+      s1:=GetLineToStr(s,1,'='); //nazwa tablicy
+      s2:=GetLineToStr(s,2,'='); //elementy tablicy
+      {wczytujemy elementy do nowej tablicy}
+      inc(tabs_count); SetLength(tabs_name,tabs_count);
+      tabs_name[tabs_count-1].nazwa:=s1;
+      tabs_name[tabs_count-1].start:=tabs_elements;
+      tabs_name[tabs_count-1].count:=0;
+      j:=1;
+      el:=0;
+      while true do
+      begin
+        s:=GetLineToStr(s2,j,',');
+        if s='' then break;
+        inc(el);
+        inc(tabs_elements);
+        SetLength(tabs_var,tabs_elements);
+        tabs_var[tabs_elements-1]:=s;
+        tabs_name[tabs_count-1].count:=tabs_name[tabs_count-1].count+1;
+        inc(j);
+      end;
+    end;
+  end;
+end;
+
+function TBot.odczytaj_element_tablicy(aName: string; aIndex: integer): string;
+var
+  a,b,c: integer;
+  i: integer;
+begin
+  a:=-1;
+  {znajduję początek tej tablicy}
+  for i:=0 to tabs_count-1 do if tabs_name[i].nazwa=aName then
+  begin
+    a:=i;
+    break;
+  end;
+  if a=-1 then
+  begin
+    result:='';
+    exit;
+  end;
+  {ustawiam się na indeks pierwszego elementu}
+  b:=tabs_name[a].start;
+  c:=tabs_name[a].count;
+  if (aIndex<0) or (aIndex>c-1) then
+  begin
+    result:='';
+    exit;
+  end;
+  {zwracam właściwy element tablicy}
+  result:=tabs_var[b+aIndex];
 end;
 
 function TBot.GetScriptData(var aNumber: integer; var aWebRoom, aWebUser,
@@ -682,6 +796,21 @@ begin
   result:=FormatDateTime(aMask,time);
 end;
 
+function TBot._odczytaj_element_tablicy(const aName: string; const aIndex: integer): string;
+begin
+  result:=odczytaj_element_tablicy(aName,aIndex);
+end;
+
+function TBot._UsersCount: integer;
+begin
+  result:=_users.Count;
+end;
+
+function TBot._UsersGet(const aIndex: integer): string;
+begin
+  result:=_users[aIndex];
+end;
+
 constructor TBot.Create(aTestMode: boolean);
 begin
   FTest:=aTestMode;
@@ -706,6 +835,7 @@ begin
     me.OnDestroyElement:=@ListaDestroyElement;
     me.OnReadElement:=@ListaReadElement;
     me.OnWriteElement:=@ListaWriteElement;
+    _users:=TStringList.Create;
   end;
   script:=TPSScript.Create(nil);
   script.OnCompile:=@ScriptCompile;
@@ -719,14 +849,17 @@ begin
     web.OnReadDocument:=@webReadDocument;
     web.OnOpen:=@webOpen;
     web.OnClose:=@webClose;
-    web.OnListUserAdd:=@webListUserAdd;
     web.OnListUserInit:=@webListUserInit;
+    web.OnListUserAdd:=@webListUserAdd;
+    web.OnListUserDel:=@webListUserDel;
+    web.OnListUserDeInit:=@webListUserDeInit;
     Init;
   end;
 end;
 
 destructor TBot.Destroy;
 begin
+  zeruj_tablice;
   if not FTest then
   begin
     DeInit;
@@ -736,6 +869,7 @@ begin
   if not FTest then
   begin
     get_login.Free;
+    _users.Free;
     me.Free;
     ini.Free;
     MemSH.Free;
