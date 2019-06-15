@@ -139,12 +139,14 @@ var
 begin
   checkSynchronize;
   {$IFDEF WINDOWS}
-  while PeekMessage(Msg, 0, 0, 0, PM_REMOVE) do begin
-    if Msg.Message <> WM_QUIT then begin
+  while PeekMessage(Msg,0,0,0,PM_REMOVE) do
+  begin
+    if Msg.Message=WM_QUIT then exit else
+    begin
+      //GetMessage(Msg,0,0,0);
       TranslateMessage(Msg);
       DispatchMessage(Msg);
-    end else
-      exit;
+    end;
   end;
   {$ENDIF}
 end;
@@ -439,7 +441,6 @@ begin
   wiadomosc:=StringReplace(wiadomosc,'<u>','',[rfReplaceAll]);
   wiadomosc:=StringReplace(wiadomosc,'</u>','',[rfReplaceAll]);
   wiadomosc:=StringReplace(wiadomosc,'&#34;','"',[rfReplaceAll]);
-  if FDebug then writeln(AName,'/',nadawca,': ',wiadomosc,' (',AMessage,')');
 
   if nadawca<>'' then
   begin
@@ -450,7 +451,6 @@ begin
     element.User:=nadawca;
     element.Message:=wiadomosc;
     me.Add;
-    if not script.Execute then if FDebug then writeln('Błąd skryptu (2)!');
   end;
 end;
 
@@ -464,7 +464,6 @@ begin
   element.Room:=ARoom;
   element.User:=AUsername;
   me.Add;
-  if not script.Execute then if FDebug then writeln('Błąd skryptu (1)!');
 end;
 
 procedure TBot.webListUserDel(Sender: TObject; ARoom, AUsername: string);
@@ -497,18 +496,14 @@ begin
   element.Room:=web.Room;
   element.User:=web.User;
   me.Add;
-  if not script.Execute then if FDebug then writeln('Błąd skryptu (1)!');
 end;
 
 procedure TBot.webClose(Sender: TObject; aErr: integer; aErrorString: string);
 begin
   _laczenie:=false;
-  if aErr=0 then
+  if aErr<>0 then
   begin
-    if FDebug then writeln('*** Rozłączony ***');
-  end else begin
     dec(_polaczono);
-    if FDebug then writeln('*** Error: ',aErrorString,' ***');
     _error:=aErr;
     if aErr=100 then _exit:=true;
   end;
@@ -547,7 +542,6 @@ var
   wysylka: TAutoResponseDelay;
   s: string;
 begin
-  if FDebug then writeln('*** SEND ***');
   s:=StringReplace(aText,'"','&#34;',[rfReplaceAll]);
   s:='{"numbers":[410],"strings":["<'+SColorToHtmlColor(clBlack)+'>'+s+'", "'+web.Room+'"]}';
   if aSleep=0 then web.SendText(s) else
@@ -564,7 +558,6 @@ var
   wysylka: TAutoResponseDelay;
   s: string;
 begin
-  if FDebug then writeln('*** SEND TO USER ***');
   s:=StringReplace(aText,'"','&#34;',[rfReplaceAll]);
   s:='{"numbers":[410],"strings":["/msg '+aUser+' <'+SColorToHtmlColor(clBlack)+'>'+s+'", ""]}';
   if aSleep=0 then web.SendText(s) else
@@ -590,11 +583,6 @@ begin
     script.Script.AddText(aScript);
     if script.Compile then result:=true else
     begin
-      if FDebug then
-      begin
-        writeln('Compilacja nie udała się.');
-        writeln('Wracam do starej wersji...');
-      end;
       script.Script.Assign(old);
       if script.Script.Count>0 then script.Compile;
     end;
@@ -616,11 +604,6 @@ begin
     script.Script.Assign(aScript);
     if script.Compile then result:=true else
     begin
-      if FDebug then
-      begin
-        writeln('Compilacja nie udała się.');
-        writeln('Wracam do starej wersji...');
-      end;
       script.Script.Assign(old);
       if script.Script.Count>0 then script.Compile;
     end;
@@ -711,7 +694,6 @@ function TBot.GetScriptData(var aNumber: integer; var aWebRoom, aWebUser,
 var
   b: boolean;
 begin
-  if FDebug then writeln('* Zażądano odczytu z kolejki! (',element.Number,') *');
   b:=me.Read;
   aNumber:=element.Number;
   aWebRoom:=element.WebRoom;
@@ -879,21 +861,16 @@ end;
 
 procedure TBot.Execute;
 begin
-  if _BOT_ROOM='' then
-  begin
-    if FDebug then writeln('Niewypełniona nazwa pokoju, wychodzę.');
-    exit;
-  end;
+  if _BOT_ROOM='' then exit;
 
   while czekaj do
   begin
     ProcessMessages;
-    sleep(50);
+    sleep(10);
   end;
   if _exit then exit;
 
   try
-    if FDebug then writeln('BOT Hello - Tryb wyświetlania informacji o pracy bota uruchomiony');
     while true do
     begin
       if script_loaded and (not web.Active) then
@@ -901,22 +878,13 @@ begin
         if _exit then break;
         inc(_licznik);
         _laczenie:=true;
-        if _licznik-_polaczono>3 then
-        begin
-          if FDebug then writeln('Zbyt duża liczba niepoprawnych połączeń - wychodzę!');
-          break;
-        end;
-        if _licznik>1 then
-        begin
-          if FDebug then writeln('ponawiam połączenie za 10 sekund...');
-          sleep(10000);
-        end;
-        if FDebug then writeln('Łączę się z czatem (',_licznik,')...');
+        if _licznik-_polaczono>3 then break;
+        if _licznik>1 then sleep(10000);
         ConnectToChat;
-        while _laczenie do begin ProcessMessages; sleep(50); end;
+        while _laczenie do begin ProcessMessages; sleep(10); end;
       end;
       ProcessMessages;
-      sleep(50);
+      sleep(10);
       if _exit then break;
       if _reload then
       begin

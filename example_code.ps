@@ -1,3 +1,6 @@
+{definicje tablic:}
+{#_heje=hej,hej-2,hej2,hejeczka,hejhej,hejka,uhej,uhej1} //0..7
+
 var
   {zmienne do wczytania danych z zewnątrz kodu}
   wRoom, wUser, room, user, m, u: string;
@@ -30,7 +33,8 @@ begin
     { kod do np. witania nowych użytkowników wchodzących do pokoju }
     if num=1 then
     begin
-      if u='SAMU' then s:='Witaj '+user+', <b>Panie!</b> <kiss>' else s:='Witaj '+user+' <hej>';
+      if u='SAMU' then s:='Witaj '+user+', <b>Panie!</b> <kiss>' else
+      if u='ALOSZA' then s:='Witaj '+user+' <kiss2>' else s:='Witaj '+user+' <'+ReadTab('_heje',random(0,7))+'>';
       if s<>'' then
       begin
         L:=random(500,3000); //losowe opóźnienie, symuluje człowieka

@@ -8,8 +8,9 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Classes, CustApp, ExtParams, cverinfo,
+  { $IFNDEF BOT}
   Forms, Interfaces,
-  DefaultTranslator, LCLTranslator, LazUTF8,
+  { $ENDIF}
   {$IFDEF CLIENT}
   config, client;
   {$ELSE}
@@ -36,30 +37,6 @@ type
     destructor Destroy; override;
   end;
 
-function GetLang: string;
-var
-  T: string; // unused FallBackLang
-  i: integer;
-begin
-  Result := '';
-  { We use the same method that is used in LCLTranslator unit }
-  for i := 1 to Paramcount - 1 do
-    if (ParamStrUTF8(i) = '--LANG') or (ParamStrUTF8(i) = '-l') or
-      (ParamStrUTF8(i) = '--lang') then
-      Result := ParamStrUTF8(i + 1);
-  //Win32 user may decide to override locale with LANG variable.
-  if Result = '' then
-    Result := GetEnvironmentVariableUTF8('LANG');
-  if Result = '' then
-    LazGetLanguageIDs(Result, {%H-}T);
-  if length(Result)>2 then Result:=copy(Result,1,2);
-end;
-
-var
-  lang: string;
-
-  //gnome-session-quit --power-off
-
 procedure TRadioPlayer.DoRun;
 var
   v1,v2,v3,v4: integer;
@@ -70,9 +47,6 @@ var
 begin
   inherited DoRun;
   go_exit:=false;
-  lang:=getlang;
-  if not POFileIsExists(lang) then lang:='en';
-  SetDefaultLang(lang);
 
   {$IFDEF APP}
   par:=TExtParams.Create(nil);
@@ -151,17 +125,11 @@ begin
 end;
 
 var
-  L: TRadioPlayer;
-
+  Application: TRadioPlayer;
 begin
+  Application:=TRadioPlayer.Create(nil);
   Application.Title:='Radio Player 40 Plus';
-  Application.Scaled:=True;
-  L:=TRadioPlayer.Create(nil);
-  try
-    L.Title:='RpFP';
-    L.Run;
-  finally
-    L.Free;
-  end;
+  Application.Run;
+  Application.Free;
 end.
 

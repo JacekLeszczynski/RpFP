@@ -1,5 +1,5 @@
 object FBotEdytorKodu: TFBotEdytorKodu
-  Left = 322
+  Left = 346
   Height = 594
   Top = 211
   Width = 764

@@ -27,8 +27,7 @@
       </Resources>
     </General>
     <i18n>
-      <EnableI18N Value="True"/>
-      <OutDir Value="locale"/>
+      <EnableI18N LFM="False"/>
     </i18n>
     <VersionInfo>
       <UseVersionInfo Value="True"/>
