@@ -347,6 +347,7 @@ begin
   stacje_pokoje:=TStringList.Create;
   kaseta1.LoadFromLazarusResource('kaseta');
   kaseta2.LoadFromLazarusResource('kaseta');
+  _BOT_DIR:=SetConfDir('pbot',false,true);
   SetConfDir('radio_player_40_plus');
   if not FileExists(MyConfDir('config.xml')) then position:=poScreenCenter;
   if not DirectoryExists(MyConfDir('img')) then mkdir(MyConfDir('img'));

@@ -311,6 +311,7 @@ var
   _VIDEO_MPV_OSC: boolean = false;
   _FILM_PLAYING: boolean = false;
   _SERVER_ON: boolean = false;
+  _BOT_DIR: string;
   _BOT_ROOM,_BOT_USER,_BOT_PASSW,_BOT_SCRIPT: string;
 
 var {flagi wyłączające}

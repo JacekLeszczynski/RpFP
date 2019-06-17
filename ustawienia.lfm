@@ -1572,9 +1572,9 @@ object FUstawienia: TFUstawienia
     Height = 392
     Top = 160
     Width = 720
-    ActivePage = TabSheet1
+    ActivePage = TabSheet7
     Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Ustawienia'
@@ -1682,7 +1682,7 @@ object FUstawienia: TFUstawienia
           AutoSize = True
           BorderSpacing.Top = 3
           Caption = 'Mechanizm zamykania systemu'
-          ClientHeight = 152
+          ClientHeight = 150
           ClientWidth = 332
           Font.Name = 'Sans'
           ParentFont = False
@@ -5267,22 +5267,6 @@ object FUstawienia: TFUstawienia
       0000000000000000000000000000
     }
   end
-  object proc: TProcess
-    Active = False
-    Options = []
-    Priority = ppNormal
-    StartupOptions = []
-    ShowWindow = swoShowNormal
-    WindowColumns = 0
-    WindowHeight = 0
-    WindowLeft = 0
-    WindowRows = 0
-    WindowTop = 0
-    WindowWidth = 0
-    FillAttribute = 0
-    left = 712
-    top = 240
-  end
   object PropStorage: TRxXMLPropStorage
     StoredValues = <>
     RootNodePath = 'ustawienia'
@@ -5290,5 +5274,37 @@ object FUstawienia: TFUstawienia
     SeparateFiles = False
     left = 789
     top = 33
+  end
+  object proc1: TAsyncProcess
+    Active = False
+    Options = []
+    Priority = ppNormal
+    StartupOptions = []
+    ShowWindow = swoNone
+    WindowColumns = 0
+    WindowHeight = 0
+    WindowLeft = 0
+    WindowRows = 0
+    WindowTop = 0
+    WindowWidth = 0
+    FillAttribute = 0
+    left = 728
+    top = 248
+  end
+  object proc2: TAsyncProcess
+    Active = False
+    Options = []
+    Priority = ppNormal
+    StartupOptions = []
+    ShowWindow = swoNone
+    WindowColumns = 0
+    WindowHeight = 0
+    WindowLeft = 0
+    WindowRows = 0
+    WindowTop = 0
+    WindowWidth = 0
+    FillAttribute = 0
+    left = 728
+    top = 312
   end
 end

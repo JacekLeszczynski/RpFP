@@ -238,8 +238,8 @@ uses
   {$IFDEF MSWINDOWS}
   Windows,
   {$ENDIF}
-  ecode, datamodule, HTMLSubs, LCLType, chat_pomoc, dumpsrc, synacode, fpjson,
-  bot_edytor_kodu;
+  ecode, datamodule, HTMLSubs, LCLType, chat_pomoc, dumpsrc, synacode,
+  fpjson, jsonparser, bot_edytor_kodu;
 
 {$R *.lfm}
 

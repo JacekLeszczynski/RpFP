@@ -52,7 +52,7 @@ var
 implementation
 
 uses
-  LCLType, ecode, bot, bot_code_help;
+  LCLType, ecode, bot, bot_code_help, config;
 
 {$R *.lfm}
 
@@ -95,9 +95,9 @@ begin
   if CheckBox1.Checked then
   begin
     {$IFDEF WINDOWS}
-    proc.Executable:=MyDir('radio-player-bot.exe');
+    proc.Executable:=MyDir('pbot.exe');
     {$ELSE}
-    proc.Executable:=MyDir('radio-player-bot');
+    proc.Executable:=MyDir('pbot');
     {$ENDIF}
     proc.Parameters.Clear;
     proc.Parameters.Add('reload');
@@ -143,13 +143,13 @@ end;
 
 procedure TFBotEdytorKodu.conf_load;
 begin
-  if FileExists(MyConfDir('config_bot.script')) then
-    SynEdit1.Lines.LoadFromFile(MyConfDir('config_bot.script'));
+  if FileExists(_BOT_DIR+_FF+'config_bot.script') then
+    SynEdit1.Lines.LoadFromFile(_BOT_DIR+_FF+'config_bot.script');
 end;
 
 procedure TFBotEdytorKodu.conf_save;
 begin
-  SynEdit1.Lines.SaveToFile(MyConfDir('config_bot.script'));
+  SynEdit1.Lines.SaveToFile(_BOT_DIR+_FF+'config_bot.script');
 end;
 
 end.

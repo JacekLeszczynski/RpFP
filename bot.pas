@@ -95,7 +95,7 @@ var
 implementation
 
 uses
-  config, ecode, fpjson, synacode, Graphics;
+  config, ecode, fpjson, jsonparser, synacode, Graphics;
 
 type
   TElement = record

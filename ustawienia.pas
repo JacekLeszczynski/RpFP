@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  Buttons, Spin, ColorBox, ComCtrls, DBGrids,
+  Buttons, Spin, ColorBox, ComCtrls, DBGrids, AsyncProcess,
   ZDataset, RxXMLPropStorage, ExtMessage, db, process, IniFiles;
 
 type
@@ -14,6 +14,7 @@ type
   { TFUstawienia }
 
   TFUstawienia = class(TForm)
+    proc1: TAsyncProcess;
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
@@ -121,7 +122,7 @@ type
     Panel6: TPanel;
     Panel7: TPanel;
     Panel8: TPanel;
-    proc: TProcess;
+    proc2: TAsyncProcess;
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
     RadioButton3: TRadioButton;
@@ -340,14 +341,15 @@ end;
 
 procedure TFUstawienia.BitBtn2Click(Sender: TObject);
 begin
+  if proc1.Running then proc1.Terminate(0);
   {$IFDEF WINDOWS}
-  proc.Executable:=MyDir('radio-player-bot.exe');
+  proc1.Executable:=MyDir('pbot.exe');
   {$ELSE}
-  proc.Executable:=MyDir('radio-player-bot');
+  proc1.Executable:=MyDir('pbot');
   {$ENDIF}
-  proc.Parameters.Clear;
-  proc.Parameters.Add('start');
-  proc.Execute;
+  proc1.Parameters.Clear;
+  proc1.Parameters.Add('start');
+  proc1.Execute;
 end;
 
 procedure TFUstawienia.BitBtn3Click(Sender: TObject);
@@ -359,25 +361,30 @@ end;
 procedure TFUstawienia.BitBtn4Click(Sender: TObject);
 begin
   {$IFDEF WINDOWS}
-  proc.Executable:=MyDir('radio-player-bot.exe');
+  proc2.Executable:=MyDir('pbot.exe');
   {$ELSE}
-  proc.Executable:=MyDir('radio-player-bot');
+  proc2.Executable:=MyDir('pbot');
   {$ENDIF}
-  proc.Parameters.Clear;
-  proc.Parameters.Add('stop');
-  proc.Execute;
+  proc2.Parameters.Clear;
+  proc2.Parameters.Add('stop');
+  proc2.Execute;
+  sleep(1000);
+  proc1.Terminate(0);
+  proc2.Terminate(0);
 end;
 
 procedure TFUstawienia.BitBtn5Click(Sender: TObject);
 begin
   {$IFDEF WINDOWS}
-  proc.Executable:=MyDir('radio-player-bot.exe');
+  proc2.Executable:=MyDir('pbot.exe');
   {$ELSE}
-  proc.Executable:=MyDir('radio-player-bot');
+  proc2.Executable:=MyDir('pbot');
   {$ENDIF}
-  proc.Parameters.Clear;
-  proc.Parameters.Add('reload');
-  proc.Execute;
+  proc2.Parameters.Clear;
+  proc2.Parameters.Add('reload');
+  proc2.Execute;
+  sleep(1000);
+  proc2.Terminate(0);
 end;
 
 procedure TFUstawienia.bot_hasloChange(Sender: TObject);
@@ -541,7 +548,7 @@ var
 begin
   PropStorage.FileName:=MyConfDir('config.xml');
   PropStorage.Active:=true;
-  bot_conf:=TIniFile.Create(MyConfDir('config_bot.ini'));
+  bot_conf:=TIniFile.Create(_BOT_DIR+_FF+'config_bot.ini');
   conf_load;
   PageControl1.ShowTabs:=false;
   GetProgramVersion(vMajorVersion,vMinorVersion,vRelease,vBuild);
