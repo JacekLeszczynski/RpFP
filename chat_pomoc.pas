@@ -5,15 +5,14 @@ unit chat_pomoc;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  FXMaterialButton;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons;
 
 type
 
   { TFChatPomoc }
 
   TFChatPomoc = class(TForm)
-    FXMaterialButton1: TFXMaterialButton;
+    BitBtn1: TBitBtn;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -23,8 +22,8 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    procedure BitBtn1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
-    procedure FXMaterialButton1Click(Sender: TObject);
   private
 
   public
@@ -45,7 +44,7 @@ begin
   CloseAction:=caFree;
 end;
 
-procedure TFChatPomoc.FXMaterialButton1Click(Sender: TObject);
+procedure TFChatPomoc.BitBtn1Click(Sender: TObject);
 begin
   close;
 end;

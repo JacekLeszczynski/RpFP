@@ -166,7 +166,7 @@ type
     procedure PlayersOnAfterStart(Sender: TObject);
     procedure PlayersOnAfterStop(Sender: TObject);
     procedure _LOOP(Sender: TObject);
-    procedure _PLAY_STOPPED(Sender: TObject);
+    procedure _PLAY_STOPPED(Sender: TObject; aBusy,aPlaying,aPauseing,aPause: boolean);
     procedure _PLAY_STOPPED_FILM;
     function TestCommandPlayerList(aIndex: integer): boolean;
   protected
@@ -424,6 +424,7 @@ var
   l,r: single;
   ll,rr: single;
 begin
+  (* zalecany cza odpalania kodu: 100ms *)
   if Assigned(FOnStatusRequest) then FOnStatusRequest(self,aPosL,aPosR);
   if aPosL>0 then aPosL:=aPosL-5;
   if aPosR>0 then aPosR:=aPosR-5;
@@ -618,7 +619,8 @@ begin
   if Assigned(FOnStatSet) then FOnStatSet(self,sPos,sMax,aPos,aMax);
 end;
 
-procedure TFPlayerMultimedia._PLAY_STOPPED(Sender: TObject);
+procedure TFPlayerMultimedia._PLAY_STOPPED(Sender: TObject; aBusy, aPlaying,
+  aPauseing, aPause: boolean);
 var
   i,tryb: integer;
   comp: TUOSPlayer;
@@ -957,7 +959,7 @@ begin
   if aSound=-1 then s:='SOUND'+IntToStr(_CHAT_SOUND) else s:='SOUND'+IntToStr(aSound);
   mem:=TMemoryStream.Create;
   try
-    res:=TResourceStream.Create(hInstance,s,RT_RCDATA);
+    res:=TResourceStream.Create(hInstance,s,RT_RCDATA); {}
     mem.LoadFromStream(res);
   finally
     res.Free;
@@ -1222,7 +1224,7 @@ var
 begin
   if terminated then exit;
   b:=false;
-  if pos('http:',url)>0 then
+  if pos('https:',url)>0 then
   begin
     s:=url;
     while true do
@@ -1237,7 +1239,7 @@ begin
   if FileExists(directory+_FF+url) then exit;
   stream:=TMemoryStream.Create;
   try
-    if b then pobierane_url:=s else pobierane_url:='http://polfan.pl/'+url;
+    if b then pobierane_url:=s else pobierane_url:='https://polfan.pl/'+url;
     synchronize(@przed_pobraniem);
     http.GetBinary(pobierane_url,stream);
     synchronize(@po_pobraniu);

@@ -1,7 +1,7 @@
 object FChat: TFChat
   Left = 387
   Height = 617
-  Top = 370
+  Top = 398
   Width = 1078
   ActiveControl = html
   Caption = 'RpFP - Chat'
@@ -13,7 +13,7 @@ object FChat: TFChat
   OnShow = FormShow
   SessionProperties = 'ColorButton1.ButtonColor;galeria.Height;galeria.Left;galeria.Top;galeria.Width;Height;Left;Panel4.Width;ShowImgTitle.Checked;SpeedButton1.Down;SpeedButton2.Down;SpeedButton3.Down;SpeedButton4.Visible;SpeedButton5.Visible;SpeedButton6.Visible;Top;Width;WindowState'
   ShowInTaskBar = stAlways
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.10.0'
   object uETilePanel1: TuETilePanel
     Left = 0
     Height = 48
@@ -25347,8 +25347,8 @@ object FChat: TFChat
       AnchorSideRight.Side = asrBottom
       AnchorSideBottom.Control = led
       Left = 999
-      Height = 15
-      Top = 5
+      Height = 13
+      Top = 8
       Width = 14
       Alignment = taCenter
       Anchors = [akLeft, akBottom]
@@ -25364,7 +25364,7 @@ object FChat: TFChat
       AnchorSideRight.Control = led_download
       Left = 994
       Height = 24
-      Top = 20
+      Top = 21
       Width = 24
       Debug = False
       Active = False
@@ -25382,8 +25382,8 @@ object FChat: TFChat
       AnchorSideRight.Side = asrBottom
       AnchorSideBottom.Control = led_download
       Left = 1027
-      Height = 15
-      Top = 5
+      Height = 13
+      Top = 8
       Width = 14
       Alignment = taCenter
       Anchors = [akLeft, akBottom]
@@ -25400,7 +25400,7 @@ object FChat: TFChat
       AnchorSideRight.Control = procesy_download
       Left = 1022
       Height = 24
-      Top = 20
+      Top = 21
       Width = 24
       Debug = False
       Active = False
@@ -25418,8 +25418,8 @@ object FChat: TFChat
       AnchorSideTop.Control = Label1
       AnchorSideRight.Side = asrBottom
       Left = 1051
-      Height = 15
-      Top = 5
+      Height = 13
+      Top = 8
       Width = 21
       Alignment = taCenter
       Caption = 'THR'
@@ -25434,8 +25434,8 @@ object FChat: TFChat
       AnchorSideBottom.Control = uETilePanel1
       AnchorSideBottom.Side = asrBottom
       Left = 1050
-      Height = 22
-      Top = 21
+      Height = 20
+      Top = 23
       Width = 22
       Alignment = taCenter
       Anchors = [akRight, akBottom]
@@ -25590,8 +25590,8 @@ object FChat: TFChat
       AnchorSideLeft.Control = my_status
       AnchorSideBottom.Control = my_status
       Left = 227
-      Height = 14
-      Top = 2
+      Height = 12
+      Top = 4
       Width = 40
       Anchors = [akLeft, akBottom]
       BorderSpacing.Top = 1
@@ -25671,8 +25671,8 @@ object FChat: TFChat
       AnchorSideLeft.Control = ButtonChat
       AnchorSideBottom.Control = ButtonChat
       Left = 55
-      Height = 14
-      Top = 2
+      Height = 12
+      Top = 4
       Width = 66
       Anchors = [akLeft, akBottom]
       BorderSpacing.Top = 1
@@ -25687,8 +25687,8 @@ object FChat: TFChat
       AnchorSideLeft.Control = ShowImgTitle
       AnchorSideBottom.Control = ShowImgTitle
       Left = 141
-      Height = 14
-      Top = 2
+      Height = 12
+      Top = 4
       Width = 35
       Anchors = [akLeft, akBottom]
       BorderSpacing.Top = 1
@@ -25703,8 +25703,8 @@ object FChat: TFChat
       AnchorSideLeft.Control = button_si
       AnchorSideBottom.Control = button_si
       Left = 336
-      Height = 14
-      Top = 2
+      Height = 12
+      Top = 4
       Width = 12
       Anchors = [akLeft, akBottom]
       BorderSpacing.Top = 1
@@ -51391,9 +51391,9 @@ object FChat: TFChat
       AnchorSideLeft.Control = galeria
       AnchorSideTop.Control = galeria
       Left = 5
-      Height = 19
+      Height = 17
       Top = 5
-      Width = 111
+      Width = 110
       Alignment = taCenter
       BorderSpacing.Left = 4
       BorderSpacing.Top = 4
@@ -51408,18 +51408,18 @@ object FChat: TFChat
       AnchorSideRight.Side = asrBottom
       AnchorSideBottom.Control = Panel20
       Left = 5
-      Height = 268
-      Top = 82
+      Height = 270
+      Top = 80
       Width = 910
       Anchors = [akTop, akLeft, akRight, akBottom]
       BorderSpacing.Top = 2
       BevelOuter = bvLowered
-      ClientHeight = 268
+      ClientHeight = 270
       ClientWidth = 910
       TabOrder = 0
       object html2: THtmlViewer
         Left = 1
-        Height = 266
+        Height = 268
         Top = 1
         Width = 908
         BorderStyle = htFocused
@@ -51554,7 +51554,7 @@ object FChat: TFChat
       AnchorSideRight.Side = asrBottom
       Left = 5
       Height = 46
-      Top = 34
+      Top = 32
       Width = 910
       Anchors = [akTop, akLeft, akRight]
       BorderSpacing.Left = 4
@@ -51568,9 +51568,9 @@ object FChat: TFChat
         AnchorSideTop.Control = Panel21
         AnchorSideTop.Side = asrCenter
         Left = 3
-        Height = 19
-        Top = 14
-        Width = 108
+        Height = 17
+        Top = 15
+        Width = 107
         BorderSpacing.Left = 2
         Caption = 'Początek nazwy:'
         ParentColor = False
@@ -51580,8 +51580,8 @@ object FChat: TFChat
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Label6
         AnchorSideTop.Side = asrCenter
-        Left = 111
-        Height = 31
+        Left = 110
+        Height = 30
         Top = 8
         Width = 361
         OnChange = CheckBox2Change
@@ -51592,9 +51592,9 @@ object FChat: TFChat
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = Panel21
         AnchorSideTop.Side = asrCenter
-        Left = 480
-        Height = 19
-        Top = 14
+        Left = 479
+        Height = 17
+        Top = 15
         Width = 68
         BorderSpacing.Left = 8
         BorderSpacing.Right = 2
@@ -51606,10 +51606,10 @@ object FChat: TFChat
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Control = Panel21
         AnchorSideRight.Side = asrBottom
-        Left = 831
+        Left = 832
         Height = 23
         Top = 12
-        Width = 74
+        Width = 73
         Anchors = [akTop, akRight]
         BorderSpacing.Left = 8
         BorderSpacing.Right = 4
@@ -51623,10 +51623,10 @@ object FChat: TFChat
         AnchorSideTop.Control = Label7
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Control = CheckBox2
-        Left = 550
-        Height = 33
+        Left = 549
+        Height = 32
         Top = 7
-        Width = 273
+        Width = 275
         Anchors = [akTop, akLeft, akRight]
         ItemHeight = 0
         OnChange = CheckBox2Change
@@ -51688,8 +51688,8 @@ object FChat: TFChat
     OnRoomDel = webRoomDel
     OnRoomDelAll = webRoomDelAll
     OnAutoResponseRequest = webAutoResponseRequest
-    left = 32
-    top = 80
+    Left = 32
+    Top = 80
   end
   object mess: TExtMessage
     Caption = '<Auto>'
@@ -51697,21 +51697,21 @@ object FChat: TFChat
     PosTop = 0
     PosLeft = 0
     StringToCR = '^'
-    left = 112
-    top = 160
+    Left = 112
+    Top = 160
   end
   object PropStorage: TXMLPropStorage
     StoredValues = <>
     RootNodePath = 'chat'
     Active = False
-    left = 216
-    top = 160
+    Left = 216
+    Top = 160
   end
   object ImageList1: TImageList
     Height = 24
     Width = 24
-    left = 328
-    top = 160
+    Left = 328
+    Top = 160
     Bitmap = {
       4C69080000001800000018000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -52296,12 +52296,12 @@ object FChat: TFChat
     Enabled = False
     Interval = 200
     OnTimer = timer_focusTimer
-    left = 456
-    top = 160
+    Left = 456
+    Top = 160
   end
   object PopupUzytkownicy: TPopupMenu
-    left = 80
-    top = 480
+    Left = 80
+    Top = 480
     object MenuItem1: TMenuItem
       Caption = 'Rozmowa prywatna'
       OnClick = MenuItem1Click
@@ -52335,8 +52335,8 @@ object FChat: TFChat
     end
   end
   object PopupTabs: TPopupMenu
-    left = 192
-    top = 480
+    Left = 192
+    Top = 480
     object MenuItem9: TMenuItem
       Caption = 'Kopiuj'
       ShortCut = 16451
@@ -52349,21 +52349,25 @@ object FChat: TFChat
   end
   object get_image: TNetSynHTTP
     Method = meGet
+    Mimetype = '<auto>'
     UserAgent = '<auto>'
-    left = 288
-    top = 480
+    Filtering = False
+    Left = 288
+    Top = 480
   end
   object timer_opoznienie: TTimer
     Enabled = False
     OnTimer = timer_opoznienieTimer
-    left = 688
-    top = 480
+    Left = 688
+    Top = 480
   end
   object get_login: TNetSynHTTP
     Method = meGet
+    Mimetype = '<auto>'
     UserAgent = '<auto>'
-    left = 376
-    top = 480
+    Filtering = False
+    Left = 376
+    Top = 480
   end
   object m_emotki: TZQuery
     Connection = dm.conn_mem
@@ -52380,8 +52384,8 @@ object FChat: TFChat
       'order by id'
     )
     Params = <>
-    left = 472
-    top = 480
+    Left = 472
+    Top = 480
   end
   object p_emotki: TZQuery
     Connection = dm.conn_mem
@@ -52397,8 +52401,8 @@ object FChat: TFChat
         Name = 'nazwa'
         ParamType = ptUnknown
       end>
-    left = 552
-    top = 480
+    Left = 552
+    Top = 480
     ParamData = <    
       item
         DataType = ftUnknown

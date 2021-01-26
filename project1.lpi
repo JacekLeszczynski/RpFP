@@ -18,15 +18,18 @@
         <DpiAware Value="True"/>
       </XPManifest>
       <Icon Value="0"/>
-      <Resources Count="8">
-        <Resource_0 FileName="sound/Button-click-sound.mp3" Type="RCDATA" ResourceName="SOUND6"/>
-        <Resource_1 FileName="sound/Airplane-ding-sound.mp3" Type="RCDATA" ResourceName="SOUND1"/>
-        <Resource_2 FileName="sound/Beep-tone.mp3" Type="RCDATA" ResourceName="SOUND4"/>
-        <Resource_3 FileName="sound/Bing-sound.mp3" Type="RCDATA" ResourceName="SOUND2"/>
-        <Resource_4 FileName="sound/Blooper-sound-effect.mp3" Type="RCDATA" ResourceName="SOUND0"/>
-        <Resource_5 FileName="sound/Button-beep-tone.mp3" Type="RCDATA" ResourceName="SOUND5"/>
-        <Resource_6 FileName="sound/Ticket-machine-sound-effect.mp3" Type="RCDATA" ResourceName="SOUND3"/>
-        <Resource_7 FileName="example_code.ps" Type="RCDATA" ResourceName="EXAMPLE_CODE"/>
+      <Resources Count="11">
+        <Resource_0 FileName="example_code.ps" Type="RCDATA" ResourceName="EXAMPLE_CODE"/>
+        <Resource_1 FileName="sound/Bleep-sound.ogg" Type="RCDATA" ResourceName="SOUND0"/>
+        <Resource_2 FileName="sound/Blooper-sound-effect.ogg" Type="RCDATA" ResourceName="SOUND1"/>
+        <Resource_3 FileName="sound/Button-click-sound.ogg" Type="RCDATA" ResourceName="SOUND2"/>
+        <Resource_4 FileName="sound/Connection-established-sound-effect.ogg" Type="RCDATA" ResourceName="SOUND3"/>
+        <Resource_5 FileName="sound/ding-sound-effect_2.ogg" Type="RCDATA" ResourceName="SOUND4"/>
+        <Resource_6 FileName="sound/Error-sound.ogg" Type="RCDATA" ResourceName="SOUND5"/>
+        <Resource_7 FileName="sound/Error-sound-effect.ogg" Type="RCDATA" ResourceName="SOUND6"/>
+        <Resource_8 FileName="sound/Intercom-beep-sound.ogg" Type="RCDATA" ResourceName="SOUND7"/>
+        <Resource_9 FileName="sound/sms-tone.ogg" Type="RCDATA" ResourceName="SOUND8"/>
+        <Resource_10 FileName="sound/Ticket-machine-sound.ogg" Type="RCDATA" ResourceName="SOUND9"/>
       </Resources>
     </General>
     <i18n>
@@ -443,18 +446,18 @@
       <FormatVersion Value="2"/>
       <Modes Count="0"/>
     </RunParams>
-    <RequiredPackages Count="19">
+    <RequiredPackages Count="18">
       <Item1>
-        <PackageName Value="SynEdit"/>
+        <PackageName Value="pl_Cindy"/>
       </Item1>
       <Item2>
-        <PackageName Value="pascalscript"/>
+        <PackageName Value="SynEdit"/>
       </Item2>
       <Item3>
-        <PackageName Value="lnetvisual"/>
+        <PackageName Value="pascalscript"/>
       </Item3>
       <Item4>
-        <PackageName Value="cindy"/>
+        <PackageName Value="lnetvisual"/>
       </Item4>
       <Item5>
         <PackageName Value="FrameViewer09"/>
@@ -469,38 +472,35 @@
         <PackageName Value="pl_excontrols"/>
       </Item8>
       <Item9>
-        <PackageName Value="BGRAControlsFX"/>
+        <PackageName Value="bgracontrols"/>
       </Item9>
       <Item10>
-        <PackageName Value="bgracontrols"/>
+        <PackageName Value="industrial"/>
       </Item10>
       <Item11>
-        <PackageName Value="industrial"/>
+        <PackageName Value="FCL"/>
       </Item11>
       <Item12>
-        <PackageName Value="FCL"/>
+        <PackageName Value="zcomponent"/>
       </Item12>
       <Item13>
-        <PackageName Value="zcomponent"/>
+        <PackageName Value="lib_register"/>
       </Item13>
       <Item14>
-        <PackageName Value="lib_register"/>
+        <PackageName Value="Abbrevia"/>
       </Item14>
       <Item15>
-        <PackageName Value="Abbrevia"/>
+        <PackageName Value="pkg_gifanim"/>
       </Item15>
       <Item16>
-        <PackageName Value="pkg_gifanim"/>
+        <PackageName Value="uEControls"/>
       </Item16>
       <Item17>
-        <PackageName Value="uEControls"/>
+        <PackageName Value="ExtLazarus"/>
       </Item17>
       <Item18>
-        <PackageName Value="ExtLazarus"/>
-      </Item18>
-      <Item19>
         <PackageName Value="LCL"/>
-      </Item19>
+      </Item18>
     </RequiredPackages>
     <Units Count="21">
       <Unit0>
@@ -666,9 +666,6 @@
     </Linking>
     <Other>
       <CustomOptions Value="-dAPP"/>
-      <OtherDefines Count="1">
-        <Define0 Value="APP"/>
-      </OtherDefines>
     </Other>
   </CompilerOptions>
 </CONFIG>

@@ -4,12 +4,11 @@ object dm: Tdm
   OldCreateOrder = False
   Height = 513
   HorizontalOffset = 330
-  VerticalOffset = 143
+  VerticalOffset = 171
   Width = 469
-  PPI = 96
   object conn: TZConnection
     ControlsCodePage = cCP_UTF8
-    AutoEncodeStrings = False
+    AutoEncodeStrings = True
     ClientCodepage = 'UTF-8'
     Properties.Strings = (
       'codepage=UTF-8'
@@ -17,13 +16,13 @@ object dm: Tdm
     Port = 0
     Database = '/home/tao/.config/radio_player_40_plus/db.sqlite'
     Protocol = 'sqlite-3'
-    left = 32
-    top = 16
+    Left = 32
+    Top = 16
   end
   object trans: TZTransaction
     Database = conn
-    left = 121
-    top = 16
+    Left = 121
+    Top = 16
   end
   object db_create_disk: TZSQLProcessor
     Params = <>
@@ -44,7 +43,7 @@ object dm: Tdm
       '  chat text'
       ');'
       'create unique index stacje_nazwa on stacje (nazwa);'
-      'insert into  stacje (nazwa,url,chat) values (''Forty Plus'',''http://sc.noviktech.pl:8020'',''Radio_FortyPlus'');'
+      'insert into  stacje (nazwa,url,chat) values (''Forty Plus'',''http://s1.slotex.pl:7178'',''Radio_FortyPlus'');'
       'insert into  stacje (nazwa,url) values (''Paranormalium'',''http://51.38.133.200:8000/2'');'
       ''
       'create table emotki'
@@ -57,8 +56,8 @@ object dm: Tdm
     )
     Connection = conn
     Delimiter = ';'
-    left = 81
-    top = 72
+    Left = 81
+    Top = 72
   end
   object db_read_var: TZQuery
     Connection = conn
@@ -72,8 +71,8 @@ object dm: Tdm
         Name = 'zmienna'
         ParamType = ptUnknown
       end>
-    left = 81
-    top = 128
+    Left = 81
+    Top = 128
     ParamData = <    
       item
         DataType = ftUnknown
@@ -99,8 +98,8 @@ object dm: Tdm
         Name = 'zmienna'
         ParamType = ptUnknown
       end>
-    left = 81
-    top = 192
+    Left = 81
+    Top = 192
     ParamData = <    
       item
         DataType = ftUnknown
@@ -132,8 +131,8 @@ object dm: Tdm
         Name = 'wartosc'
         ParamType = ptUnknown
       end>
-    left = 81
-    top = 248
+    Left = 81
+    Top = 248
     ParamData = <    
       item
         DataType = ftUnknown
@@ -158,18 +157,20 @@ object dm: Tdm
       'order by nazwa'
     )
     Params = <>
-    left = 81
-    top = 304
+    Left = 81
+    Top = 304
   end
   object http: TNetSynHTTP
     Method = meGet
+    Mimetype = '<auto>'
     UserAgent = '<auto>'
-    left = 184
-    top = 16
+    Filtering = False
+    Left = 184
+    Top = 16
   end
   object conn_mem: TZConnection
     ControlsCodePage = cCP_UTF8
-    AutoEncodeStrings = False
+    AutoEncodeStrings = True
     ClientCodepage = 'UTF-8'
     Properties.Strings = (
       'codepage=UTF-8'
@@ -177,13 +178,13 @@ object dm: Tdm
     Port = 0
     Database = ':memory:'
     Protocol = 'sqlite-3'
-    left = 304
-    top = 16
+    Left = 304
+    Top = 16
   end
   object trans_mem: TZTransaction
     Database = conn_mem
-    left = 392
-    top = 16
+    Left = 392
+    Top = 16
   end
   object m_kategorie: TZQuery
     Connection = conn_mem
@@ -194,8 +195,8 @@ object dm: Tdm
       'order by nr'
     )
     Params = <>
-    left = 304
-    top = 128
+    Left = 304
+    Top = 128
   end
   object m_emotki: TZQuery
     Connection = conn_mem
@@ -204,8 +205,8 @@ object dm: Tdm
       'order by id'
     )
     Params = <>
-    left = 304
-    top = 192
+    Left = 304
+    Top = 192
   end
   object m_create: TZSQLProcessor
     Params = <>
@@ -233,8 +234,8 @@ object dm: Tdm
     )
     Connection = conn_mem
     Delimiter = ';'
-    left = 304
-    top = 72
+    Left = 304
+    Top = 72
   end
   object db_delete_var: TZQuery
     Connection = conn
@@ -248,8 +249,8 @@ object dm: Tdm
         Name = 'zmienna'
         ParamType = ptUnknown
       end>
-    left = 81
-    top = 360
+    Left = 81
+    Top = 360
     ParamData = <    
       item
         DataType = ftUnknown

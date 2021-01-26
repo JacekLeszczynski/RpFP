@@ -1,23 +1,23 @@
 object FChatPomoc: TFChatPomoc
   Left = 410
-  Height = 504
+  Height = 461
   Top = 169
-  Width = 728
+  Width = 697
   AutoSize = True
   BorderStyle = bsDialog
   Caption = 'RpFP - Pomoc'
-  ClientHeight = 504
-  ClientWidth = 728
+  ClientHeight = 461
+  ClientWidth = 697
   OnClose = FormClose
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '2.0.10.0'
   object Label1: TLabel
     AnchorSideLeft.Control = Label2
     AnchorSideTop.Control = Label2
     AnchorSideTop.Side = asrBottom
     Left = 20
-    Height = 15
-    Top = 39
+    Height = 13
+    Top = 37
     Width = 418
     BorderSpacing.Left = 12
     BorderSpacing.Top = 12
@@ -32,9 +32,9 @@ object FChatPomoc: TFChatPomoc
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Owner
     Left = 8
-    Height = 19
+    Height = 17
     Top = 8
-    Width = 517
+    Width = 531
     BorderSpacing.Left = 8
     BorderSpacing.Top = 8
     Caption = 'Pomoc obsługi czatu - w bardzo surowej postaci... Potem zajmę się tym lepiej...'
@@ -47,8 +47,8 @@ object FChatPomoc: TFChatPomoc
     AnchorSideTop.Control = Label1
     AnchorSideTop.Side = asrBottom
     Left = 20
-    Height = 30
-    Top = 66
+    Height = 26
+    Top = 62
     Width = 605
     BorderSpacing.Top = 12
     BorderSpacing.Right = 24
@@ -63,8 +63,8 @@ object FChatPomoc: TFChatPomoc
     AnchorSideTop.Control = Label3
     AnchorSideTop.Side = asrBottom
     Left = 20
-    Height = 30
-    Top = 108
+    Height = 26
+    Top = 100
     Width = 607
     BorderSpacing.Top = 12
     BorderSpacing.Right = 24
@@ -79,8 +79,8 @@ object FChatPomoc: TFChatPomoc
     AnchorSideTop.Control = Label4
     AnchorSideTop.Side = asrBottom
     Left = 20
-    Height = 30
-    Top = 150
+    Height = 26
+    Top = 138
     Width = 613
     BorderSpacing.Top = 12
     BorderSpacing.Right = 24
@@ -95,8 +95,8 @@ object FChatPomoc: TFChatPomoc
     AnchorSideTop.Control = Label5
     AnchorSideTop.Side = asrBottom
     Left = 20
-    Height = 45
-    Top = 192
+    Height = 39
+    Top = 176
     Width = 612
     BorderSpacing.Top = 12
     BorderSpacing.Right = 24
@@ -111,8 +111,8 @@ object FChatPomoc: TFChatPomoc
     AnchorSideTop.Control = Label6
     AnchorSideTop.Side = asrBottom
     Left = 20
-    Height = 45
-    Top = 249
+    Height = 39
+    Top = 227
     Width = 668
     BorderSpacing.Top = 12
     BorderSpacing.Right = 24
@@ -127,8 +127,8 @@ object FChatPomoc: TFChatPomoc
     AnchorSideTop.Control = Label7
     AnchorSideTop.Side = asrBottom
     Left = 20
-    Height = 60
-    Top = 306
+    Height = 52
+    Top = 278
     Width = 659
     BorderSpacing.Top = 12
     BorderSpacing.Right = 24
@@ -143,8 +143,8 @@ object FChatPomoc: TFChatPomoc
     AnchorSideTop.Control = Label8
     AnchorSideTop.Side = asrBottom
     Left = 20
-    Height = 60
-    Top = 378
+    Height = 52
+    Top = 342
     Width = 646
     BorderSpacing.Top = 12
     BorderSpacing.Right = 24
@@ -155,22 +155,20 @@ object FChatPomoc: TFChatPomoc
     ParentColor = False
     ParentFont = False
   end
-  object FXMaterialButton1: TFXMaterialButton
+  object BitBtn1: TBitBtn
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 593
-    Height = 33
-    Top = 459
-    Width = 123
-    ColorKind = mcDefault
-    FontColorAutomatic = True
-    TextFont = 'default'
+    Left = 614
+    Height = 30
+    Top = 423
+    Width = 75
     Anchors = [akRight, akBottom]
-    BorderSpacing.Right = 12
-    BorderSpacing.Bottom = 12
-    Caption = 'Wyjście'
-    OnClick = FXMaterialButton1Click
+    BorderSpacing.Right = 8
+    BorderSpacing.Bottom = 8
+    Caption = 'OK'
+    OnClick = BitBtn1Click
+    TabOrder = 0
   end
 end

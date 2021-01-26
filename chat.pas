@@ -420,7 +420,6 @@ var
   czas: integer;
   b: boolean;
 begin
-  exit;
   s:=StringReplace(AMessage,web.GetLoginNick,AUser,[rfIgnoreCase,rfReplaceAll]);
   ss:=upcase(s);
   b:=(pos('CZESC',ss)>0)
@@ -473,7 +472,7 @@ begin
     jData.Clear;
   end else rec:=_GET_APLET_POLFANU;
   (*pobranie ramki slist*)
-  get_login.execute(EncodeURL('http://polfan.pl/newpolfan/api/administration/getBanList'),s);
+  get_login.execute(EncodeURL('https://polfan.pl/newpolfan/api/administration/getBanList'),s);
   jData:=GetJSON(s);
   jObject:=TJSONObject(jData);
   nobt:=jObject.Get('nobt',false);
@@ -594,7 +593,7 @@ var
   s: string;
 begin
   if _OFF_CHAT_IMG then exit;
-  if pos('http://',aFilename)>0 then
+  if pos('https://',aFilename)>0 then
   begin
     s:=aFilename;
     while true do
@@ -688,6 +687,7 @@ procedure TFChat.webRoomAdd(Sender: TObject; AUser: string;
 var
   id,AID: integer;
 begin
+  writeln('RoomAdd');
   id:=tabname_to_index(AUser);
   if id=-1 then
   begin
@@ -707,6 +707,7 @@ end;
 
 procedure TFChat.webRoomClearRequest(Sender: TObject);
 begin
+  writeln('RoomClearRequest');
   if TabControl.Tabs.Count=1 then web.Disconnect;
 end;
 
@@ -714,6 +715,7 @@ procedure TFChat.webRoomDel(Sender: TObject; AUser: string; AID: integer);
 var
   id: integer;
 begin
+  writeln('RoomDel');
   id:=tabname_to_index(AUser);
   if id>-1 then
   begin
@@ -727,6 +729,7 @@ end;
 
 procedure TFChat.webRoomDelAll(Sender: TObject);
 begin
+  writeln('RoomDelAll');
   TabControl.BeginUpdate;
   while TabControl.Tabs.Count>1 do TabControl.Tabs.Delete(1);
   TabControl.EndUpdate;
@@ -736,6 +739,7 @@ procedure TFChat.webRoomIn(Sender: TObject; ARoom, AOpis: string);
 var
   a: integer;
 begin
+  writeln('RoomIn');
   a:=web.IsRoomsCount;
   TabControl.Tabs.Insert(a,ARoom);
   TabControl.TabIndex:=a;
@@ -745,6 +749,7 @@ end;
 
 procedure TFChat.webRoomOut(Sender: TObject; ARoom: string);
 begin
+  writeln('RoomOut');
   TabControl.Tabs.Delete(TabControl.TabIndex);
   {$IFDEF WINDOWS}
   TabControlChange(Sender);
@@ -765,6 +770,7 @@ procedure TFChat.webUserAttr(Sender: TObject; ARoom, AUsername: string;
 var
   a: integer;
 begin
+  writeln('UserAttr');
   if ARoom=tabname then
   begin
     a:=StringToItemIndex(uzyt,AUserName);

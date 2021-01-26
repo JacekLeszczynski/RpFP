@@ -14,7 +14,7 @@ object FMain: TFMain
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   SessionProperties = 'Left;PlayerOptTryb.ImageIndex;Top;VolumePlayer.Value;VolumeRadio.Value'
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.10.0'
   object Panel1: TPanel
     Left = 0
     Height = 937
@@ -538,7 +538,7 @@ object FMain: TFMain
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = Label9
         Left = 392
-        Height = 86
+        Height = 88
         Top = 17
         Width = 353
         Anchors = [akTop, akLeft, akRight, akBottom]
@@ -546,12 +546,12 @@ object FMain: TFMain
         BorderSpacing.Right = 16
         BorderSpacing.Bottom = 2
         BevelOuter = bvLowered
-        ClientHeight = 86
+        ClientHeight = 88
         ClientWidth = 353
         TabOrder = 0
         object Image1: TImage
           Left = 2
-          Height = 82
+          Height = 84
           Top = 2
           Width = 349
           Align = alClient
@@ -2973,7 +2973,7 @@ object FMain: TFMain
           AnchorSideRight.Side = asrBottom
           Left = 5
           Height = 16
-          Top = 26
+          Top = 24
           Width = 317
           Alignment = taCenter
           Anchors = [akTop, akLeft, akRight]
@@ -2989,8 +2989,8 @@ object FMain: TFMain
           AnchorSideRight.Control = prezenter
           AnchorSideRight.Side = asrBottom
           Left = 5
-          Height = 15
-          Top = 42
+          Height = 13
+          Top = 40
           Width = 317
           Alignment = taCenter
           Anchors = [akTop, akLeft, akRight]
@@ -3005,8 +3005,8 @@ object FMain: TFMain
           AnchorSideBottom.Control = Panel6
           AnchorSideBottom.Side = asrBottom
           Left = 5
-          Height = 15
-          Top = 116
+          Height = 13
+          Top = 118
           Width = 317
           Alignment = taCenter
           Anchors = [akLeft, akRight, akBottom]
@@ -3024,8 +3024,8 @@ object FMain: TFMain
           AnchorSideRight.Side = asrBottom
           AnchorSideBottom.Control = url
           Left = 5
-          Height = 59
-          Top = 57
+          Height = 65
+          Top = 53
           Width = 317
           Alignment = taCenter
           Anchors = [akTop, akLeft, akRight, akBottom]
@@ -3043,7 +3043,7 @@ object FMain: TFMain
           AnchorSideLeft.Control = Panel6
           AnchorSideTop.Control = Panel6
           Left = 5
-          Height = 17
+          Height = 15
           Top = 5
           Width = 72
           BorderSpacing.Left = 4
@@ -3061,7 +3061,7 @@ object FMain: TFMain
           AnchorSideRight.Control = Panel6
           AnchorSideRight.Side = asrBottom
           Left = 266
-          Height = 17
+          Height = 15
           Top = 5
           Width = 56
           Alignment = taCenter
@@ -3081,7 +3081,7 @@ object FMain: TFMain
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = Panel6
           Left = 85
-          Height = 17
+          Height = 15
           Top = 5
           Width = 40
           BorderSpacing.Left = 8
@@ -3099,7 +3099,7 @@ object FMain: TFMain
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = Panel6
           Left = 133
-          Height = 17
+          Height = 15
           Top = 5
           Width = 40
           BorderSpacing.Left = 8
@@ -3154,9 +3154,9 @@ object FMain: TFMain
         AnchorSideLeft.Control = Panel5
         AnchorSideBottom.Control = Panel7
         Left = 392
-        Height = 19
-        Top = 105
-        Width = 45
+        Height = 17
+        Top = 107
+        Width = 44
         Anchors = [akLeft, akBottom]
         Caption = 'Stacja:'
         ParentColor = False
@@ -3259,7 +3259,7 @@ object FMain: TFMain
         PositionMargin = 4
         PositionType = kptLineRoundCap
         UsePhongLighting = True
-        MinValue = 0
+        MinValue = 30
         MaxValue = 270
         Value = 270
         OnValueChanged = VolumeRadioValueChanged
@@ -11428,9 +11428,9 @@ object FMain: TFMain
       end
       object LogoTitle: TRxLabel
         Left = 16
-        Height = 19
+        Height = 17
         Top = 8
-        Width = 187
+        Width = 186
         Caption = 'Radio Player Forty +'
         Font.Height = -16
         Font.Name = 'Sans'
@@ -12138,7 +12138,7 @@ object FMain: TFMain
         PositionMargin = 4
         PositionType = kptLineRoundCap
         UsePhongLighting = True
-        MinValue = 0
+        MinValue = 30
         MaxValue = 270
         Value = 270
         OnValueChanged = VolumePlayerValueChanged
@@ -12166,8 +12166,8 @@ object FMain: TFMain
         AnchorSideBottom.Control = Label1
         AnchorSideBottom.Side = asrBottom
         Left = 59
-        Height = 19
-        Top = 210
+        Height = 17
+        Top = 212
         Width = 644
         Color = clMoneyGreen
         ParentColor = False
@@ -12182,8 +12182,8 @@ object FMain: TFMain
         AnchorSideBottom.Control = uETilePanel3
         AnchorSideBottom.Side = asrBottom
         Left = 15
-        Height = 19
-        Top = 210
+        Height = 17
+        Top = 212
         Width = 40
         Anchors = [akLeft, akBottom]
         BorderSpacing.Left = 14
@@ -12202,8 +12202,8 @@ object FMain: TFMain
         AnchorSideBottom.Control = uETilePanel3
         AnchorSideBottom.Side = asrBottom
         Left = 707
-        Height = 19
-        Top = 210
+        Height = 17
+        Top = 212
         Width = 40
         Anchors = [akRight, akBottom]
         BorderSpacing.Left = 4
@@ -12237,7 +12237,7 @@ object FMain: TFMain
         AnchorSideBottom.Side = asrBottom
         Left = 473
         Height = 30
-        Top = 172
+        Top = 174
         Width = 30
         BorderSpacing.Left = 8
         Flat = True
@@ -12252,7 +12252,7 @@ object FMain: TFMain
         AnchorSideBottom.Side = asrBottom
         Left = 435
         Height = 30
-        Top = 172
+        Top = 174
         Width = 30
         Anchors = [akLeft, akBottom]
         Flat = True
@@ -12267,7 +12267,7 @@ object FMain: TFMain
         AnchorSideBottom.Side = asrBottom
         Left = 557
         Height = 25
-        Top = 175
+        Top = 177
         Width = 25
         Flat = True
         Glyph.Data = {
@@ -12316,7 +12316,7 @@ object FMain: TFMain
         AnchorSideBottom.Side = asrBottom
         Left = 507
         Height = 25
-        Top = 175
+        Top = 177
         Width = 25
         BorderSpacing.Left = 42
         Flat = True
@@ -12365,7 +12365,7 @@ object FMain: TFMain
         AnchorSideBottom.Side = asrBottom
         Left = 532
         Height = 25
-        Top = 175
+        Top = 177
         Width = 25
         Flat = True
         Glyph.Data = {
@@ -12439,7 +12439,7 @@ object FMain: TFMain
         AnchorSideTop.Control = uETilePanel3
         AnchorSideBottom.Control = Label1
         Left = 15
-        Height = 187
+        Height = 189
         Top = 15
         Width = 420
         Anchors = [akTop, akLeft, akBottom]
@@ -12447,12 +12447,12 @@ object FMain: TFMain
         BorderSpacing.Top = 14
         BorderSpacing.Bottom = 8
         BevelOuter = bvSpace
-        ClientHeight = 187
+        ClientHeight = 189
         ClientWidth = 420
         TabOrder = 0
         object list1: TListBox
           Left = 1
-          Height = 185
+          Height = 187
           Top = 1
           Width = 418
           Align = alClient
@@ -12508,8 +12508,8 @@ object FMain: TFMain
           Margin = 7
           MarginColor = clTeal
           NumberMainTicks = 4
-          Position = 0
           Scale = 105
+          ScaleMax = 105
           Align = alClient
           Font.Height = -8
           Font.Name = 'Sans'
@@ -12549,8 +12549,8 @@ object FMain: TFMain
           Margin = 7
           MarginColor = clTeal
           NumberMainTicks = 4
-          Position = 0
           Scale = 105
+          ScaleMax = 105
           Align = alClient
           Font.Height = -8
           Font.Name = 'Sans'
@@ -12563,7 +12563,7 @@ object FMain: TFMain
         AnchorSideBottom.Side = asrBottom
         Left = 473
         Height = 30
-        Top = 172
+        Top = 174
         Width = 30
         BorderSpacing.Left = 8
         Flat = True
@@ -12579,6 +12579,9 @@ object FMain: TFMain
     Height = 26
     Top = 944
     Width = 24
+    AccelType = '<auto>'
+    ScreenshotDirectory = '<auto>'
+    MpvIpcDevFile = '<auto>'
     Engine = meMplayer
     Filename = 'http://sc.noviktech.pl:8020'
     Loop = 0
@@ -12599,6 +12602,9 @@ object FMain: TFMain
     Height = 26
     Top = 944
     Width = 24
+    AccelType = '<auto>'
+    ScreenshotDirectory = '<auto>'
+    MpvIpcDevFile = '<auto>'
     Engine = meMplayer
     Filename = 'stream.dump'
     Loop = 0
@@ -12618,6 +12624,9 @@ object FMain: TFMain
     Height = 26
     Top = 944
     Width = 24
+    AccelType = '<auto>'
+    ScreenshotDirectory = '<auto>'
+    MpvIpcDevFile = '<auto>'
     Engine = meMplayer
     Loop = 0
     StartParam = '-softvol'
@@ -12636,6 +12645,9 @@ object FMain: TFMain
     Height = 264
     Top = 47
     Width = 743
+    AccelType = '<auto>'
+    ScreenshotDirectory = '<auto>'
+    MpvIpcDevFile = '<auto>'
     Engine = meMplayer
     Loop = 0
     MPlayerPath = 'mplayer'
@@ -12654,21 +12666,21 @@ object FMain: TFMain
     Enabled = False
     Interval = 5
     OnTimer = autorunTimer
-    left = 264
-    top = 440
+    Left = 264
+    Top = 440
   end
   object timer_czas: TTimer
     Enabled = False
     Interval = 250
     OnTimer = timer_czasTimer
-    left = 288
-    top = 376
+    Left = 288
+    Top = 376
   end
   object ImageList1: TImageList
     Height = 24
     Width = 24
-    left = 136
-    top = 64
+    Left = 136
+    Top = 64
     Bitmap = {
       4C69180000001800000018000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -14407,12 +14419,12 @@ object FMain: TFMain
     BalloonTitle = 'Odtwarzacz Radia 40 Plus'
     PopUpMenu = MenuTrayIcon
     Visible = True
-    left = 176
-    top = 440
+    Left = 176
+    Top = 440
   end
   object MenuTrayIcon: TPopupMenu
-    left = 72
-    top = 440
+    Left = 72
+    Top = 440
     object MenuItem1: TMenuItem
       Caption = 'Wyjście'
       OnClick = MenuItem1Click
@@ -14425,12 +14437,12 @@ object FMain: TFMain
     PosTop = 0
     PosLeft = 0
     StringToCR = '^'
-    left = 664
-    top = 248
+    Left = 664
+    Top = 248
   end
   object MenuStacje: TPopupMenu
-    left = 72
-    top = 496
+    Left = 72
+    Top = 496
     object MenuItem2: TMenuItem
       Caption = 'Dodaj nową stację'
     end
@@ -14440,37 +14452,41 @@ object FMain: TFMain
   end
   object html: TNetSynHTTP
     Method = meGet
+    Mimetype = '<auto>'
     UserAgent = '<auto>'
-    left = 520
-    top = 264
+    Filtering = False
+    Left = 520
+    Top = 264
   end
   object html_post: TNetSynHTTP
     Method = mePost
+    Mimetype = '<auto>'
     UserAgent = '<auto>'
-    left = 592
-    top = 264
+    Filtering = False
+    Left = 592
+    Top = 264
   end
   object timer_restore_icy: TTimer
     Enabled = False
     OnTimer = timer_restore_icyTimer
-    left = 352
-    top = 528
+    Left = 352
+    Top = 528
   end
   object OpenDialogMuzyka: TOpenDialog
     Filter = 'Pliki muzyczne|*.wav;*.flac;*.mp3;*.ogg|Pliki filmowe|*.avi;*.mp4;*.mkv;*.mov;*.ogm;*.rmvb;*.m2ts|Wszystkie pliki|*.*'
     Options = [ofAllowMultiSelect, ofEnableSizing, ofViewDetail]
-    left = 576
-    top = 328
+    Left = 576
+    Top = 328
   end
   object shutdown: TExtShutdown
     Mode = smShutdownP2
     OnBeforeShutdown = shutdownBeforeShutdown
-    left = 72
-    top = 552
+    Left = 72
+    Top = 552
   end
   object PopupListPlayerMenu: TPopupMenu
-    left = 192
-    top = 528
+    Left = 192
+    Top = 528
     object MenuItem4: TMenuItem
       Caption = 'Dodaj'
       OnClick = SpeedButton10Click
@@ -14503,27 +14519,27 @@ object FMain: TFMain
     Enabled = False
     Interval = 250
     OnTimer = timer_upd_volume_filmTimer
-    left = 592
-    top = 512
+    Left = 592
+    Top = 528
   end
   object timer_shutdown: TTimer
     Enabled = False
     Interval = 200
     OnTimer = timer_shutdownTimer
-    left = 64
-    top = 240
+    Left = 64
+    Top = 240
   end
   object timer_film_off: TTimer
     Enabled = False
     OnTimer = timer_film_offTimer
-    left = 256
-    top = 136
+    Left = 256
+    Top = 136
   end
   object dir: TDirectoryPack
     Mode = pmServer
     OnPackRecord = dirPackRecord
-    left = 336
-    top = 64
+    Left = 336
+    Top = 64
   end
   object tcp: TNetSocket
     Mode = smServer
@@ -14538,8 +14554,8 @@ object FMain: TFMain
     OnStatus = tcpStatus
     OnCryptString = tcpCryptString
     OnDecryptString = tcpDecryptString
-    left = 256
-    top = 64
+    Left = 256
+    Top = 64
   end
   object PropStorage: TRxXMLPropStorage
     StoredValues = <>
@@ -14548,7 +14564,7 @@ object FMain: TFMain
     OnSaveProperties = PropStorageSaveProperties
     OnRestoreProperties = PropStorageRestoreProperties
     SeparateFiles = False
-    left = 54
-    top = 92
+    Left = 54
+    Top = 92
   end
 end

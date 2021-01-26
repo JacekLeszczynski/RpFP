@@ -499,7 +499,7 @@ begin
     pusta:=db_stacje.IsEmpty;
   end;
   st_dodaj.Enabled:=aktywne and (not edycja);
-  st_edytuj.Enabled:=aktywne and (not edycja) and (not pusta) and (db_stacjeid.AsInteger<>1);
+  st_edytuj.Enabled:=aktywne and (not edycja) and (not pusta);
   st_usun.Enabled:=st_edytuj.Enabled and (db_stacjeid.AsInteger<>1);
   st_ok.Enabled:=aktywne and edycja;
   st_cancel.Enabled:=st_ok.Enabled;
