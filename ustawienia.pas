@@ -131,6 +131,7 @@ type
     PropStorage: TRxXMLPropStorage;
     SerwerOn: TCheckBox;
     ShowConsole: TCheckBox;
+    LogToConsole: TCheckBox;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
     SpeedButton4: TSpeedButton;
@@ -199,6 +200,7 @@ type
     procedure HistMemLinesCodeChange(Sender: TObject);
     procedure KlickOffChange(Sender: TObject);
     procedure ListFontsChange(Sender: TObject);
+    procedure LogToConsoleChange(Sender: TObject);
     procedure SerwerOnChange(Sender: TObject);
     procedure ShowConsoleChange(Sender: TObject);
     procedure TestBeepClick(Sender: TObject);
@@ -563,6 +565,7 @@ begin
   force_room.Text:=_POLFAN_FORCE_ROOM;
   HistMemLinesCode.Value:=_HIST_MEM_LINES_CODE;
   ChatRegister.Checked:=_CHAT_REGISTER;
+  LogToConsole.Checked:=_CHAT_LOG_TO_CONSOLA;
   ListFonts.Items:=Screen.Fonts;
   film_font.Items.Assign(ListFonts.Items);
   {$IFDEF UNIX}
@@ -628,6 +631,11 @@ end;
 procedure TFUstawienia.ListFontsChange(Sender: TObject);
 begin
   _CHAT_FONT_NAME:=ListFonts.Text;
+end;
+
+procedure TFUstawienia.LogToConsoleChange(Sender: TObject);
+begin
+  _CHAT_LOG_TO_CONSOLA:=LogToConsole.Checked;
 end;
 
 procedure TFUstawienia.SerwerOnChange(Sender: TObject);

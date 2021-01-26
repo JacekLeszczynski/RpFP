@@ -219,6 +219,7 @@ type
     procedure ActiveRequest(aConnected: boolean);
     procedure OnAutoWysylka(Sender: TObject; aMessage: string);
     procedure set_podpowiedz(aText: string);
+    function wysylka_z_opoznieniem(aMessage: string): integer;
   public
     in_room,in_user,in_passw: string;
     in_force_room: string;
@@ -416,27 +417,29 @@ procedure TFChat.webAutoResponseRequest(Sender: TObject; AUser, AMessage: string
   );
 var
   s,ss: string;
-  wysylka: TAutoResponseDelay;
   czas: integer;
   b: boolean;
 begin
   s:=StringReplace(AMessage,web.GetLoginNick,AUser,[rfIgnoreCase,rfReplaceAll]);
-  ss:=upcase(s);
+  ss:=AnsiUpperCase(s);
   b:=(pos('CZESC',ss)>0)
   or (pos('CZEŚĆ',ss)>0)
   or (pos('HEJ',ss)>0)
   or (pos('WITAJ',ss)>0)
   or (pos('BUZIAKI',ss)>0)
   or (pos('PIWOSZ',ss)>0)
-  or (pos('KIS',ss)>0);
+  or (pos('KIS',ss)>0)
+  or (pos('GRABA',ss)>0);
   if b then
   begin
-    czas:=random(10000)+3000;
+    if _CHAT_LOG_TO_CONSOLA then writeln('=====> WYSYŁKA AUTOMATYCZNEJ WIADOMOŚCI: ',s);
+    czas:=wysylka_z_opoznieniem('{"numbers":[410],"strings":["'+s+'", "'+web.Room+'"]}');
     web.AddDocument('* * * Autoodpowiedź zaakceptowana: Do: '+AUser+', za '+IntToStr(czas)+' ms... * * *');
-    //wysylka:=TAutoResponseDelay.Create(czas,'{"numbers":[410],"strings":["'+s+'", "'+web.IsRoom+'"]}');
-    wysylka.OnSendNow:=@OnAutoWysylka;
-    wysylka.Resume;
+    exit;
   end;
+  b:=(pos('KTÓRA GODZINA?',ss)>0)
+  or (pos('KTORA GODZINA?',ss)>0);
+  if b then wysylka_z_opoznieniem('{"numbers":[410],"strings":["'+AUser+', godzina w tej chwili to: '+FormatDateTime('hh:nn:ss',time)+'", "'+web.Room+'"]}');
 end;
 
 procedure TFChat.webBeforeConnect(Sender: TObject; aUser, aFingerPrint,
@@ -577,12 +580,14 @@ end;
 procedure TFChat.webDownloadNow(Sender: TObject; APrive: string);
 begin
   if _OFF_CHAT_IMG or _PIPELINE_DOWNLOAD then exit;
+  if _CHAT_LOG_TO_CONSOLA then writeln('webDownloadNow');
   StartDownload(APrive);
 end;
 
 procedure TFChat.webDownloadRequest(Sender: TObject; AFilename, APrive: string);
 begin
   if _OFF_CHAT_IMG then exit;
+  if _CHAT_LOG_TO_CONSOLA then writeln('webDownloadRequest: ',aFilename);
   if _PIPELINE_DOWNLOAD then StartDownload(APrive,1,AFilename) else lista_download.Add(AFilename);
 end;
 
@@ -593,6 +598,7 @@ var
   s: string;
 begin
   if _OFF_CHAT_IMG then exit;
+  if _CHAT_LOG_TO_CONSOLA then writeln('webImageFilename: ',aFilename);
   if pos('https://',aFilename)>0 then
   begin
     s:=aFilename;
@@ -674,6 +680,7 @@ procedure TFChat.webReadDocument(Sender: TObject; AName: string;
   AMode: TPolfanRoomMode; AMessage: string; ADocument: TStrings;
   ARefresh: boolean);
 begin
+  if _CHAT_LOG_TO_CONSOLA then writeln(AMessage);
   if AMode=rmService then
   begin
     if TabControl.TabIndex=0 then html.LoadFromString(ADocument.Text);
@@ -1200,6 +1207,18 @@ begin
     end;
   end;
   timer_focus.Enabled:=true;
+end;
+
+function TFChat.wysylka_z_opoznieniem(aMessage: string): integer;
+var
+  wysylka: TAutoResponseDelay;
+  czas: integer;
+begin
+  czas:=random(10000)+3000;
+  wysylka:=TAutoResponseDelay.Create(czas,aMessage);
+  wysylka.OnSendNow:=@OnAutoWysylka;
+  wysylka.Start;
+  result:=czas;
 end;
 
 procedure TFChat.InitService;

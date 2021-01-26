@@ -281,6 +281,7 @@ var
   _CUSTOM_POLFAN: string = '';
   _HIST_MEM_LINES_CODE: integer = 200;
   _CHAT_REGISTER: boolean = false;
+  _CHAT_LOG_TO_CONSOLA: boolean = false;
   _CHAT_SOUND: integer = 0;
   _CHAT_BOOT_AUTORESPONSE: string;
   _CHAT_FONT_NAME: string;

@@ -1486,6 +1486,7 @@ begin
   _RADIO_PLAYING:=PropStorage.ReadBoolean('RadioPlaying',false);
   _HIST_MEM_LINES_CODE:=PropStorage.ReadInteger('HistMemLinesCode',200);
   _CHAT_REGISTER:=PropStorage.ReadBoolean('ChatRegisterCode',false);
+  _CHAT_LOG_TO_CONSOLA:=PropStorage.ReadBoolean('ChatLogToConsole',false);
   _CHAT_FONT_NAME:=PropStorage.ReadString('ChatFontName','Sans');
   _CHAT_FONT_SIZE:=PropStorage.ReadInteger('ChatFontSize',11);
   _OFF_CHAT_SOUND_INFO:=PropStorage.ReadBoolean('OffChatSoundInfo',false);
@@ -1547,6 +1548,7 @@ begin
   PropStorage.WriteBoolean('RadioPlaying',_RADIO_PLAYING);
   PropStorage.WriteInteger('HistMemLinesCode',_HIST_MEM_LINES_CODE);
   PropStorage.WriteBoolean('ChatRegisterCode',_CHAT_REGISTER);
+  PropStorage.WriteBoolean('ChatLogToConsole',_CHAT_LOG_TO_CONSOLA);
   PropStorage.WriteString('ChatFontName',_CHAT_FONT_NAME);
   PropStorage.WriteInteger('ChatFontSize',_CHAT_FONT_SIZE);
   PropStorage.WriteInteger('ChatBackgroundColor',_CHAT_BACKGROUND_COLOR);
