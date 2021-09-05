@@ -126,7 +126,7 @@ begin
   for i:=0 to jArray.Count-1 do
   begin
     nazwa:=jArray[i].Items[0].AsString;
-    plik:=StringReplace(jArray[i].Items[1].AsString,'http://polfan.pl/','',[]);
+    plik:=StringReplace(jArray[i].Items[1].AsString,'https://polfan.pl/','',[]);
     nr:=jArray[i].Items[2].AsInteger;
     seks:=jArray[i].Items[3].AsInteger;
     m_emotki.Append;

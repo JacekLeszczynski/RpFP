@@ -8,14 +8,14 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Classes, CustApp, ExtParams, cverinfo,
-  { $IFNDEF BOT}
+  {$IFNDEF BOT}
   Forms, Interfaces,
-  { $ENDIF}
+  {$ENDIF}
   {$IFDEF CLIENT}
   config, client;
   {$ELSE}
     {$IFDEF BOT}
-    config, bot, bot_edytor_kodu;
+    Interfaces, config, bot;
     {$ELSE}
     main, config, datamodule, consola, bot_code_help;
     {$ENDIF}

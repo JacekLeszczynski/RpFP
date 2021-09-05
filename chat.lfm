@@ -7,13 +7,15 @@ object FChat: TFChat
   Caption = 'RpFP - Chat'
   ClientHeight = 617
   ClientWidth = 1078
+  KeyPreview = True
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
   OnShow = FormShow
   SessionProperties = 'ColorButton1.ButtonColor;galeria.Height;galeria.Left;galeria.Top;galeria.Width;Height;Left;Panel4.Width;ShowImgTitle.Checked;SpeedButton1.Down;SpeedButton2.Down;SpeedButton3.Down;SpeedButton4.Visible;SpeedButton5.Visible;SpeedButton6.Visible;Top;Width;WindowState'
   ShowInTaskBar = stAlways
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '2.0.12.0'
   object uETilePanel1: TuETilePanel
     Left = 0
     Height = 48
@@ -52409,5 +52411,13 @@ object FChat: TFChat
         Name = 'nazwa'
         ParamType = ptUnknown
       end>
+  end
+  object www: TNetSynHTTP
+    Method = meGet
+    Mimetype = '<auto>'
+    UserAgent = '<auto>'
+    Filtering = False
+    Left = 32
+    Top = 136
   end
 end

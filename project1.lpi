@@ -40,10 +40,10 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="6"/>
       <MinorVersionNr Value="2"/>
-      <RevisionNr Value="1"/>
+      <RevisionNr Value="2"/>
       <Language Value="0415"/>
     </VersionInfo>
-    <BuildModes Count="11">
+    <BuildModes Count="10">
       <Item1 Name="Default" Default="True"/>
       <Item2 Name="Default - Client">
         <CompilerOptions>
@@ -203,48 +203,14 @@
           <Other>
             <CustomOptions Value="-dAPP
 -dJACEK"/>
-          </Other>
-        </CompilerOptions>
-      </Item5>
-      <Item6 Name="Release">
-        <CompilerOptions>
-          <Version Value="11"/>
-          <Target>
-            <Filename Value="radio-player"/>
-          </Target>
-          <SearchPaths>
-            <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="../../components/extlazarus;../../lib"/>
-            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
-          </SearchPaths>
-          <CodeGeneration>
-            <SmartLinkUnit Value="True"/>
-            <TargetCPU Value="x86_64"/>
-            <TargetOS Value="linux"/>
-            <Optimizations>
-              <OptimizationLevel Value="3"/>
-            </Optimizations>
-          </CodeGeneration>
-          <Linking>
-            <Debugging>
-              <GenerateDebugInfo Value="False"/>
-            </Debugging>
-            <LinkSmart Value="True"/>
-            <Options>
-              <Win32>
-                <GraphicApplication Value="True"/>
-              </Win32>
-            </Options>
-          </Linking>
-          <Other>
-            <CustomOptions Value="-dAPP"/>
-            <OtherDefines Count="1">
+            <OtherDefines Count="2">
               <Define0 Value="APP"/>
+              <Define1 Value="BOT"/>
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item6>
-      <Item7 Name="Release-Client">
+      </Item5>
+      <Item6 Name="Release-Client">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -281,8 +247,8 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item7>
-      <Item8 Name="Windows">
+      </Item6>
+      <Item7 Name="Windows">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -320,8 +286,8 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item8>
-      <Item9 Name="Windows-Client">
+      </Item7>
+      <Item8 Name="Windows-Client">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -358,8 +324,8 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item9>
-      <Item10 Name="Windows64">
+      </Item8>
+      <Item9 Name="Windows64">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -396,8 +362,8 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item10>
-      <Item11 Name="Windows64-Client">
+      </Item9>
+      <Item10 Name="Windows64-Client">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -434,7 +400,10 @@
             </OtherDefines>
           </Other>
         </CompilerOptions>
-      </Item11>
+      </Item10>
+      <SharedMatrixOptions Count="1">
+        <Item1 ID="449272079731" Type="IDEMacro" MacroName="LCLWidgetType" Value="nogui"/>
+      </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>

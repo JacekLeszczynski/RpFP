@@ -246,6 +246,7 @@ procedure TBot.ListaDestroyElement(Sender: TObject; var AWskaznik: Pointer);
 begin
   pp:=AWskaznik;
   dispose(pp);
+  pp:=nil;
 end;
 
 procedure TBot.ListaReadElement(Sender: TObject; var AWskaznik: Pointer);
@@ -293,7 +294,7 @@ begin
     jData.Clear;
   end else rec:=_GET_APLET_POLFANU;
   (*pobranie ramki slist*)
-  get_login.execute(EncodeURL('http://polfan.pl/newpolfan/api/administration/getBanList'),s);
+  get_login.execute(EncodeURL('https://polfan.pl/newpolfan/api/administration/getBanList'),s);
   jData:=GetJSON(s);
   jObject:=TJSONObject(jData);
   nobt:=jObject.Get('nobt',false);
@@ -798,7 +799,7 @@ begin
   FTest:=aTestMode;
   if not FTest then
   begin
-    SetConfDir('radio_player_40_plus');
+    SetConfDir('pbot');
     randomize;
     script_loaded:=false;
     _reload:=false;

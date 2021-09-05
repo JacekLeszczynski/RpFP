@@ -29,6 +29,7 @@ type
     m_emotki: TZQuery;
     MenuItem9: TMenuItem;
     button_si: TOnOffSwitch;
+    www: TNetSynHTTP;
     p_emotki: TZQuery;
     podpowiedz: TPanel;
     SrcDump: TSpeedButton;
@@ -111,6 +112,7 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
     procedure htmlHotSpotClick(Sender: TObject; const SRC: ThtString;
       var Handled: Boolean);
@@ -190,7 +192,7 @@ type
     procedure wyslij_sourceClick(Sender: TObject);
   private
     nadawca_wiadomosci: string;
-    uzyt,uzyt_opis,uzyt_attr: TStringList;
+    ramowka_dnia,uzyt,uzyt_opis,uzyt_attr: TStringList;
     watki,watki_glowne: integer;
     DOWN: boolean;
     Download: TFDownload;
@@ -220,6 +222,8 @@ type
     procedure OnAutoWysylka(Sender: TObject; aMessage: string);
     procedure set_podpowiedz(aText: string);
     function wysylka_z_opoznieniem(aMessage: string): integer;
+    function wyswietl_ramowke_na_dzis: string;
+    procedure wyslij_skrot(aSkrot: word);
   public
     in_room,in_user,in_passw: string;
     in_force_room: string;
@@ -416,30 +420,38 @@ end;
 procedure TFChat.webAutoResponseRequest(Sender: TObject; AUser, AMessage: string
   );
 var
-  s,ss: string;
-  czas: integer;
+  s,ss,pom: string;
+  czas,i: integer;
   b: boolean;
 begin
   s:=StringReplace(AMessage,web.GetLoginNick,AUser,[rfIgnoreCase,rfReplaceAll]);
   ss:=AnsiUpperCase(s);
-  b:=(pos('CZESC',ss)>0)
-  or (pos('CZEŚĆ',ss)>0)
-  or (pos('HEJ',ss)>0)
-  or (pos('WITAJ',ss)>0)
-  or (pos('BUZIAKI',ss)>0)
-  or (pos('PIWOSZ',ss)>0)
-  or (pos('KIS',ss)>0)
-  or (pos('GRABA',ss)>0);
+  (* sprawdzenie czy nie padło słowo z tablicy si *)
+  b:=false;
+  if my_status.Checked then
+  begin
+    for i:=0 to _CHAT_SLOWA_SI.Count-1 do
+    begin
+      b:=pos(_CHAT_SLOWA_SI[i],ss)>0;
+      if b then break;
+    end;
+  end;
+  (* jeśli padło słowo to... *)
   if b then
   begin
     if _CHAT_LOG_TO_CONSOLA then writeln('=====> WYSYŁKA AUTOMATYCZNEJ WIADOMOŚCI: ',s);
     czas:=wysylka_z_opoznieniem('{"numbers":[410],"strings":["'+s+'", "'+web.Room+'"]}');
-    web.AddDocument('* * * Autoodpowiedź zaakceptowana: Do: '+AUser+', za '+IntToStr(czas)+' ms... * * *');
+    web.AddDocument('<span style="font-size: x-small; color: silver"><i>* * * Autoodpowiedź zaakceptowana: Do: '+AUser+', za '+IntToStr(czas)+' ms... * * *</i></span>',web.Room);
     exit;
   end;
-  b:=(pos('KTÓRA GODZINA?',ss)>0)
-  or (pos('KTORA GODZINA?',ss)>0);
-  if b then wysylka_z_opoznieniem('{"numbers":[410],"strings":["'+AUser+', godzina w tej chwili to: '+FormatDateTime('hh:nn:ss',time)+'", "'+web.Room+'"]}');
+  {if (ss='!RAMÓWKA') or (ss='!RAMOWKA') or (pos('RAMÓWKA',ss)>0) or (pos('RAMOWKA',ss)>0) then
+  begin
+    pom:=wyswietl_ramowke_na_dzis;
+    if pom<>'' then wysylka_z_opoznieniem('{"numbers":[410],"strings":["'+AUser+', oto ramówka na dziś: '+pom+'", "'+web.Room+'"]}');
+  end;}
+  //b:=(pos('KTÓRA GODZINA?',ss)>0)
+  //or (pos('KTORA GODZINA?',ss)>0);
+  //if b then wysylka_z_opoznieniem('{"numbers":[410],"strings":["'+AUser+', godzina w tej chwili to: '+FormatDateTime('hh:nn:ss',time)+'", "'+web.Room+'"]}');
 end;
 
 procedure TFChat.webBeforeConnect(Sender: TObject; aUser, aFingerPrint,
@@ -1007,33 +1019,12 @@ begin
       8,9,10,11,12,13: ss:=ss+'<td align=center>'+s+'</td>';
       14: ss:=ss+'<td align=center>'+s+'</td></tr></table>';
     end;
-{    case i of
-      1: ss:='<table width=100%><tr><td align=center>'+s+'</td>';
-      2,3,4,5,6: ss:=ss+'<td align=center>'+s+'</td>';
-      7: ss:=ss+'<td align=center>'+s+'</td></tr></table>';
-      8,9,10,11,12,13: ss:=ss+'<td align=center>'+s+'</td>';
-      14: ss:=ss+'<td align=center>'+s+'</td></tr></table>';
-    end;}
-
-    //EmotkiInsert(i,MyConfDir(emotki_tab[i].plik));
 
     inc(i);
     m_emotki.Next;
     if i>GALLERY_SIDE_COUNT then break;
   end;
   html2.LoadFromString(ss);
-  //ss:='<html><body>'+ss+'</body></html>';
-
-  {fs:=TStringStream.Create(ss);
-  pHTML:=TIpHtml.Create;
-  try
-    pHTML.LoadFromStream(fs);
-    html3.SetHtml(pHTML);
-  finally
-    //pHTML.Free;
-    fs.Free;
-  end;}
-
   m_emotki.Close;
 end;
 
@@ -1221,6 +1212,49 @@ begin
   result:=czas;
 end;
 
+function TFChat.wyswietl_ramowke_na_dzis: string;
+var
+  s,dzien: string;
+begin
+  writeln('ZAŻĄDANO WYŚWIETLENIA RAMÓWKI!');
+  if ramowka_dnia.Count=0 then www.execute('https://radiofortyplus.panelradiowy.pl/embed.php?script=ramowka',ramowka_dnia);
+  s:=ramowka_dnia.Text;
+  try
+    case DayOfWeek(date) of
+      0: dzien:=pobierz_dzien_tygodnia(s,'Niedziela');
+      1: dzien:=pobierz_dzien_tygodnia(s,'Poniedziałek');
+      2: dzien:=pobierz_dzien_tygodnia(s,'Wtorek');
+      3: dzien:=pobierz_dzien_tygodnia(s,'Środa');
+      4: dzien:=pobierz_dzien_tygodnia(s,'Czwartek');
+      5: dzien:=pobierz_dzien_tygodnia(s,'Piątek');
+      6: dzien:=pobierz_dzien_tygodnia(s,'Sobota');
+      7: dzien:=pobierz_dzien_tygodnia(s,'Niedziela');
+    end;
+  except
+    result:='';
+    exit;
+  end;
+  result:=dzien;
+end;
+
+procedure TFChat.wyslij_skrot(aSkrot: word);
+var
+  s: string;
+begin
+  case aSkrot of
+    VK_F3: s:=_CHAT_SKROT_F3;
+    VK_F4: s:=_CHAT_SKROT_F4;
+    VK_F5: s:=_CHAT_SKROT_F5;
+    VK_F6: s:=_CHAT_SKROT_F6;
+    VK_F7: s:=_CHAT_SKROT_F7;
+  end;
+  if s<>'' then
+  begin
+    Edit1.Text:=s;
+    wyslij.Click;
+  end;
+end;
+
 procedure TFChat.InitService;
 begin
   html.ViewImages:=not _OFF_CHAT_IMG;
@@ -1249,6 +1283,7 @@ procedure TFChat.htmlImageRequest(Sender: TObject; const SRC: ThtString;
 var
   plik: string;
 begin
+  if _CHAT_LOG_TO_CONSOLA then writeln('htmlImageRequest: ',SRC);
   plik:=MyConfDir+_FF+SRC;
   if not FileExists(plik) then exit;
   simage.LoadFromFile(plik);
@@ -1432,6 +1467,7 @@ end;
 procedure TFChat.FormCreate(Sender: TObject);
 begin
   _DEV_CHAT_CREATE:=true;
+  ramowka_dnia:=TStringList.Create;
   wiszace_downloady:=TStringList.Create;
   simage:=TMemoryStream.Create;
   watki:=0;
@@ -1475,7 +1511,16 @@ begin
   uzyt.Free;
   uzyt_opis.Free;
   uzyt_attr.Free;
+  ramowka_dnia.Free;
   _DEV_CHAT_CREATE:=false;
+end;
+
+procedure TFChat.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
+  );
+begin
+  case Key of
+    VK_F3..VK_F7: wyslij_skrot(Key);
+  end;
 end;
 
 procedure TFChat.FormShow(Sender: TObject);

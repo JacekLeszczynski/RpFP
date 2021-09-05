@@ -1261,23 +1261,6 @@ begin
   end;
 end;
 
-function pobierz_dzien_tygodnia(tresc, nazwa_dnia: string): string;
-var
-  s: string;
-  a: integer;
-begin
-  s:=tresc;
-  a:=pos(nazwa_dnia,s);
-  delete(s,1,a+length(nazwa_dnia));
-  a:=pos('<table',s);
-  delete(s,1,a-1);
-  a:=pos('<tr',s);
-  delete(s,1,a-1);
-  a:=pos('</table>',s);
-  delete(s,a,10000);
-  result:=trim(s);
-end;
-
 procedure TFMain.SpeedButton6Click(Sender: TObject);
 var
   ss: TStringList;
@@ -1494,7 +1477,13 @@ begin
   _CHAT_BACKGROUND_COLOR:=PropStorage.ReadInteger('ChatBackgroundColor',clWhite);
   _CHAT_SOUND:=PropStorage.ReadInteger('ChatSoundInfo',0);
   _CHAT_BOOT_AUTORESPONSE:=PropStorage.ReadString('ChatBootAutoResponse','* * * <i><b><#008000>$<#></b> chwilowo nie ma mnie... <#004F64>Ale będę <oczko0></i> <#>* * *');
+  PropStorage.ReadStrings('ChatWordsSI',_CHAT_SLOWA_SI);
   _DEV_CHAT_SHOW_BOT_CODE:=PropStorage.ReadBoolean('ChatShowBotCode',false);
+  _CHAT_SKROT_F3:=PropStorage.ReadString('ChatSkrotF3','');
+  _CHAT_SKROT_F4:=PropStorage.ReadString('ChatSkrotF4','');
+  _CHAT_SKROT_F5:=PropStorage.ReadString('ChatSkrotF5','');
+  _CHAT_SKROT_F6:=PropStorage.ReadString('ChatSkrotF6','');
+  _CHAT_SKROT_F7:=PropStorage.ReadString('ChatSkrotF7','');
   {$IFDEF UNIX}
   _SHUTDOWN_MODE:=PropStorage.ReadInteger('ShutdownMode',1);
   {$ENDIF}
@@ -1556,7 +1545,13 @@ begin
   PropStorage.WriteBoolean('OffChatEngineImg',_OFF_CHAT_IMG);
   PropStorage.WriteInteger('ChatSoundInfo',_CHAT_SOUND);
   PropStorage.WriteString('ChatBootAutoResponse',_CHAT_BOOT_AUTORESPONSE);
+  PropStorage.WriteStrings('ChatWordsSI',_CHAT_SLOWA_SI);
   PropStorage.WriteBoolean('ChatShowBotCode',_DEV_CHAT_SHOW_BOT_CODE);
+  PropStorage.WriteString('ChatSkrotF3',_CHAT_SKROT_F3);
+  PropStorage.WriteString('ChatSkrotF4',_CHAT_SKROT_F4);
+  PropStorage.WriteString('ChatSkrotF5',_CHAT_SKROT_F5);
+  PropStorage.WriteString('ChatSkrotF6',_CHAT_SKROT_F6);
+  PropStorage.WriteString('ChatSkrotF7',_CHAT_SKROT_F7);
   PropStorage.WriteInteger('ShutdownMode',_SHUTDOWN_MODE);
   PropStorage.WriteString('ShutdownCMD',_SHUTDOWN_CMD);
   PropStorage.WriteBoolean('VideoMPV',_VIDEO_MPV);

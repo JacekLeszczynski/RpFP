@@ -4,8 +4,12 @@ unit config;
 
 interface
 
+{$IFNDEF BOT}
 uses
   Classes, SysUtils, ExtCtrls, NetSynHTTP, UOSEngine, UOSPlayer;
+{$ELSE}
+  Classes, SysUtils, ExtCtrls, NetSynHTTP;
+{$ENDIF}
 
 resourcestring
   RS_BRAK = 'BRAK';
@@ -314,6 +318,12 @@ var
   _SERVER_ON: boolean = false;
   _BOT_DIR: string;
   _BOT_ROOM,_BOT_USER,_BOT_PASSW,_BOT_SCRIPT: string;
+  _CHAT_SLOWA_SI: TStrings;
+  _CHAT_SKROT_F3: string = '';
+  _CHAT_SKROT_F4: string = '';
+  _CHAT_SKROT_F5: string = '';
+  _CHAT_SKROT_F6: string = '';
+  _CHAT_SKROT_F7: string = '';
 
 var {flagi wyłączające}
   _OFF_CHAT_SOUND_INFO: boolean = false;
@@ -327,11 +337,17 @@ var {zmienne ograniczające}
 function POFileIsExists(kod: string): boolean;
 procedure cAdd(AText: string);
 function test_ip(adres,blokowany: string): boolean;
+function pobierz_dzien_tygodnia(tresc, nazwa_dnia: string): string;
 
 implementation
 
 uses
+{$IFNDEF BOT}
   ecode, consola, math, LCLType;
+{$ELSE}
+  ecode_nogui, math, LCLType;
+{$ENDIF}
+
 
 function POFileIsExists(kod: string): boolean;
 begin
@@ -354,6 +370,23 @@ begin
   kropki:=0;
   for i:=1 to length(s) do if s[i]='.' then inc(kropki);
   result:=((kropki=4) and (adres=s)) or ((kropki<4) and (pos(s,adres)=1));
+end;
+
+function pobierz_dzien_tygodnia(tresc, nazwa_dnia: string): string;
+var
+  s: string;
+  a: integer;
+begin
+  s:=tresc;
+  a:=pos(nazwa_dnia,s);
+  delete(s,1,a+length(nazwa_dnia));
+  a:=pos('<table',s);
+  delete(s,1,a-1);
+  a:=pos('<tr',s);
+  delete(s,1,a-1);
+  a:=pos('</table>',s);
+  delete(s,a,10000);
+  result:=trim(s);
 end;
 
 { TAutoResponseDelay }
@@ -1316,10 +1349,12 @@ end;
 initialization
   _GET_APLET_POLFANU.execute:=true;
   lista_download:=TStringList.Create;
+  _CHAT_SLOWA_SI:=TStringList.Create;
   {$IFDEF UNIX}
   _DEV_GNUPG:=true;
   {$ENDIF}
 finalization
   lista_download.Free;
+  _CHAT_SLOWA_SI.Free;
 end.
 

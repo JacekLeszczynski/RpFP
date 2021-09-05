@@ -14,6 +14,19 @@ type
   { TFUstawienia }
 
   TFUstawienia = class(TForm)
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Edit6: TEdit;
+    Edit7: TEdit;
+    Edit8: TEdit;
+    Label52: TLabel;
+    Label53: TLabel;
+    Label54: TLabel;
+    Label55: TLabel;
+    Label56: TLabel;
+    Label58: TLabel;
+    Label59: TLabel;
+    ListBox1: TListBox;
     proc1: TAsyncProcess;
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
@@ -139,6 +152,8 @@ type
     SpeedButton6: TSpeedButton;
     SpeedButton7: TSpeedButton;
     SpeedButton3: TSpeedButton;
+    SpeedButton8: TSpeedButton;
+    SpeedButton9: TSpeedButton;
     TabSheet7: TTabSheet;
     TestBeep: TSpeedButton;
     SpinEdit1: TSpinEdit;
@@ -189,6 +204,11 @@ type
     procedure Edit1Change(Sender: TObject);
     procedure Edit2Change(Sender: TObject);
     procedure Edit3Change(Sender: TObject);
+    procedure Edit4Change(Sender: TObject);
+    procedure Edit5Change(Sender: TObject);
+    procedure Edit6Change(Sender: TObject);
+    procedure Edit7Change(Sender: TObject);
+    procedure Edit8Change(Sender: TObject);
     procedure film_fontChange(Sender: TObject);
     procedure FontsSizeChange(Sender: TObject);
     procedure force_roomChange(Sender: TObject);
@@ -203,6 +223,8 @@ type
     procedure LogToConsoleChange(Sender: TObject);
     procedure SerwerOnChange(Sender: TObject);
     procedure ShowConsoleChange(Sender: TObject);
+    procedure SpeedButton8Click(Sender: TObject);
+    procedure SpeedButton9Click(Sender: TObject);
     procedure TestBeepClick(Sender: TObject);
     procedure SpinEdit1Change(Sender: TObject);
     procedure SpinEdit2Change(Sender: TObject);
@@ -522,6 +544,31 @@ begin
   _VIDEO_SLANG_DEFAULT:=Edit3.Text;
 end;
 
+procedure TFUstawienia.Edit4Change(Sender: TObject);
+begin
+  _CHAT_SKROT_F3:=Edit4.Text;
+end;
+
+procedure TFUstawienia.Edit5Change(Sender: TObject);
+begin
+  _CHAT_SKROT_F4:=Edit5.Text;
+end;
+
+procedure TFUstawienia.Edit6Change(Sender: TObject);
+begin
+  _CHAT_SKROT_F5:=Edit6.Text;
+end;
+
+procedure TFUstawienia.Edit7Change(Sender: TObject);
+begin
+  _CHAT_SKROT_F6:=Edit7.Text;
+end;
+
+procedure TFUstawienia.Edit8Change(Sender: TObject);
+begin
+  _CHAT_SKROT_F7:=Edit8.Text;
+end;
+
 procedure TFUstawienia.film_fontChange(Sender: TObject);
 begin
   _VIDEO_FONT_NAME:=film_font.Text;
@@ -568,6 +615,12 @@ begin
   LogToConsole.Checked:=_CHAT_LOG_TO_CONSOLA;
   ListFonts.Items:=Screen.Fonts;
   film_font.Items.Assign(ListFonts.Items);
+  ListBox1.Items.Assign(_CHAT_SLOWA_SI);
+  Edit4.Text:=_CHAT_SKROT_F3;
+  Edit5.Text:=_CHAT_SKROT_F4;
+  Edit6.Text:=_CHAT_SKROT_F5;
+  Edit7.Text:=_CHAT_SKROT_F6;
+  Edit8.Text:=_CHAT_SKROT_F7;
   {$IFDEF UNIX}
   RadioButton1.Enabled:=true;
   RadioButton2.Enabled:=true;
@@ -646,6 +699,25 @@ end;
 procedure TFUstawienia.ShowConsoleChange(Sender: TObject);
 begin
   _SHOW_CONSOLE:=ShowConsole.Checked;
+end;
+
+procedure TFUstawienia.SpeedButton8Click(Sender: TObject);
+var
+  s: string;
+begin
+  s:=AnsiUpperCase(InputBox('Słowa SI','Nowe słowo:',''));
+  if s<>'' then
+  begin
+    ListBox1.Items.Add(s);
+    _CHAT_SLOWA_SI.Assign(ListBox1.Items);
+  end;
+end;
+
+procedure TFUstawienia.SpeedButton9Click(Sender: TObject);
+begin
+  if ListBox1.ItemIndex=-1 then exit;
+  ListBox1.DeleteSelected;
+  _CHAT_SLOWA_SI.Assign(ListBox1.Items);
 end;
 
 procedure TFUstawienia.TestBeepClick(Sender: TObject);
